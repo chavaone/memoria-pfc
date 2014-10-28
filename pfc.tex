@@ -1,0 +1,150 @@
+% Opciones empleadas:
+%
+%	a4paper -> indica el tamaño del papel, en este caso A4.
+%	11pt -> tamaño de la fuente 11 puntos.
+%	oneside -> sólo escribimos en una cara del folio.
+%
+% Otras opciones interesantes:
+%
+%	twoside -> escribimos a doble cara.
+%	openbib -> para que las referencias bibliográficas tengan un salto de línea entre cada campo de la referencia.
+%
+\documentclass[a4paper,11pt,oneside]{book}
+
+% codificación latin1 y símbolos del idioma español (ñ, acentos, ...)
+\usepackage[spanish]{babel}
+\usepackage[latin1]{inputenc}
+
+% puede que queramos usar el símbolo del euro.
+\usepackage{eurosym}
+
+% El paquete fancybox nos permite crear cajas de diferentes estilos con facilidad.
+% http://www.ctan.org/get/macros/latex/contrib/fancybox/fancybox.pdf
+% http://www.mackichan.com/index.html?techtalk/487.htm~mainFrame
+\usepackage{fancybox}
+\usepackage{multicol}
+\usepackage{amsmath}
+
+% Para incluir subfiguras.
+\usepackage{subfigure}
+
+% Para incluir gráficos en JPG => compilar con pdflatex.
+\usepackage[pdftex]{graphicx}
+
+% Para incluir gráficos EPS => compilar con latex.
+%\usepackage[dvips]{graphicx}
+
+% Para escribir en color...
+%
+% ... cuando compilamos con el comando ``latex''
+%\usepackage[dvips,usenames]{color}
+% ... uando compilamos con el comando ``pdflatex''
+ \usepackage[pdftex,usenames,dvipsnames]{color}
+
+% Espaciado y ajuste de márgenes
+\usepackage{setspace}
+\onehalfspacing
+% \doublespacing
+\setlength{\textwidth}{15cm}
+\setlength{\textheight}{22cm}
+
+% Paquete fancyhdr -> Para modificar la cabecera y pie de páginas.
+% http://tug.ctan.org/tex-archive/macros/latex/contrib/fancyhdr/
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhf[HR]{\thepage}
+\fancyhf[HL]{\nouppercase\rightmark}
+
+% Package booktabs -> Para mejorar el aspecto de las tablas o cuadros.
+% http://www.ctan.org/tex-archive/macros/latex/contrib/booktabs/
+\usepackage{booktabs}
+
+% Package rotating -> Para poder girar las tablas y dibujarlas a lo largo
+% del folio en vez de a lo ancho.
+\usepackage{rotating}
+
+% Packages multicol y multirow, para manejar tablas de filas y columnas múltiples.
+\usepackage{multicol}
+\usepackage{multirow}
+
+% Personalizamos la separación entre párrafos...
+\parskip=6pt
+
+% Personalizamos el identado en la primera línea del nuevo párrafo...
+\parindent=10pt
+
+% Establecemos el número máximo de niveles de profundidad en las secciones.
+\setcounter{secnumdepth}{3}
+
+% Título
+\title{GNOMECAT, un editor de ficheiros GNU Gettext para o proxecto GNOME}
+% Autor
+\author{Marcos Chavarría Teijeiro}
+% Fecha
+\date{\today}
+
+
+\begin{document}
+
+	% \maketitle sirve para generar automática una portada predefinida, pero para un proyecto fin de carrera
+	%	de FIC no sirviría porque no cumple las normas de presentación. Podemos hacer dos cosas:
+	% 1. Usarla e ignorar las normas (y asumir las consecuencias que pueda tener)
+	% 2. Hacernos una portada en LaTeX que cumpla las normas (menos arriesgado)
+	%
+        \include{pfc_portada}
+
+	% FRONTMATTER: TOC, LOF, LOT y descripción/organización de la memoria.
+        \frontmatter
+
+	% Los proyectos de fin de carrera de FIC han de ir acompañados de una serie de documentos adicionales, algunos
+	% 	de ellos obligatorios (certificado, resumen, lista de palabras clave) y otros opcionales (dedicatoria
+	%	y agradecimientos).
+	%
+        \thispagestyle{empty}     % No number page, headings...
+        \include{pfc_certificado}
+        \thispagestyle{empty}     % No number page, headings...
+
+        \include{pfc_resumen}
+        \thispagestyle{empty}     % No number page, headings...
+
+        \include{pfc_palabras_clave}
+        \thispagestyle{empty}     % No number page, headings...
+
+        \include{pfc_dedicatoria}
+        \thispagestyle{empty}     % No number page, headings...
+
+        \include{pfc_agradecimientos}
+        \thispagestyle{empty}     % No number page, headings...
+
+        \tableofcontents
+        \listoffigures
+        \listoftables
+
+        \include{pfc_frontmatter_intro}
+
+
+	% MAINMATTER: El contenido, capítulo a capítulo, de la memoria del PFC.
+        \mainmatter
+
+	\include{pfc_main_010}
+	\include{pfc_main_020}
+	%\include{pfc_main_030}
+	%\include{pfc_main_040}
+	%\include{pfc_main_050}
+	%\include{pfc_main_060}
+
+
+	% INCLUIMOS LOS APÉNDICES...
+        \appendix
+	\include{pfc_appendix_010}
+%   \include{pfc_appendix_020}
+
+
+	% INCLUIMOS LA BIBLIOGRAFÍA...
+	\nocite{*}	% Se usa para indicar en la bibliografía las referencias no citadas.
+	\bibliography{pfc_biblio}
+	\bibliographystyle{plain}
+
+\end{document}
+
