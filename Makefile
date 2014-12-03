@@ -2,6 +2,8 @@
 all:
 	rm -f *.toc *.log *.aux pfc.pdf
 	pdflatex pfc
+	bibtex pfc
+	pdflatex pfc
 	pdflatex pfc
 
 
