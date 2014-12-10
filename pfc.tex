@@ -140,6 +140,7 @@
 \renewcommand\lstlistingname{Fragmento de Código}
 \renewcommand\lstlistlistingname{Fragmentos de Código}
 
+\newenvironment{bottompar}{\par\vspace*{\fill}}{\clearpage}
 
 \begin{document}
 
@@ -172,6 +173,10 @@
 
         \include{pfc_agradecimientos}
         \thispagestyle{empty}     % No number page, headings...
+
+        \include{pfc_cc_licence}
+        \thispagestyle{empty}     % No number page, headings...
+
 
         \tableofcontents
         \listoffigures
