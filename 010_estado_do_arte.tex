@@ -291,8 +291,7 @@ Virtaal é unha ferramenta CAT creada por Translate House. Compañia surxida a p
 Como se pode ver na Figura~\ref{fig:virtaal}, a interface é minimalista e moi centrada na tradución. A diferencia dos casos anteriores, trátase dunha interface fixa e que integra a lista das mensaxes coa edición da propia mensaxe. Tamén se indican posibles fallos que poidan ter a tradución, como falta de puntos o final, ausencia de marcadores de formato, etc.
 
 \subsection{OmegaT}
-
-As súas principais características son o uso de meoria de tradución, glosario, tradución directa, uso doutras linguaxes entre outras cartacterísticas.
+Ferramenta CAT lanzada no ano 2001 e pensada fundamentalemente para traductores profesionais. Ten soporte para o uso de memoria de tradución, glosario, tradución directa entre outras cousas. Destaca a gran cantidade de formatos que pode empregar.
 
 \begin{figure}[h]
     \centering
@@ -301,11 +300,11 @@ As súas principais características son o uso de meoria de tradución, glosario
     \label{fig:omegat}
 \end{figure}
 
-A interface de OmegaT dista bastante do resto de programas. Como amosa a Figura~\ref{fig:omegat} non existe o concepto de lista de mensaxes traducir. O documento amosase como unha sucesión de cadea e se facemos click encima dunha, permitiranos traducila.
+A interface de OmegaT dista bastante do resto de programas. Como amosa a Figura~\ref{fig:omegat} non existe o concepto de lista de mensaxes traducir. O documento amosase como unha sucesión de cadea e se facemos click encima dunha, permitiranos traducila. Trátase dun programa moi usado para a tradución tanto profesional como amateur.
 
 
 \subsection{Google Translation Toolkit}
-É a ferramenta CAT desenvolvida por Google. É un aplicación online a diferencia dos anteriores. Entre as súas principais carácterísticas encontrase a posibilidade de facer tradución automática empregando Google Translator, o manexo de Memorias de Tradución,etc.
+É a ferramenta CAT desenvolvida por Google e lanzada no ano 2008. A diferencia dos aplicativos analizados anteriormente, esta trátase unhda solución puramente web. Entre as súas principais carácterísticas encontrase a posibilidade de facer tradución automática empregando Google Translator, o uso de memorias de tradución compartidas, glosarios, soporte de tags HTML entre outros e atallos de teclado. Ten soporte para varios formatos como ficheiros PO, documentos de Microsoft Word, de LibreOffice ou mesmo artigos da Wikipedia.
 
 \begin{figure}[h]
     \centering
@@ -314,8 +313,11 @@ A interface de OmegaT dista bastante do resto de programas. Como amosa a Figura~
     \label{fig:translatetoolkit}
 \end{figure}
 
+Como se pode ver na Figura~\ref{fig:translatetoolkit}, na interface mezclase a lista de cadeas co cadro de edición das mesmas. Ademais empregando unha interface semellante a do resto de ferramentas ofimaticas de Google, temos botóns para autocompletar tags e para avanzar a seguinte tradución. Aínda que foi pensado para a tradución colaborativa de documentos de ONGs e artigos da Wikipedia, na actualidade empregase sobretodo para a tradución de proxectos comerciais.
+
+
 \subsection{Transifex}
-Tamén se trata dunha solución web. Neste caso de pago.
+Trátase dunha plataforma que xurdiu a partir dun proxecto do Google Summer of Code do ano 2007 que pretendía crear unha plataforma online máis amigable que o Damned Lies de GNOME que naquel momento tamén empregaba a distribución Fedora. Trátase dunha solución de pago con plans que van dende os 19 a os 300 dolares aínda que os proxectos de codigo aberto poden usar o servizo de forma gratuita e ademais ten un periodo de mostra gratuita de 30 días. As súas principais caracteristicas son a posibilidade de descargar o documento e volvelo a subir para poder traducilo con outra ferramenta CAT, editor online, memoria de tradución e unha API que permite integralo con outros servizos.
 
 \begin{figure}[h]
     \centering
@@ -323,6 +325,8 @@ Tamén se trata dunha solución web. Neste caso de pago.
     \caption{Interface de Transifex}
     \label{fig:transifex}
 \end{figure}
+
+A interface de trasifex, como ser pode ver na Figura~\ref{fig:transifex} separa a lista de cadeas do cadro de edición. No cadro de edición temos a posibilidade de consultar a memoria de tradución ou o glosario. O programa tamén incorpora resaltado de sintaxe.
 
 \subsection{Outras ferramentas}
 Existen moitas máis ferramentas CAT no mercado. De feito segun unha enquisa \cite{article:2006survey} elaborada polo Imperial College London a cerca de 900 traductores profesionais de 54 países diferentes, os unicos programas de todos os anteriores que aparecen citados é o OmegaT que conta con un 7\% de usuarios. As ferramentas máis usadas son ferramentas para MS Windows e ferramentas con licencias privativas e usualmente moi caras. Algunhas destas ferramentas son TRADOS, Wordfast, DejaVu SDLX ou STAR Transit. Na Figura~\ref{fig:enquisa2006} podemos ver unha gráfica coas ferramentas máis empregadas segun este estudio.
@@ -342,11 +346,29 @@ Hai que ter tamén en conta que se trata dun estudio bastante antigo polo que al
 Algunhas das carácteristicas que aparecen de forma recurrente en todas as ferramentas analizadas son as seguintes:
 
 \subsection{Memoria de Tradución}
-A memoria de tradución é unha base de datos de traducións xa feitas con anterioridade. A idea é que a partir desta base de datos obteñamos suxestións as traducións. Estas suxestións non teñen por que ser coincidencias ao 100\%. Existen ademais servidore de memoria de tradución que almacenan unha gran cantidade de traducións.
+Unha memoria de tradución é unha base de datos composta de textos orixinais acompañados das súas traducións. Estos textos almacenanse en segmentos onde a separación entre segmentos ven dada por signos de puntuación ou o cambio de parágrafo, sendo esta última forma a máis frecuente.
+
+A principal función dunha memoria de tradución e a extración de coincidencias totais ou parciais. Os programas que teñen esta característica buscan buscan na base de datos un segmento que coincidada de forma exacta ou parcial e mostrase esta tradución como suxerencia. Xunto coa suxerencia tamén se amosa o grado de cercanía entre a cadea a traducir e a cadea da memoria de tradución.
+
+Existen ademais memorias de tradución online que almacenan gran cantidade de cadeas e polo tanto hai máis posibilidade de obter unha mellor coincidencia.
 
 \subsection{Glosario}
+Un glosario é unha base de datos de termos xunto coa súa tradución.
+
 
 \subsection{Previsualización}
+As funcións de previsualización permitenlle o traductor ver como vai quedar a cadea traducida no programa final. 
+
+Os programadores e deseñadores fan as interfaces tendo en conta a lingua orixinal e non ningunha das traducións polo que se unha tradución é moito máis longa ca orixinal pode verse mal no programa final.
+
+Para conseguir esta caracteristica podense empregar varias técnicas:
+
+\begin{itemize}
+  \item \textbf{Programa orixinal.} Esta técnica que se pode empregar en calquer cadea consiste en compilar o ficheiro PO e executar o programa final con ese ficheiro PO. Desta poderemos ver como queda a nosa tradución para o usuario final. A desvantaxe deste método consiste en que teremos que saber en que parte do programa se emprega a cadea que queremos previsualizar. Este método é empregado por Lokalize que permite a definición de scripts para a previsualización de cadeas.
+
+  \item \textbf{Renderizado de interfaces de usuario en XML.} Nas bibliotecas de interfaces modernas existe a posibilidade de definir interfaces en ficheiros XML e despois renderizalas. Neste caso as cadeas a traducir van nestes arquivos e sería posible renderizar esta interface coa tradución que estamos a realizar. Este método aínda que si que amosaría a pantalla onde aparece a cadea actual, so é válido para as cadeas qeu proveñen destes ficheiros XML e non as definidas da forma tradicional. Un exemplo deste método podese ver na rede no aplicatibo Deckard\footnote{\href{http://deckard.malizor.org/}{deckard.malizor.org}} que permite ver as traducións de aplicativos de GNOME.
+\end{itemize}
+
 
 \subsection{Tradución Directa}
-A tradución das cadeas de forma automatica empregando ferramentas como Google Translate.
+A tradución das cadeas de forma automatica empregando ferramentas de internet. Tanto Google como Microsoft teñen os seus productos corporativos que fan traducións e existen alternativas libres como OpenTrad ou Apertium. Estas traducións aínda que validas soen ser de baixa calidade polo que necesitan unha revisión.
