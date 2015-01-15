@@ -1,42 +1,413 @@
 \chapter{Planificación e Seguimento}
 
+A elaboración deste proxecto levouse a cabo durante catro periodos de tempo diferenciados e separados no tempo:
 
-\section{Proxecto inicial. GSoC 2013}
-%GSoC 2013 -> 17 de Junio - 16 Septembro -> 15 - 1 (guadec) - 1 (clases) semanas -> 325h
+\begin{itemize}
+  \item O verán do ano 2013 como parte do programa GSoC.
+  \item O primeiro cuatrimestre do curso 2013/2014.
+  \item O verán do ano 2014 novamento como parte do GSoC.
+  \item O segundo cuatrimestre do curso 2014/2015.
+\end{itemize}
 
+Neste cápitulo trataremos a planificación do proxecto e como se levou a cabo neses catro períodos de tempo.
 
-\subsection{Presentación GUADEC 2013 (Brno)}
+\section{Google Summer of Code 2013}
+O tempo de programación do Google Summer of Code son aproximadamente 4 meses, un total de 15 semanas. Durante a edición de 2013 planificouse qeu se ía traballar 13 semanas. As dúas semanas restantes correponden a asistencia a GUADEC e ao comezo do ano lectivo universitario 2013/2014. Contase traballar aproximadamente 5 horas diarias polo que dá un total de 325 horas.
+
+O programa GSoC pide os participantes reportes periodicos en forma de artigos en blogs así que estas serán as nosas iteracións a través das cales iremos recibindo feedback por parte dos futuros usuarios do aplicativo. En función deste feedback iremos modificando o programa. Neste caso empregouse un blog personal creado con anterioridade e de nome \href{http://aquelando.info}{Aquelando.info}. As publicacións deste blog así como as de moitos desenvolvedores do proxecto GNOME están ligadas con Planet GNOME, que é un agregador de blogs, polo que a súa difusión é moi alta. A perioricidade das publicacións e polo tanto das iteracións variará dunha a outra pero é de entre dúas e tres semanas.
+
+Durante este GSoC fixeronse 5 iteracións que explicamos a continuación.
+
+\subsection{Primeira Iteración: Análise, deseño xenérico e inicio da implementación}
+
+A primeira iteración iniciouse o 13 de Xuño e rematouse o 30 de Xuño. O tratarse da primeira iteración dun programa fíxose unha analise das necesidades e un deseño xenerico da estrutura do programa.
+
+\subsubsection{Análise e deseño}
+Para o análise, instalamos e estudiamos algúns programas existentes e enviamos correos a listas de correo de equipos de tradución para obter ideas. Obtemos bastante resporta sobretodo por parte de xente do Proxecto Trasno. Unha vez que tiñamos claro que necesidades ten o noso programa fixemos un deseño xenerico da estrutura do programa. Este deseño saca a luz algúns conceptos que estarán presente durante toda a vida do programa como poden ser os \emph{consellos} e as \emph{pistas}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{img/mockup_interface1.png}
+    \caption{Mockup da interface presentado no reporte.}
+    \label{fig:mockup_int1}
+\end{figure}
+
+Os consellos é un sistema lle amosa ao usuario posibles fallos que este tivo durante a tradución. Por outra pare as pistas son posibles traducións que se lle amosan ao usuario estas traducións poden vir de memorias de tradución, de outros linguaxes semellantes ou do propio ficheiro que se está a traducir, por exemplo.
+
+Ademais tamén se fixo algun mockup da interface de usuario como o que se publicou no blog e se pode ver na Figura~\ref{fig:mockup_int1}. Estes deseños son bastante semellantes a interface do aplicativo Virtaal.
+
+\subsubsection{Implementación da clase abstracta ficheiro}
+Empeza a implementar parte do núcleo do sistema. Implementase unha clase abstracta ficheiro e unha clase \emph{DemoFile} que vai servir como mock para poder implementar a interface.
+
+Esta clase implementase tendo en mente o concepto de extensibilidade xa que este programa aínda que se centra na edición de ficheiros PO por ser estes os "oficiais" de GNOME tamén queremos que este programa sexa útil para a comunidade de traductores en xeral.
+
+\subsubsection{Reporte e feedback}
+Escribironse un total de 3 reportes. Un\footnote{\href{http://aquelando.info/startinggsocprojec/}{Starting the GSoC Project!!}} facendo referencia as peticións obtidas por parte dos equipos de tradución e dous\footnote{\href{http://aquelando.info/valacat-some-design-aspects/}{ValaCAT. Some design aspects}}\footnote{\href{http://aquelando.info/valacat-some-design-aspects-part-2/}{ValaCAT. Some design aspects (Part 2)}} con algúns detalles que se tiveron en conta durante o deseño do programa. Houbo bastantes comentarios no blog e entre outras cousas os usuarios destacaron:
+
+\begin{itemize}
+  \item A importancia de non usar o patrón Singleton.
+  \item Non facer os widgets dependentes da aplicación para que estos poidan ser reutilizados en outras aplicacións como Anjuta.
+  \item Usar gettext-po para implementar os ficheiros po.
+  \item Empregar unha interface máis semellante a anterior de GTranslator.
+  \item Eliminar a columna de ID pois non se consider útil.
+  \item Autoexpandir o tamaño dos campos cando as cadeas sexan grandes.
+\end{itemize}
+
+Con respecto a estas ideas modificouse a interface que se ía facer para buscar un deseño moi parecido ao de GTranslator empregando ingluso a mesma biblioteca GNOME Docking Library que permite modificar os bloques da interface. Ademais eliminouse por completo o ID da cadea da interface. En canto a biblioteca gettext-po xa tiñamos en mente empregala.
+
+\subsubsection{Tarefas e seguimento}
+
+As tarefas que se realizaron durante esta iteración foron as seguintes:
+
+\begin{itemize}
+  \item Análise de Requisitos
+    \begin{itemize}
+      \item Estudio de ferramentas existentes.
+      \item Enviar correos a diferentes equipos de traductores.
+      \item Analizar respostas dos equipos.
+    \end{itemize}
+  \item Deseño xenerico do aplicativo.
+  \item Deseño e implementación do ficheiros xenérico.
+  \item Escribir primeiros reportes.
+\end{itemize}
+
+Planificaronse un total de 50 horas e fixeronse 60 debido a ter que esperar por que os traductores deran as súas opinións.
+
+\subsection{Segunda Iteración: Linguaxes, Filtros e Interface}
+
+A segunda iteración durou dende o 1 de Xullo ata o 18 de Xullo. Nesta iteración profundizase no núcleo do sistema e empezamos a traballar na interface de ususario.
+
+\subsubsection{Linguaxes}
+Implementación da clase linguaxe e da clase forma plural. Fixemos un par de ficheiros con cada linguaxe e con cada forma plural existente. A idea detras destes ficheiros é engadir información adicional a cada linguaxe e a cada forma plural. 
+
+Nas formas plurais incluimos unhas etiquetas para explicar en forma de texto a que corresponde cada tipo de plural. Por exemplo para os plurais do galego, a forma plural 0 tería unha etiqueta ``Singular (1 elemento)'' e a forma plural tería a forma ``Plural (0 ou máis de 1 elementos)''. Desta forma resultará máis sinxelo identificar cada forma plural e non ter que usar só o número.
+
+\subsubsection{Filtros para as cadeas}
+Os filtros para as cadeas corresponde a idea de que cada consello poda incluir a función de resaltar certas partes da mensaxe para reforzar a información que nos dá. Estos filtros funcionan como un patrón decorador que colocan uns tags html antes e despois da parte resaltada de forma que despois se poda parsear esta información e mostrala ao usuario cambiando os estilos.
+
+\subsubsection{Interface de usuario}
+Empezase a traballar na interface do usuario. Nesta iteración crease a estrutura xeral e os widget de listar mensaxes, de editar mensaxes e de mostar o contexto da mensaxe. O aspecto final da interface despois desta iteración pódese ver na Figura~\ref{fig:gsoc1_iter2_ui}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{img/gsoc1_it2_ui.png}
+    \caption{Primeira implementación da interface.}
+    \label{fig:gsoc1_iter2_ui}
+\end{figure}
+
+\subsubsection{Reporte e feedback}
+Escribiuse un\footnote{\href{http://aquelando.info/valacat-application-current-status/}{ValaCAT application current status}} reporte onde se puxo un vídeo no que se amosaba o estado do programa e todas as caracteristicas implementadas. Recibimos un comentario preguntando para que sirven certas partes da aplicación que aparecen no vídeo e respondese explicando as ideas empregadas e reforzandoo con outro video centrado nesas partes.
+
+\subsubsection{Tarefas e Seguimento}
+
+As tarefas que realizamos durante esta iteración foron as seguintes:
+
+\begin{itemize}
+  \item Deseño e Implementación do módulo de Linguaxes.
+    \begin{itemize}
+      \item Creación dos ficheiros JSON coa lista de formas plurais e de linguaxes.
+    \end{itemize}
+  \item Interface de usuario.
+    \begin{itemize}
+      \item Implementación da lista de mensaxes.
+      \item Implementación do editor de mensaxes.
+      \item Implementación da barra de estado.
+      \item Implementación da lapela xenerica.
+      \item Implementación da lapela para ficheiros.
+    \end{itemize}
+  \item Creación do Makefile
+  \item Creación de filtros para as cadeas.
+  \item Escribir reportes.
+\end{itemize}
+
+Planificaronse un total de 70 horas para esta iteración e completaronse en 75 horas. Estas horas fixeronse traballando máis horas ao día polo que non supuxo un desvio. 
+
+\subsection{Terceira Iteración: Interface, iteradores e buscas}
+
+\subsubsection{Iteradores e Buscas}
+Os iteradores son o sistema empregado para navegar a través das cadeas do documento. Construironse de forma qeu o usuario puidese navegar a través de todas as cadeas, das cadeas sin traducir ou das cadeas con tradución difusa. Ademais creouse o módulo para buscar texto no documento.
+
+\subsubsection{Interface de usuario}
+Seguimos traballando na interface de usuario. Cambiamos o widget de edición para empregar a biblioreca GtkSourceView que incorpora un widget que permite resaltado de sintaxe, de espacios en blanco entreo outros. Ademais empezamos a usar a clase GtkAplication e GtkAplicationWindow. Os filtros son substituidos por GtkTextTags que estan integrados dentro da librería GTK. Engadimos un dialogo para facer buscas onde se poden selecionar distintos parametros sobre qeu cadeas incluir nas búsquedas.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{img/gsoc1_it3_ui.png}
+    \caption{Primeira implementación da interface.}
+    \label{fig:gsoc1_iter3_ui}
+\end{figure}
+
+O aspecto que ten esta interface o finalizar esta iteración pódese ver na Figura~\ref{fig:gsoc1_iter3_ui}.
+
+\subsubsection{Presentación GUADEC 2013 (Brno)}
+A GUADEC e a xuntanza europea de desenvolvedores e usuarios de GNOME. Os participantes no GSoC están invitados a ir a dita reunión e expoñer o seu traballo nunha charla relámpago dun máximo de 3 minutos.
 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.275\textwidth]{img/guadec_2013_1.jpg}
-    \includegraphics[width=0.675\textwidth]{img/guadec_2013_2.jpg}
+    \includegraphics[width=0.715\textwidth]{img/guadec_2013_2.jpg}
     \caption{GUADEC 2013 (Brno)}
     \label{fig:guadec2012}
 \end{figure}
 
-\subsection{Estado ao fin do GSoC 2013}
+Ademais de presentar o proxecto nesta xuntanza participei no evento como voluntario o que me permitiu coñecer a moita xente, algunha desa xente podo dicir que a día de hoxe son amigos meus.
 
-\section{Presentación GUADEC Hispana 2013 (Madrid)}
+\subsubsection{Reportes e Feedback}
+
+A Fundación GNOME ponse en contacto conmigo a través do email para pedirme que, xa que esta vai ser o aplicativo oficial de GNOME, ten que ter a palabra GNOME no seu nome.
+
+Escribironse dous reportes un\footnote{\href{http://aquelando.info/guadec-2013/}{GUADEC 2013}} falando da miña experiencia na GUADEC e outro\footnote{\href{http://aquelando.info/searching/}{Searching...}} falando dos avances no programa e pedindo ideas para o novo nome do aplicativo. Daniel Mustieles responde que ``GNOME Translator'' ou ``GNOME Translation Tool'' serían boas opcións.
+
+\subsubsection{Tarefas e seguimento}
+
+Nesta iteración continuamos traballando na interface, e implementaronse o sistema de navegación a través do documento e as buscas.
+
+\begin{itemize}
+  \item Deseño e implementación dos iteradores.
+  \item Deseño e implementación do sistema de busca.
+  \item Interface de usuario.
+    \begin{itemize}
+      \item Resaltado do texto ao facer click nos consellos.
+      \item Modificar editor de mensaxes
+    \end {itemize}
+  \item Escribir reportes.
+\end{itemize}
+
+Esta iteración planificouse para un total de 50 horas e completouse en 60 horas debido ao tempo que tivemos que esperar polas respostas dos traductores e que se gastou analizando o código dos programas existentes.
+
+
+\subsection{Cuarta Iteración: Ficheiros po, Autools, Proxectos, barra de busca}
+
+\subsubsection{Ficheiros PO}
+Ata este momento para probar a interface do programa viñamos empregando unha subclase da clase abstracta File de nome ``DemoFile'' e que funcionaba de \emph{mock} xerando aleatoriamente as cadeas. Agora implementamos o clase ``PoFile'' que representa un ficheiro po. Para facer esta implementación empregamos a biblioteca gettext-po.
+
+Esta biblioteca está escrita en C polo que para usala con Vala temos que escribir uns bindings. Afortunadamente escribir uns bindings para Vala é bastante sinxelo se a biblioteca está escrita en C pois o propio Vala emprega C como linguaxe intermedio.
+
+\subsubsection{Proxectos}
+Un dos requisitos do programa é a aparición dos proxectos. Un proxecto é un conxunto de ficheiros que teñen algo en común e que estan na mesma carpeta. Nesta iteración implementamos este concepto.
+
+\subsubsection{Autotools}
+Durante a primeira iteración fixemos un pequeno script Makefile para compilar o programa mais según vai crecendo o aplicativo surxe a necesidade de usar un sistema de \emph{building} máis complexo. Escollese Autotools por varias recomendacións de outros desenvolvedores.
+
+\subsubsection{Interface de usuario}
+Continuamos traballando na interface. Engadese unha barra de busca e eleminase a barra de estado. Implementanse accións para facer e desfacer cambios, navegar a través do documento e outras cousas. Estas accións poderán ser activadasa a través de botóns na interface por agora e con atallos de teclado no futuro. Engádese soporte para abrir ficheiros dende a interface e ver os ficheiros recentes.
+
+\subsubsection{Reportes e feedback}
+
+Falando co anterior \emph{maintainer} de GTranslator a través de IRC, este aporta bastantes consellos sobre o programa como o uso de Autotools ou varios detalles da interface de usuario.
+
+Realizaronse un total de dous reportes\footnote{\href{http://aquelando.info/gsoc-application-status-report/}{GSoC application status report}}\footnote{\href{http://aquelando.info/po-files-projects-navigation-and-other-stuff-i-have-been-doing/}{Po files, projects, navigation and other stuff I have been doing}} pero ninguén escribiu ningún comentario no blog.
+
+\subsubsection{Tarefas e Seguimento}
+
+As tarefas que se realizaron durante esta iteración foron as seguintes:
+
+\begin {itemize}
+  \item Implementación dos ficheiros po.
+  \item Implementación de proxectos
+  \item Implementación de accións
+    \begin{itemize}
+      \item Accións desfacer-refacer
+      \item Accións de navegar polo documento.
+    \end{itemize}
+  \item Engadir barra de busca.
+  \item Eliminar barra de estado.
+  \item Substituir Makefile por Autools.
+  \item Internacionalización do programa.
+  \item Escribir reportes.
+\end {itemize}
+
+Planificaronse un total 90 horas para esta iteración e completouse en 110 horas debido as dificultades encontradas na implementación dos bindings da biblioteca de GetText e na implementación de Autotools. Estas horas alcanzaronse facendo máis horas cada día.
+
+\subsection{Quinta Iteración: Preferencias, limpar código e documentación}
+Durante esta iteración seguiuse traballando na interface, limpouse o código e creouse algo de documentación de cara a entraga final do Google Summer of Code.
+
+\subsubsection{Preferencias}
+Por agora moitas das opcións empregadas estaban \emph{hardcodeadas}, é dicir postas directamente no código. Para solucionar isto creamos as preferencias. Por un lado implementamos unha serie de preferencias empregando o compoñente de GLib GSettings que permite o almacenamento sinxelo de configuracíon das aplicacións mediante unha especie de tabla hash. Este compoñente permite o uso de diferentes \emph{backends} entre os cales destaca \emph{dconf} por ser o estandar de GNOME creado a tal efecto.
+
+Ademais engadimos unha dialogo que permite editar estas preferencias dende o propio programa. Este dialogo copia os campos empregados anteriormete en GTranslator.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{img/gsoc1_it5_prefs.png}
+    \caption{Diálogo de preferencias.}
+    \label{fig:gsoc1_it5_prefs}
+\end{figure}
+
+Na Figura~\ref{fig:gsoc1_it5_prefs} pódese ver o aspecto deste dialogo.
+
+\subsubsection{Mellorar a calidade do código e documentación}
+Fixose unha revisión completa do código para manter un mesmo estilo ao largo de todo o código. Ademais actualizaronse os diagramas UML creados na primeira iteración.
+
+\subsubsection{Reportes e Feedback}
+Escibiuse un\footnote{\href{}{}} reporte
+
+\subsubsection{Tarefas e seguimento}
+
+\begin {itemize}
+  \item Deseño e implementación das preferencias.
+  \item Correxir Clase ficheiro.
+  \item Correxir errores de estilos no código.
+  \item Actualizar diagramas UML.
+  \item Escribir reportes.
+\end {itemize}
+
+Planificaronse un total de  horas para a realización destas tarefas.
+
+\subsection{Estado ao fin do GSoC 2013}
+O finalizar esta iteración o mentor do GSoC avalía correctamente o proxecto presentado polo que o programa é completado con éxito. O programa entregado ten entre outras moitas as seguintes características:
+
+\begin{itemize}
+  \item Posibilidade de abrir ficheiros po.
+  \item Navegación a través do documento.
+  \item Posibilidade de buscar.
+  \item Editor con resaltado de sintaxe e de espacios en branco.
+  \item Preferencias.
+\end{itemize}
+
+Pero tamén presenta algúns fallos:
+
+\begin{itemize}
+  \item Lentitude ao cargar ficheiros moi grandes.
+  \item Fallo ao gardar un ficheiro.
+  \item O aspecto da interface non é satisfactorio.
+  \item Problemas ao buscar.
+\end{itemize}
+
+Intentamos durante o curso seguinte nos tempos libres arreglar estos fallos.
+
+\section{Primeiro cuatrimestre curso 2013/2014}
+
+Durante este periodo intetouse continuar o proxecto durante o tempo libre polo que estas iteracións son maís longas no tempo xa que tráballase un menor número de horas. Distinguimos dúas iteracións que corresponden a dous momentos durante o curso na que a carga de traballo permitiume seguir co proxecto.
+
+\subsection{Primeira iteración: cambios na interface}
+A primeira iteración comprende os últimos días de septembro e o mes de octubro. Durante este tempo faise un rediseño da interface gráfica e implementanse as pistas e os comprobadores.
+
+\subsubsection{Interface Gráfica}
+Decidimos facer un re-deseño da interface para intentar conseguir un mellor resultado. Para facer esto empregamos os deseños iniciais que se asemellan máis o aspecto da aplicación Virtaal.
+
+Xa tiñamos feitos os widgets de edición e a lista de mensaxes polo que facer o novo deseño consiste en misturar os dous conceptos. Na Figura~\ref{fig:curso2014_it1_ui} podese ver o resultado. Desta forma se facemos click nun dos mensaxes da lista este expandese e permitenos editar o contido.
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.475\textwidth]{img/guadec_es_2013_1.jpg}
-    \includegraphics[width=0.475\textwidth]{img/guadec_es_2013_2.jpg} 
+    \includegraphics[width=0.8\textwidth]{img/curso2014_it1_ui.png} 
+    \caption{Rediseño da interface}
+    \label{fig:curso2014_it1_ui}
+\end{figure}
+
+Ademais deixamos de usar a biblioteca GDL xa que en conversacións a través de IRC chegouse a conclusión de que se o usuario tiña que usar esta biblioteca para modificar a interface isto é por que a interface está mal deseñada.
+
+
+\subsubsection{Pistas e Comprobadores}
+Como xa comentamos as pistas (\emph{hints}) son posibles traducións para unha cadea determinada. Nesta iteración creamos tanto o panel da interface que permite ver estas pistas como a clase que lle provee as pistas a dita interface. Por último creamos un mock para poder seguir traballando.
+
+En canto aos comprobadores (\emph{checkers}), estos son os elementos do programa que aportan os consellos da mesma forma que cas pistas, implementamos a clase comprobador e crearmos un mock de nome \emph{DemoChecker}.
+
+\subsubsection{Presentación GUADEC Hispana 2013 (Madrid)}
+
+A GUADEC Hispana é unha reunión de usuarios e desarrolladores que falan castelán e que sirve tamén para a reunión anual (como obliga a lei) da organización GNOME Hispano. Ademais desta reunión fanse charlas sobre GNOME e outros temas relacionados.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.495\textwidth]{img/guadec_es_2013_1.jpg}
+    \includegraphics[width=0.495\textwidth]{img/guadec_es_2013_2.jpg} 
     \caption{GUADEC Hispana 2013 (Madrid)}
     \label{fig:guadec2012}
 \end{figure}
 
-\section{Replanificación. GSoC 2014}
+Entre esas charlas deuse unha sobre o programa que se realiza neste proxecto na cal os asistentes amosaron o seu interes por que se seguira desenrolando.
+
+\subsubsection{Reportes e feedback}
+Escribiuse un reporte\footnote{\href{http://aquelando.info/changing-the-tool-ui/}{Changing the tool UI}} mais ninguén escribiu ningún comentario. Non obstante durante a GUADEC-es houbo xente que se interesou polo programa.
+
+\subsubsection{Tarefas e seguimento}
+
+As tarefas realizadas durante esta iteración foron as seguintes:
+
+\begin{itemize}
+  \item Implementar Pistas e Proveedor de Pistas.
+  \item Implementar Comprobador.
+  \item Interface de Usuario.
+    \begin{itemize}
+      \item Eliminar biblioteca GDL.
+      \item Engadir widget de Pistas.
+      \item Mezclar lista de mensaxes con editor de mensaxes.
+    \end{itemize}
+\end{itemize}
+
+Para estas tarefas planificaronse 50 horas que se completaron con éxito.
+
+\subsection{Segunda iteración: Refactorizar navegadores e melloras na interface}
+Esta iteración sucede durante o mes de novembro e os primeiros días de decembro.
+
+\subsubsection{Refactorización dos navegadores}
+
+\subsubsection{Cambio de nome}
+Como nos pediron dende a GNOME Foundation, cambiamos o aplicativo de nome. O nome escollido o final é GNOMECAT. Eleximos este nome pois pensamos que o programa non é un traductor xa que non traduce el solo e isto pode levar a enganos. Para facer este cambio modificamos tanto o código como os ficheiros de configuración.
+
+\subsubsection{Interface de usuario}
+
+\subsubsection{Reportes e Feedback}
+Escribese un\footnote{\href{http://aquelando.info/welcome-gnomecat/}{Welcome GnomeCAT}} contando os últimos avances do aplicativo e o cambio de nome. Recibimos un comentario dicindo que GNOME escribese con letras maiusculas polo que temos que correxir o programa. Outra xente interesase polo significado de CAT.
+
+\subsubsection{Tarefas e seguimento}
+
+\begin{itemize}
+  \item Cambiar nome do aplicativo.
+  \item Refactorizar navegadores.
+  \item Interface de usuario.
+\end{itemize}
+
+\subsection{Presentación para o GSoC 2014}
+Debido a evidente falta de tempo para completar o programa durante os ratos libres decidese presentar o programa de novo o proxecto Google Summer of Code. Falase coa cordinadora dos programas de iniciación en GNOME para saber se isto é posible e repondenos afirmativamente. Como mentor falamos co \emph{maintainer} de GTranslator que nos di que non ten ningún problema en facer de mentor. Presentamos o proxecto e este sale aceptado.
+
+\section{Google Summer of Code 2014}
 %GSoC 2014 -> 19 de Maio - 11 Agosto -> 15 - 1 (guadec) - 1 (traballo r) -> 325h
 
-\subsection{Presentación GUADEC 2014 (Strasbourg)}
+
+\subsection{Primeira iteración: Rediseño UI}
+ %19 May - 1 June
+
+I have one exam on 22nd of May so I’m not going to be able to do something until the next day. I will discuss the open menu and settings panel redesign with the GNOME Design team and I will start to implement this changes 
+%(#11, #19, #21). 
+
+\subsection{Segunda Iteración: Rediseño UI}
+%2 June - 15 June
+
+I will finish this changes and I will implement file tab and project tab discussing the design previously with the Design team.  Some other UI related issues will be treated also this first month. . The final aspect of the application should be finished when this period ends.
+%(#3, #9, #24) (#12, #14, #15, #23)
+
+\subsection{Terceira Iteración: Buscas}
+%16 June - 29 June
+
+I will implement project search and I’m going to fix the failures related to file searches.. This increment deliverables are the search feature fully implemented.
+% (#17, #23)
+
+\subsection{Cuarta Iteración: Bindings GetText-PO e carga de ficheiros grandes.} %30 June - 13 July
+
+I’m going to fix and improve the gettext-po bindings. The program works really slow with big files and this should be fixed someway. During this increment we should improve the speed load of the application and we should be able to open big f
+
+\subsection{Quinta Iteración: Plugins e atallos de teclado} %14 July - 27 July
+
+Implement plugins engine and keyboard shortcuts. And write some basic plugins like a simple translation memory. This period deliverable is the possibility of extend the application features using plugins.
+% #4 e #5
+
+\paragraph{Presentación GUADEC 2014 (Strasbourg)}
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=\textwidth]{img/guadec_2014.jpg}
+    \includegraphics[width=0.999\textwidth]{img/guadec_2014.jpg}
     \caption{GUADEC 2014 (Strasbourg)}
     \label{fig:guadec2012}
 \end{figure}
 
+
+\subsection{Sexta Iteración: Detalles finais e escribir documentación} %28 July - 10 Agosto
+
+Polish the final details and write documentation. By the end of this increment the application should be finished.
+% #13 e  #25
+
+
 \subsection{Estado ao fin do GSoC 2014}
+
+\section{Segundo cuatrimestre 2014/2015}
