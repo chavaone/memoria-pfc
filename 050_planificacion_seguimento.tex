@@ -240,9 +240,11 @@ Na Figura~\ref{fig:gsoc1_it5_prefs} pódese ver o aspecto deste dialogo.
 Fixose unha revisión completa do código para manter un mesmo estilo ao largo de todo o código. Ademais actualizaronse os diagramas UML creados na primeira iteración.
 
 \subsubsection{Reportes e Feedback}
-Escibiuse un\footnote{\href{}{}} reporte
+Escibiuse un\footnote{\href{http://aquelando.info/gsoc-final-report/}{GSoC Final Report}} reporte onde se conta o estado da aplicación demostrandoo con un vídeo. O tratarse do último post desa edición do GSoC agradezo a oportunidade que me deu Google para poder estar ese verán traballando en software libre e describo a miña experiencia.
 
 \subsubsection{Tarefas e seguimento}
+
+As tarefas realizadas durante esta iteración foron as seguintes:
 
 \begin {itemize}
   \item Deseño e implementación das preferencias.
@@ -315,7 +317,7 @@ A GUADEC Hispana é unha reunión de usuarios e desarrolladores que falan castel
     \label{fig:guadec2012}
 \end{figure}
 
-Entre esas charlas deuse unha sobre o programa que se realiza neste proxecto na cal os asistentes amosaron o seu interes por que se seguira desenrolando.
+Entre esas charlas deuse unha sobre o programa que se realiza neste proxecto na cal os asistentes amosaron o seu interese por que se seguira desenrolando.
 
 \subsubsection{Reportes e feedback}
 Escribiuse un reporte\footnote{\href{http://aquelando.info/changing-the-tool-ui/}{Changing the tool UI}} mais ninguén escribiu ningún comentario. Non obstante durante a GUADEC-es houbo xente que se interesou polo programa.
@@ -338,61 +340,205 @@ As tarefas realizadas durante esta iteración foron as seguintes:
 Para estas tarefas planificaronse 50 horas que se completaron con éxito.
 
 \subsection{Segunda iteración: Refactorizar navegadores e melloras na interface}
-Esta iteración sucede durante o mes de novembro e os primeiros días de decembro.
+Esta iteración sucede durante o mes de novembro e os primeiros días de decembro. Durante este tempo cambiase o nome do aplicativo, refactorizase a API para navegar a través do documento e realizanse pequenos cambios na interface de usuario.
 
 \subsubsection{Refactorización dos navegadores}
+Crease unha API a nivel de aplicación para movernos a través do documento. Implementa operacións para selecionar e tamén deselecionar cadeas e fragmentos destas cadeas a través de todo o documento.
 
 \subsubsection{Cambio de nome}
 Como nos pediron dende a GNOME Foundation, cambiamos o aplicativo de nome. O nome escollido o final é GNOMECAT. Eleximos este nome pois pensamos que o programa non é un traductor xa que non traduce el solo e isto pode levar a enganos. Para facer este cambio modificamos tanto o código como os ficheiros de configuración.
 
 \subsubsection{Interface de usuario}
+Aparte de solucionar alguns fallos do aplicativo fíxose un rediseño da opción buscar avanzado polo que se elminiou o dialogo e se engadiron estas opcións a barra de búsqueda. Na Figura~\ref{fig:curso2014_it2_search} pódese ver o resultado.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.7\textwidth]{img/curso2014_it2_search.png} 
+    \caption{Buscar avanzado}
+    \label{fig:curso2014_it2_search}
+\end{figure}
 
 \subsubsection{Reportes e Feedback}
 Escribese un\footnote{\href{http://aquelando.info/welcome-gnomecat/}{Welcome GnomeCAT}} contando os últimos avances do aplicativo e o cambio de nome. Recibimos un comentario dicindo que GNOME escribese con letras maiusculas polo que temos que correxir o programa. Outra xente interesase polo significado de CAT.
 
 \subsubsection{Tarefas e seguimento}
 
+As tarefas realizadasa durante esta iteración foron as seguintes:
+
 \begin{itemize}
   \item Cambiar nome do aplicativo.
   \item Refactorizar navegadores.
   \item Interface de usuario.
+    \begin{itemize}
+      \item Rediseño da opción buscar avanzado.
+    \end{itemize}
 \end{itemize}
 
 \subsection{Presentación para o GSoC 2014}
 Debido a evidente falta de tempo para completar o programa durante os ratos libres decidese presentar o programa de novo o proxecto Google Summer of Code. Falase coa cordinadora dos programas de iniciación en GNOME para saber se isto é posible e repondenos afirmativamente. Como mentor falamos co \emph{maintainer} de GTranslator que nos di que non ten ningún problema en facer de mentor. Presentamos o proxecto e este sale aceptado.
 
 \section{Google Summer of Code 2014}
+O Google Summer of Code durante o 2014 dura dende o 19 de maio ata o 11 de agosto un total de 15 semanas. Na planificación realizada contanse 13 semanas pois nunha das semanas o curso lectivo 2013/2014 aínda non acabou e na outra realizase o viaxe a GUADEC en Strasbourg. Da mesma forma que no caso anterior planeanse traballar 5 horas diarias o que da un total de 325 horas.
+
+A maior experiencia no programa que estamos a facer permitenos facer unha planificación máis exacta. Faranse un total de cinco iteración de unha duración aproximada de duas semanas. 
+
 %GSoC 2014 -> 19 de Maio - 11 Agosto -> 15 - 1 (guadec) - 1 (traballo r) -> 325h
 
 
 \subsection{Primeira iteración: Rediseño UI}
- %19 May - 1 June
 
-I have one exam on 22nd of May so I’m not going to be able to do something until the next day. I will discuss the open menu and settings panel redesign with the GNOME Design team and I will start to implement this changes 
-%(#11, #19, #21). 
+Esta iteración dura dende o 23 de maio ata o 15 xuño. Durante ela fundamentalmente traballaremos nun rediseño da interface.
 
-\subsection{Segunda Iteración: Rediseño UI}
-%2 June - 15 June
+\subsubsection{Interface Gráfica}
+O deseño anterior da interface non é plenamente satisfactorio polo que facemos unha vez máis un deseño da interface. Nesta ocasión intentamos contactar cos deseñadores de GNOME a través do chat IRC. 
 
-I will finish this changes and I will implement file tab and project tab discussing the design previously with the Design team.  Some other UI related issues will be treated also this first month. . The final aspect of the application should be finished when this period ends.
-%(#3, #9, #24) (#12, #14, #15, #23)
+Non obtemos demasiada axuda por parte dos deseñadores polo que decidimos empregar uns deseños feitos anteriormente para GTranslator e que nunca chegaron a estar implementados debido a falta de \emph{maintainer}. Baseandonos nas ideas expostas por estos deseños creamos un deseños para a maioría de dialogos da aplicación.
 
-\subsection{Terceira Iteración: Buscas}
-%16 June - 29 June
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.9\textwidth]{img/gsoc2_it1_mockup.png} 
+    \caption{Mockup para redeseño da interface de GNOMECAT}
+    \label{fig:gsoc2_it1_mockup}
+\end{figure}
 
-I will implement project search and I’m going to fix the failures related to file searches.. This increment deliverables are the search feature fully implemented.
-% (#17, #23)
+En consonancia con outras interfaces de GNOME intentamos minimizar o uso de dialogos en forma de popups e facer que estas opción aparezan na ventá principal do aplicativo. Para iso creamos un sistema de paneis que se alternan dependendo da parte da aplicación estemos a usar. Creamos un panel de preferencias, un panel para editar os ficheiros, un para a lista de ficheiros abertos, un panel para abrir ficheiros, etc. Na Figura~\ref{fig:gsoc2_it1_mockup} podemos ver algún dos deseños empregados e na Figura~\ref{fig:gsoc2_it1_ui1} o resultado.
 
-\subsection{Cuarta Iteración: Bindings GetText-PO e carga de ficheiros grandes.} %30 June - 13 July
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.9\textwidth]{img/gsoc2_it1_ui1.png} 
+    \caption{Captura da vista de preferencias de GNOMECAT}
+    \label{fig:gsoc2_it1_ui1}
+\end{figure}
 
-I’m going to fix and improve the gettext-po bindings. The program works really slow with big files and this should be fixed someway. During this increment we should improve the speed load of the application and we should be able to open big f
+No panel de edición separamos o widget de lista de mensaxes e o widget que edita estos mensaxes. Prestamos especial antención a este último. A idea da interface e que darlle ao usuario moita información sobre a mensaxe que está a traducir e para facer isto, o widget de edición ocupa a maior parte da ventá. Os consellos irán aparecendo na parte superior da ventá segundo vamos editando para mostrarlle avisar ao usuario. Por último as pistas poderanse ver na zona dereita da pantalla. A nova interface pódese ver na Figura~\ref{fig:gsoc2_it1}.
 
-\subsection{Quinta Iteración: Plugins e atallos de teclado} %14 July - 27 July
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.9\textwidth]{img/gsoc2_it1_ui2.png} 
+    \caption{Captura do panel de edición en GNOMECAT}
+    \label{fig:gsoc2_it1_ui2}
+\end{figure}
 
-Implement plugins engine and keyboard shortcuts. And write some basic plugins like a simple translation memory. This period deliverable is the possibility of extend the application features using plugins.
-% #4 e #5
+\subsubsection{Bindings Gettext-PO: Orixes das mensaxes}
+A biblioteca gettext-po ten soporte para conseguir os orixes das mensaxes polo que melloramos os bindings para recoller esta característica e tamén a implementamos na clase PoFile engadindo a propiedade origins que permite obter en que ficheiros e liñas aparece dita cadea.
 
-\paragraph{Presentación GUADEC 2014 (Strasbourg)}
+\subsubsection{Reportes e Feedback}
+Escribironse dous\footnote{\href{http://aquelando.info/gnomecat-progress-report/}{GNOMECAT. Progress report}}\footnote{\href{http://aquelando.info/implementing-the-editing-panel/}{Implementing the Editing Panel}} reportes.
+
+\subsubsection{Tarefas e seguimento}
+
+As tarefas realizadas durante esta iteración foron:
+
+\begin{itemize}
+  \item Creación do ficheiro .desktop.
+  \item Mellora de Autotools: xeneración automatica das cadeas a traducir.
+  \item Interface de Usuario.
+    \begin{itemize}
+      \item Nova estrutura xeral.
+      \item Creación da barra de ferramentas.
+      \item Panel de edición.
+      \item Panel de preferencias.
+      \item Panel de perfil.
+      \item Panel de benvida.
+      \item Menu de aplicativo.
+    \end{itemize}
+  \item Bindings Gettext-PO: implementación das orixes dos mensaxes.
+  \item Refactorización das buscas.
+  \item Refactorización as formas plurais.
+\end{itemize}
+
+\subsection{Segunda Iteración: Bindings Gettext-PO e interface}
+Esta iteración dura dende o 21 de xuño ata o 6 de xuño. Continuamos mellorando a interface de usuario, implementamos atallos de teclado e engadimos funcionalidade aos bindings de Gettext-PO.
+
+\subsubsection{Interface de usuario}
+Implementaronse atallos de teclado para poder navegar a través do documento e para outras funcións como salvar o ficheiro e buscar. Ademis implementamos a suxerencia feita no último reporte que indicaba facer intercambiables os botóns de gardar e de volver a lista de ficheiros.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.49\textwidth]{img/gsoc2_it2_ui1.png}
+    \includegraphics[width=0.49\textwidth]{img/gsoc2_it2_ui2.png}
+    \caption{Novo panel de creación e edición de usuarios.}
+    \label{fig:gsoc2_it2_ui1}
+\end{figure}
+
+Por outra parte melloramos notablemente o panel de crear ou editar perfiles de usuarios dividindo en dous subpaneles e facendo que ao selecionar un idioma as opcións de email do equipo de tradución e a forma de plural autocompletanse. Desta forma é máis sinxelo e máis rápido completar estos formularios. Na Figura~\ref{fig:gsoc2_it2_ui1} pódese ver o resultado.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.4\textwidth]{img/gsoc2_it2_ui3.png} 
+    \caption{}
+    \label{fig:gsoc2_it2_ui2}
+\end{figure}
+
+Por último engadese na interface a opción de obter os orixes de cada mensaxe. Podemos ver esta modificación na Figura~\ref{fig:gsoc2_it2_ui1}.
+
+
+\subsubsection{Bindings Gettext-PO}
+Os bindings da biblioteca gettext-po non permitían gardar un ficheiro e seguir traballando con el. Tras analizar o código C xenerado polo compilador de Vala demonos conta de que se trataba dun problema de xestión de memoria. Ao gardar un ficheiro, liberabase a memoria empregada por este e, polo tanto, ó volver intentar editalo o programa cerrábase debido a un fallo de segmentación. Solucionamos isto modificando as opcións de xestión de memoria dos bindings e así permitimos gardar os cambios.
+
+Ademais tamén implementamos a xestión de cabeceiras de ficheiros gettext-po desta forma cos métodos \emph{get\_info} e \emph{set\_info} podemos acceder a cabeceira desta mensaxe e actualizar a información de forma correcta no momento de gardar un ficheiro.
+
+\subsubsection{Reportes e Feedback}
+
+Escribese un\footnote{\href{http://aquelando.info/keep-working-on-gnomecat/}{Keep working on GNOMECAT}} reporte.
+
+\subsubsection{Tarefas e seguimento}
+
+As tarefas realizadas durante esta iteración foron:
+
+\begin{itemize}
+  \item Atallos de teclado.
+  \item Interface de Usuario.
+  \item Bindings Gettext-PO.
+    \begin{itemize}
+      \item Xestión de cabeceiras.
+      \item Gardado de ficheiros.
+    \end{itemize}
+\end{itemize}
+
+
+\subsection{Terceira Iteración: Perfiles de usuario e interface}
+Esta iteración dura dende o 7 de Xullo ao 16 do mesmo mes. Melloramos algo a interface de usuario e implementamos algún detalle que faltaba no sistema de perfiles.
+
+\subsubsection{Interface de usuario: Barra de notificación}
+Necesitabamos un mecanismo par avisar ao usuario de certos eventos na interface como cando os parametros de busca empregador non xeneran ningún resultado, ou cando estamos navegando a través das mensaxes e chegamos a última. Para facer isto incorporamos un GtkInfoBar na interface e implementamos os métodos \emph{show\_notification} e \emph{hide\_notification} para amosar e esconder as notificacións. As notificacións amosanse durante un periodo de 3 segundos e despois ocultanse. Na Figura~\ref{fig:gsoc2_it3_ui} pódese ver o resultado.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{img/gsoc2_it3_ui.png}
+    \caption{Barra de notificacións}
+    \label{fig:gsoc2_it3_ui}
+\end{figure}
+
+\subsubsection{Perfiles de usuario}
+Ata este momento o perfil activo era o primeiro que se creara polo que tivemos que implementar a funcionalidade de activar un perfil. Ademais tamén imlementamos a posibilidade de borrar un perfil. Todas estas novas funcións tiveron o seu reflexo na interface na que apareceron novos botóns para borrar e activar perfiles.
+
+\subsubsection{Reportes e Feedback}
+
+Escribese un\footnote{\href{http://aquelando.info/details-and-more-details/}{Details and more details}}.
+
+\subsubsection{Tarefas e seguimento}
+
+As tarefas realizadas durante esta iteración foron:
+
+\begin{itemize}
+  \item Interface de usuario: barra de notificación.
+  \item Perfiles de usuario.
+    \begin {itemize}
+      \item Función borrar perfil.
+      \item Función activar perfil.
+    \end{itemize}
+  \item Modificar ficheiro das formas plurais.
+\end{itemize}
+
+\subsection{Cuarta Iteración: Plugins e GUADEC} %14 July - 27 July
+Esta iteración dura dende o 16 de Xullo ata o 5 de Agosto tendo a GUADEC polo medio. Conseguimos implementar o motor de plugins e creamos algúns plugins de exemplo.
+
+\subsubsection{Plugins}
+Incorporamos un motor de plugins empregando a biblioteca LibPeas ademais modificamos so scripts de Autotools para que compile os plugins. Por outra parte refactorizamos moitas clases do núcleo do programa para que deixen de depender da interface gráfica e podelas incluir nunha pequena biblioteca para os plugins que imos crear.
+
+\subsubsection{Presentación GUADEC 2014 (Strasbourg)}
+Da mesma forma que na edición anterior acudimos a GUADEC, a reunión de programadores e usuarios de GNOME en Europa. Desta vez celebrase en Strasbourg.
 
 \begin{figure}[h!]
     \centering
@@ -401,12 +547,66 @@ Implement plugins engine and keyboard shortcuts. And write some basic plugins li
     \label{fig:guadec2012}
 \end{figure}
 
+Tamén temos a oportunidade de presentar o proxecto ante a comunidade GNOME nunha charla lóstrego de 3 minutos onde explicaremos os novos cambios na interface, a implementación e plugins e as novas características implementadas.
 
-\subsection{Sexta Iteración: Detalles finais e escribir documentación} %28 July - 10 Agosto
+\subsubsection{Reportes e Feedback}
 
-Polish the final details and write documentation. By the end of this increment the application should be finished.
-% #13 e  #25
+Escribese un\footnote{\href{http://aquelando.info/api-guadec-and-big-files/}{API, GUADEC and big files}} reporte.
 
+\subsubsection{Tarefas e seguimento}
+
+As tarefas realizadas duarnte esta iteración foron:
+
+\begin{itemize}
+  \item Melloras en Autools
+  \item Interface de usuario: \emph{scrolling} nas buscas.
+  \item Implementación de plugins.
+  \item Refactorizar clase File: evitar dependencias coa interface.
+\end{itemize}
+
+\subsection{Quinta Iteración: Detalles finais e escribir documentación}
+Esta iteración dura dende o 5 de Agosto ata o 17 do mesmo mes. Nela puliremos algún detalle da interface e melloraremos a calidade do código e a documentación.
+
+\subsubsection{Documentación e limpar código}
+Realizamos unha revisión do código para mellorar a súa calidade e a súa limpeza. Para iso aseguramonos de que todos os ficheiros teñen a licencia declarada no cabezallo do mesmo, que estamos empregando espacios en vez de tabuladores e que todo o código segue un mesmo estilo.
+
+Ademais actualizamos a documentación que tiñamos e creamos algunha nova. Creamos uns novos diagramas UML para os cambios feitos durante esta edición do Google Summer of Code e escribimos información explicando algún dos conceptos empregados no programa.
+
+\subsubsection{Interface: Lista de mensaxes e estatisticas do documento.}
+Dende a pasada edición do Google Summer of Code tiñamos detectado que o programa funcionaba moi lento cando intentabamos abrir un ficheiro con un número moi grande de cadeas. Tras varios intentos fallidos para solucionar este erro demonos conta de que o problema era que o widget GtkListBox non soportaba un número tan grande de filas. Substituímos dito widget por un TreeView e implementamos un GtkCellRenderer personalizado. Con isto obtemos un resulado moi semellante ao de anterior pero sendo esta implementación moito máis fluída.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.3\textwidth]{img/gsoc2_it5_ui.png}
+    \caption{Lista de Mensaxes e estatisticas}
+    \label{fig:gsoc2_it5_ui}
+\end{figure}
+
+Ademais implementamos a opción de filtrar as mensaxes para que o usuario poida dicir que solo quere ver as mensaxes que están traducidas ou as mensaxes que están sen traducir e, tamén, a posibilidade de ordenar as mensaxes por estado. Na Figura~\ref{fig:gsoc2_it5_ui} podemos ver a nova lista de mensaxes coas funcións anteriores implementadas.
+
+Ademais incluimos na interface unha barra de progreso onde se indica a cantidade de cadeas traducidas, sen traducir e con tradución difusa.
+
+\subsubsection{Reportes e Feedback}
+Nesta ocasión non se escriben reportes mais si que recibimos feedback de algún traductor a través do correo electronico. As cousas queestes traductores consideran que se deben mellorar son as seguintes:
+
+\begin{itemize}
+  \item Mellora dos atallos de teclado.
+\end{itemize}
+
+\subsubsection{Tarefas e seguimento}
+
+As tarefas realizadas durante esta iteración foron:
+
+\begin{itemize}
+  \item Documentación.
+  \item Limpar código.
+  \item Interface de usuario: Refactorizar lista de mensaxes.
+    \begin{itemize}
+      \item Implementar filtros para lista de mensaxes.
+      \item Implementar a función de ordenar para mensaxes.
+    \end{itemize}
+  \item Melloras en Autotools.
+\end{itemize}
 
 \subsection{Estado ao fin do GSoC 2014}
 
