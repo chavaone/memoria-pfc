@@ -118,7 +118,11 @@
   {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
   {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
   {€}{{\EUR}}1 {£}{{\pounds}}1
-}
+ }
+
+ \usepackage{pgfgantt}
+
+ \usepackage{enumitem}
 
 % Personalizamos la separaci? entre p?rafos...
 \parskip=6pt
@@ -184,14 +188,13 @@
 
 
   % MAINMATTER: El contenido, cap?ulo a cap?ulo, de la memoria del PFC.
-
-        \include{000_frontmatter_intro}
         \mainmatter
+        \include{000_frontmatter_intro}
         \include{010_estado_do_arte}
         \include{020_fundamentos_tecnoloxicos}
         \include{030_metodoloxia}
-        \include{040_analise_requisitos}
-        \include{050_planificacion_seguimento}
+        \include{040_planificacion_seguimento}
+        \include{050_analise_requisitos}
         \include{060_desarrollo}
         \include{070_testing}
         \include{080_conclusions}
