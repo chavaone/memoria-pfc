@@ -3,5 +3,14 @@
 \section{Conclusións}
 
 \section{Traballo Futuro}
-\subsection{Previsualización das Traducións}
-\subsection{Integración con Damned Lies}
+Como calquera proxecto de software libre este programa é un proxecto inconcluso. Por unha parte moitos dos requisitos establecidos ao inicio do proxecto ou presentan deficiencias ou están elaborados con pouco detalle. Ademais aínda que neste proxecto a interface gráfica supuxo un esforzo importante, aínda hai algunhas partes que poden ser mellorables.
+
+Por outro lado as contribución externas a este proxecto foron moi limitadas pois so contribuiron dúas persoas con cambios triviales. Para que un proxecto destas caracteristicas teña futuro é necesario crear unha comunidade arredor del. Polo que unha das liñas de traballo ten que ser buscar contribuidores para o proxecto e integralo dentro da infraestructura de GNOME.
+
+Se falamos de liñas de traballo en canto a implementación de novas caracteristicas existen varias lineas de traballo moi interesantes:
+
+\paragraph{Integración con Damned Lies.} Damned Lies é a plataforma oficial de GNOME para xestionar as traducións. Nela podense baixar os ficheiros para traducir, subir os ficheiros traducidos, revisar os mesmos, e ver as estatisticas xerais de tradución para cada linguaxe. Sería realmente útil que todas estas tarefas se puidesen facer dende GNOMECAT. Para isto non so bastaría con implementar novas vistas en GNOMECAT senón tamén a creación dunha API pública para a plataforma web Damned Lies que está escrita en Python empregando o framework Django.
+
+\paragraph{Glosario.} Implementación dun glosario de termos na interface de edición de GNOMECAT. Este glosario debería permitir importar e exportar diversas bases de datos tanto online como offline.
+
+\paragraph{Previsualización das traducións.} Como xa se comentou anteriormente esta é unha caracteristica moi interesante para unha ferramenta CAT pois permite que os traductores vexan como pode quedar a tradución no programa final. Aínda que existen varias alternativas para implementar esta funcionalidade semella que a máis axeitada para tecnoloxías GNOME é empregar o motor de renderizado Glade como se fixo na aplicación web Deckard.
