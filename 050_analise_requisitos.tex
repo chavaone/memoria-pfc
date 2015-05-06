@@ -17,7 +17,7 @@ Para facer unha nova ferramenta de asistencia a tradución consultamos os usuari
 
 Case en todos os correos enviados houbo xente que respondeu dando ideas sobre o que lles gustaría que incorporase o novo programa. Na seguinte sección podemos ver a maioría destas utilidades explicadas.
 
-\section{Resumo das peticións}
+\subsection{Resumo das peticións}
 	\paragraph{Abrir e gardar ficheiros en diferentes formatos.} O programa debería permitir abrir outros formatos de ficheiros aparte do formato Gettext po. Esta petición foi feita sobretodo por membros de equipos de tradutores que non son de GNOME. Existe unha biblioteca de nome \emph{translate-toolkit} que facilita a conversión entre formatos.
 
 	\paragraph{Xestión de cabeceiras} Que o programa modifique automaticamente as cabeceiras con metainformación que tanto o formato Gettext PO como outros tipos de formatos teñen.
@@ -36,19 +36,19 @@ Case en todos os correos enviados houbo xente que respondeu dando ideas sobre o 
 
 	\paragraph{Comunicación con servidor web} Os traductores consideran a posiblididade de que o porgrama permita certa comuniación con xestores de traducións en internet. No caso de GNOME o programa Damned Lies xestiona os ficheiro .po para todolos programas de GNOME e os traductores deben baixar e subir os ficheiros dende esa plataforma.
 
-	\paragraph{Navegación dentro do documento.} A posibilidade de navegar a través das cadeas. Engadir a posibilidade de ir a seguinte cade traducida, sen traducir ou con unha tradución difusa.
+	\paragraph{Navegación dentro do documento} A posibilidade de navegar a través das cadeas. Engadir a posibilidade de ir a seguinte cade traducida, sen traducir ou con unha tradución difusa.
 
 	\paragraph{Memoria de tradución} Engadir unha memoria de tradución que permita exportar e importar ficheiros en diferentes formatos. Ter varias memorias  de tradución con prioridade entre elas, engadir a posibilidade de editar a meoria de tradución e acceder a diversos servidores que xestionan memorias de tradución online como poden ser Trobador, amaGama, Open-tran ou Transvision. Import/Export different formats (.po, .tmx, …) Several TM. Priority. Update a TM., TMX Server (Trobador, amaGama, Open-tran and Transvision),
 
-	\paragraph{Glosario.} Engadir a posibilidade de consultar a tradución de termos contra ficheiros unha base de datos local ou contra un servidor de glosario como pode ser Terminator.
+	\paragraph{Glosario} Engadir a posibilidade de consultar a tradución de termos contra ficheiros unha base de datos local ou contra un servidor de glosario como pode ser Terminator.
 
 	\paragraph{Busca de termos} Que o programa permita a busqueda nun dicionario tanto local como en internet. Citanse dicionarios en internet como o que proporciona Wikipedia ou a Universidade de Santiago de Compostela para o galego.
 
-	\paragraph{Previsualización das traducións.} Moitas das interfaces que se fan actualmente empregan ferramentas de cuarta xeneración que permitirían xerar a interfaz cas traducións. No caso de GNOME, Glade é o programa que permite a creación de interfaces e xa existe unha ferramenta online que permite a previsualización de traducións de nome Deckard. O que se pide é que o programa incorpore esa posibilidade dende a súa interface.
+	\paragraph{Previsualización das traducións} Moitas das interfaces que se fan actualmente empregan ferramentas de cuarta xeneración que permitirían xerar a interfaz cas traducións. No caso de GNOME, Glade é o programa que permite a creación de interfaces e xa existe unha ferramenta online que permite a previsualización de traducións de nome Deckard. O que se pide é que o programa incorpore esa posibilidade dende a súa interface.
 
-	\paragraph{Programa controlable totalmente a través do teclado.} O programa en xeral peros sobretodo a interface de edición de ficheiros debe ser manexable totalmente a través do teclado para mellorar a productividade dos traductores. Os traductores piden tamén a posibilidade de que se permita personalizar os atallos de teclado.
+	\paragraph{Programa controlable totalmente a través do teclado} O programa en xeral peros sobretodo a interface de edición de ficheiros debe ser manexable totalmente a través do teclado para mellorar a productividade dos traductores. Os traductores piden tamén a posibilidade de que se permita personalizar os atallos de teclado.
 
-	\paragraph{Tradución doutras linguaxes.} Hai linguas como o galego e o portugués que se parecen moito polo que as veces resulta moi útil poder, en vez de partir de cero, coller unha tradución dun idioma semellante e editala.
+	\paragraph{Tradución doutras linguaxes} Hai linguas como o galego e o portugués que se parecen moito polo que as veces resulta moi útil poder, en vez de partir de cero, coller unha tradución dun idioma semellante e editala.
 
 	\paragraph{Comprobacións} Os traductores resaltaron a utilidade de que a ferramenta comprobe certa parametros para comprobar a calidade da tradución. Entre outros:
 		\begin{itemize}
@@ -63,7 +63,32 @@ Case en todos os correos enviados houbo xente que respondeu dando ideas sobre o 
 
 	\paragraph{Estatísticas} Débese amosar estatísticas tanto a nivel de ficheiro como de proxecto do numero de cadeas ou palabras traducidas, sen traducir ou difusas.
 
+\section{Análise doutros aplicativos do mercado}
+Para facer o novo produto software para a tradución tamén consultamos outras ferramentas similares existentes no mercado para intentar imitar as súas vantaxes e evitar as súas deficiencias. O resultado desta análise pódese consultar na Seccion~\ref{sec:ferramentascat}.
+
 \section{Requisitos do aplicativo}
+Con toda a información obtida realizamos unha lista de casos de uso que debe cumplir o programa.
+
+\begin{itemize}
+  \item \textbf{Abrir ficheiro.} O programa debe ser capaz de abrir ficheiros PO pero tamén ter un deseño extensible que permita abrir outros formatos.
+  \item \textbf{Gardar ficheiro.} Debemos poder gardar ficheiros PO pero tamén ter un deseño extensible que permite gardar noutros formatos.
+  \item \textbf{Amosar ficheiro.} Debemos amosar o contido dos ficheiros e dicir, as cadeas e as estatísticas deste ficheiro.
+  \item \textbf{Editar ficheiro.} Debemos permitir editar o contido dos ficheiros.
+  \item \textbf{Buscar cadeas.} A aplicación permitirá buscar entre as cadeas do ficheiro.
+  \item \textbf{Navegar polas cadeas.} Permitiremos navegar polas cadeas do ficheiro podendo avanzar entre as cadeas traducidas, sen traducir, etc.
+  \item \textbf{Xestionar perfiles.} Permitiremos xestionar diferentes perfiles para os traductores.
+  \item \textbf{Obter pistas.} Amosaremos ao usuario pistas que lle indequen que está a facer algo mal.
+  \item \textbf{Obter suxerencias.} Debemos amosar ao tradutor diferentes alternativas de traducións.
+\end{itemize}
+
+Na figura~\ref{fig:casosdeuso} podemos ver o Diagrama UML de casos de uso para este programa.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.9\textheight,angle=90]{img/casosdeuso.png}
+    \caption{Diagrama UML de casos de uso do aplicativo}
+    \label{fig:casosdeuso}
+\end{figure}
 
 %
 % FIN DEL CAPÍTULO
