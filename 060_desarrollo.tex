@@ -1,5 +1,7 @@
 \chapter{Deseño e Implementación}
 
+Neste capitulo veremos detalles do deseño e implementación de diferentes partes do programa.
+
 \section{Módulo de Ficheiros}
 
 O módulo de xestión de ficheiros é un do máis importantes e complexos de todo o programa o cal é lóxico tendo en conta que o programa é un editor de ficheiros.
@@ -97,24 +99,19 @@ Ademais e necesario especificar o nome do ficheiro cabeceira que se emprega e no
 \section{Módulo de Linguaxes}
 O módulo de linguaxes xestiona os linguaxes e formas plurais existentes. Contén dúas clases, a clase \lstinline{Language} e a clase \lstinline{PluralForm}. Estas dúas clasen proveen un método estático para obter as instancias existentes. Estas instancias creanse a primeira vez que se carga a clase consultando unhas bases de datos que consisten nuns ficheiros JSON\footnote{\href{http://gl.wikipedia.org/wiki/JSON}{JSON}}.
 
-A cada instancia dunha linguaxe contén o nome da linguaxe, o seu código empregando a norma ISO 639-1 a súa forma plural e o email do equipo de tradución por defecto. Engadimos o idioma do equipo de tradución por defecto para autocompletar este campo no perfil do usuario. No Fragmento de Código~\ref{lst:languages} podemos ver un fragmento do ficheiro JSON contendo as linguaxes.
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\textwidth]{img/languages.png}
+    \caption{Diagrama de Clases do módulo de Linguaxes}
+    \label{fig:dia_class:languages}
+\end{figure}
+
+Como podemso ver na Figura~\ref{fig:dia_class:languages}, a cada instancia dunha linguaxe contén o nome da linguaxe, o seu código empregando a norma ISO 639-1 a súa forma plural e o email do equipo de tradución por defecto. Engadimos o idioma do equipo de tradución por defecto para autocompletar este campo no perfil do usuario. No Fragmento de Código~\ref{lst:languages} podemos ver un fragmento do ficheiro JSON contendo as linguaxes.
 
 \begin{lstlisting}[label=lst:languages,caption=Fragmento da Base de Datos de Linguaxes]
   {
     "languages" : [
       [...]
-      {
-        "code" : "sl",
-        "name" : "Slovenian",
-        "pluralform" : "nplurals=4; plural=(n\%100==1 ? 1 : n\%100==2 ? 2 : n\%100==3 or n\%100==4 ? 3 : 0);",
-        "default-team-email": ""
-      },
-      {
-        "code" : "so",
-        "name" : "Somali",
-        "pluralform" : "",
-        "default-team-email": ""
-      },
       {
         "code" : "es",
         "name" : "Spanish; Castilian",
@@ -162,7 +159,7 @@ Para comezar a traballar e tras amosar varios mockups nos reportes recibindo fee
 \begin{figure}[h!]
   \centering
     \includegraphics[width=\textwidth]{img/gsoc1_it2_ui.png}
-    \caption{Diagrama de Clases do módulo ficheiros}
+    \caption{Primeira versión da interface de usuario}
     \label{fig:ui:v1:general}
 \end{figure}
 
@@ -174,7 +171,7 @@ En cada mensaxe da lista, aparte das cadeas orixinal e traducida, podemos ver o 
   \centering
   \includegraphics[width=0.4\textwidth]{img/gsoc1_it3_ui.png}
   \includegraphics[width=0.4\textwidth]{img/gsoc1_it5_prefs.png}
-  \caption{Diagrama de Clases do módulo ficheiros}
+  \caption{Dialogos da primeira versión da interface de usuario}
   \label{fig:ui:v1:dialogs}
 \end{figure}
 
@@ -187,71 +184,325 @@ Ademais durante a GUADEC, comentaronos da existencia dun widget moito mellor par
 Por outro lado o resultado desta modelo de interface tampouco era demasiado satisfactorio polo que intentamos probar con unha versión máis cercana ao programa Virtaal.
 
 \subsubsection{Segunda Versión: semellante a Virtaal}
-\subsubsection{Terceira Versión}
 
-\subsection{Paneis}
+Para lograr un aspecto máis parecido ao da aplicación Virtaal fusionamos o widget de edición e o widget de lista de cadeas.
+
+A aplicación sigue mantendo as lapelas que permiten abrir máis dun ficheiro ao mesmo tempo pero eliminamos a posiblidade de personalizar a interface. En lugar diso crearemos unha interface con dúas columnas, na primeira teremos o widget para listar e editar as cadeas e na segunda un widget para ver o contexto e outro para ver as pistas.
+
+Modificamos a barra de ferramentas que convertiremos nun \lstinline{GTK.HeaderBar} que permite fusionar esta barra de ferramentas co marco da ventá. O uso de HeaderBars son un patron de deseño recomendado por GNOME na súa Guía de Interfaces Humanas (\emph{HIG}). Na Figura~\ref{fig:ui:v2:general} podemos ver como quedou a nova inteface.
 
 \begin{figure}[h!]
   \centering
-    \includegraphics[width=0.8\textwidth]{img/panel_abrir_ficheiro.png}
-    \caption{Diagrama de Clases do módulo ficheiros}
-    \label{fig:dia_class:files}
+    \includegraphics[width=\textwidth]{img/curso2014_it1_ui.png}
+    \caption{Segunda versión da interface de usuario}
+    \label{fig:ui:v2:general}
 \end{figure}
+
+Outro dos aspectos da interface no que se traballou foi na eliminación do díalogo de nova busca. Como se pode ver na Figura~\ref{fig:ui:v2:search}, ao activar a busca desplegase unha barra horizontal que permite introducir termos para buscar.
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=0.8\textwidth]{img/curso2014_it2_search.png}
+    \caption{Barra de busca}
+    \label{fig:ui:v2:search}
+\end{figure}
+
+Para construir esta barra empregamos o widget \lstinline{GTK.SearchBar}. Creamos un modo de busca normal e un modo avanzado. O modo normal amosa unha caixa de texto para introducir a busca e flechas para avanzar na busca e o modo avanzado engade unha segunda entrada de texto e un botón para a opción de buscar e reemplazar e permite selecionar que que cadeas queremos incluir na busca.
+
+Esta interface aínda que máis pulida que a anterior, presentaba problemas a hora de editar longas cadeas de texto. Ademais non deixaba demasiado espacio para engadir información sobre as cadeas. Debido a isto escribimos un report con algúns mockups baseados en algúns deseños feitos para GTranslator. Durante o GSoC 2014 creamos a que está pensada como a interface definitiva do programa.
+
+\subsubsection{Terceira Versión}
+Para a realización desta terceira versión e definitiva intentamos poñernos en contacto cos deseñadores de GNOME para que nos axuden co deseño da nova interface. Ante a baixa participación neste sentido usamos uns deseños feitos por Daniel Korostil para un redeseño de GTranslator que nunca chegou a implementarse. Baseandonos nestes mockups e en ideas propias creamos un novo concepto de interface que ten como idea principal a intentar elminar onde sexa posible calquera dialogo externo ao programa.
+
+A ventá pasa a compoñerse dunha barra de feramentas integrada nun \lstinline{GTK.HeaderBar}, unha barra de notificacións e un conxunto de paneis.
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=0.8\textwidth]{img/editheaderbar.png}
+    \includegraphics[width=0.8\textwidth]{img/openedfilesheaderbar.png}
+    \includegraphics[width=0.8\textwidth]{img/preferencesheaderbar.png}
+    \includegraphics[width=0.8\textwidth]{img/profileheaderbar.png}
+    \caption{Diferentes Barras de Ferramentas}
+    \label{fig:ui:v3:headerbar}
+\end{figure}
+
+A barra de ferramentas é dinamica e os botóns que amosa dependen de que pantalla se estea mostrando no programa. Esta é unha das suxerencias que a Guía de Interfaces Humanas de GNOME fai.
+
+Para lograr isto dentro do \lstinline{GTK.HeaderBar} introducimos un widget denominado \lstinline{GTK.Notebook}. Este widget é o mesmo que se empregaba en versións anterior da interface para ter diferentes ficheiros abertos en outras tantas lapela pero empregando a opción que este incorpora de ocultar as lapelas. Desta forma cada páxina do GTK.Notebook é unha das opcións da barra de ferramentas. Na Figura~\ref{fig:ui:v3:headerbar} podemos ver algúnas das diferentes formas da barra de ferramentas.
+
+Os botóns da barra de tarefas xeneran accións de GTK que serán manexadas pola ventá. A ventá manexará estas accións delegando no panel que esté activo nese momento facendo uso do patrón \emph{State\footnote{\href{http://gl.wikipedia.org/wiki/State_\%28patr\%C3\%B3n_de_dese\%C3\%B1o\%29}{State (patrón de deseño)}}}. No Fragmento de Código~\ref{lst:oneditsave} podese ver un exemplo da implementación dun dos manexadores.
+
+\lstset{language=[sharp]C}
+\begin{lstlisting}[label=lst:oneditsave,caption=Implemenación do manexador da acción gardar]
+  private void on_edit_save ()
+  {
+    (window_panels.get_nth_page (window_panels.page) as Panel).on_edit_save (this);
+  }
+\end{lstlisting}
+
+Tamén empregamos un GTK.Notebook para cambiar entre paneis. Os paneis son as diferentes pantallas que se poden ver no programa. Desta forma temos un panel para abrir ficheiros, un panel para as preferencias e un panel para editar os ficheiros entre outros. Na implementación cada panel ten que implementar a interface Panel. Esta interface pide que se defina un tipo de barra de tarefas e da unha implementación xenerica a os manexadores das accións da ventá. Cada panel será libre de aportar unha implementación especifica destas accións. Na seguinte sección podemos trataranse en detalle cada un dos paneis da interface.
+
+En canto a barra de notificacion é a resposta que damos a necesidade de avisar ao usuario de certos evento do programa. Por exemplo avisamos ao usuario que está introducindo unha busca de que non existe ningunha cadea que cumpla o criterio ou se este está avanzando polas cadeas que xa chegou a última. Para implementar este parte fixemos uso do widget \lstinline{GTK.InfoBar}. Amosamos o anuncion unha certa cantidade de tempo e despois ocultamolo. Na Figura~\ref{fig:ui:v3:infobar} vemos unha captura da barra de notificación.
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=0.7\textwidth]{img/gsoc2_it3_ui.png}
+    \caption{Barra de Notificacións}
+    \label{fig:ui:v3:infobar}
+\end{figure}
+
+Por último, tamén engadimos un menu de aplicación que permite acceder ao panel de preferencias, pechar o programa e consultar e iniciar un dialogo para obter información sobre quen fixo GNOMECAT e a súa licencia entre outros. O uso de menus de aplicación en GNOME é unha recomendación da súa Guía de Interfaces Humanas. Pódese acceder ao menú de aplicación dende GNOME facendo click no icono da aplicación na barra superior do entorno de ventás.
+
+\subsection{Paneis}
+Os paneis empregados no programa son os seguintes:
+
+\subsubsection{Panel de Benvida}
+
+O panel de benvida amosaselle ao usuario cando non hai ningún perfil dispoñible no programa. Isto sucede se é a primieira vez que se inicia o programa ou se de forma externa se borrou a información dos perfiles.
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.8\textwidth]{img/panel_edicion.png}
-    \caption{Diagrama de Clases do módulo ficheiros}
-    \label{fig:dia_class:files}
+    \includegraphics[width=0.8\textwidth]{img/panel_benvida.png}
+    \caption{Panel de Benvida}
+    \label{fig:ui:panel:welcome}
 \end{figure}
+
+Como podemos ver na Figura~\ref{fig:ui:panel:welcome} amosaselle unha mensaxe de información ao usuario dandolle e permitese acceder ao panel de creación do primeiro pérfil.
+
+A barra de ferramentas non inclue ningún botón xa que a interface so permite avanzar hacia o panel de creación do primeiro perfil ou pechar o programa.
+
+\subsubsection{Panel de ficheiros abertos}
+
+Este panel como o seu nome indica amosa unha lista de ficheiros abertos. É o que primeiro se amosa cando abrimos o programa e xa temos perfil creado. Ademáis permite abrir novos ficheiros.
 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.8\textwidth]{img/panel_ficheiros_abertos.png}
-    \caption{Diagrama de Clases do módulo ficheiros}
-    \label{fig:dia_class:files}
+    \caption{Panel de Ficheiros Abertos}
+    \label{fig:ui:panel:openedfiles}
 \end{figure}
+
+Na Figura~\ref{fig:ui:panel:openedfiles} podese ver este panel. Para cada un dos ficheiros abertos amosamos o nome do proxecto segundo aparece nos metadatos do ficheiro PO; a linguaxe deste ficheiro, o path absoluto onde este se atopa e as estatisticas de tradución.
+
+Ademais de permitir abrir un novo ficheiro, a barra de ferramentas tamén permite acceder ao panel de preferencias.
+
+\subsubsection{Panel de abrir ficheiro}
+
+O panel de abrir ficheiros amosa os ficheiros abertos de forma recente e permite abrir novos ficheiros.
+
+Para poder implementar a lista de ficheiros recentes tivemos que crear un widget especial. Este widget emprega a clase \lstinline{GTK.RecentManager}. Esta clase que funciona como empregando o patrón \emph{Singleton\footnote{\href{...}{...TODO}}} controla ... O widget creado conectase a esta clase para modificar a lista de ficheiros recentes cada vez que un ficheiro compatible é aberto.
+
+A hora de amosar a información sobre os ficheiros amosamos os mesmos campos que no caso do panel de ficheiros abertos. Isto é debido a que nos dous casos empregamos un GTK.ListBox ao que lle introducimos un widget PoFileRow por cada un dos ficheiros.
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=0.8\textwidth]{img/panel_abrir_ficheiro.png}
+    \caption{Panel de Abrir Ficheiro}
+    \label{fig:ui:panel:openfile}
+\end{figure}
+
+Como podemos ver na Figura~\ref{fig:ui:panel:openfile} a barra de ferramentas permite volver a último panel que neste caso sempre será o panel de ficheiros abertos.
+
+\subsubsection{Panel de edición}
+
+O panel de edición é o máis importante deste programa e ao que lle dedicamos máis tempo. Como os seu nome indica permite editar os ficheiros. Está composto de tres columnas, unha lista de mensaxes, unha lista de pistas e unha columna central que contén os consellos, entradas para editar as cadeas e o contexto. As columnas que teñen a lista de mensaxes e de pistas teñen un ancho fixo e a columna central aprobeitará todo o espacio restante.
+
+\begin{figure}[hp!]
+    \centering
+    \includegraphics[angle=90,width=\textwidth]{img/panel_edicion.png}
+    \caption{Panel de Edición de Ficheiros}
+    \label{fig:ui:panel:edit}
+\end{figure}
+
+Como se pode comprobar nesta versión da interface, as caixas de edición de cadeas son considerablemente máis grandes qeu nas outras versións. Na Figura~\ref{fig:ui:panel:edit} podemos ver unha captura deste panel.
+
+A parte que máis traballo nos supuxo foi implementar a lista de mensaxes. Inicialmente diseñamos este \emph{widget} como un \lstinline{GTK.ListBox} coas súas columnas. Este é un widget engadido na versión TODO de GTK e que empregamos moito no noso programa. A vantaxe de empregalo consiste en que é moi sinxelo personalizar cada columna e aínda que non o usamos no noso programa existiría a posibilidade de engadir columnas de diferentes tipos. O problema que atopamos cando construímos o widget de listar mensaxes con un \lstinline{ListBox} é que este funcionaba realmente mal cando o ficheiro tiña moitas cadeas. Primeiro pensamos que a lentitude debíase ao alto consumo de memoria cando cargabamos un destos ficheiros pero máis tarde falando con algún desenvolvedor de GTK, demonos conta de que este widget non estaba deseñado para soportar tantas columnas e que debíamos empregar unha alternativa.
+
+A alternativa escollida foi a de empregar un \lstinline{GTK.TreeView}. Este widget si que esta deseñado para soportar gran cantidade de columnas pero a personalización de cada columna e moito máis complicada. Para facelo tivemos que implementar un \lstinline{GTK.CellRenderer} para o renderizado das columnas. Nesta clase especificamos a man onde se debuxa cada elemento da columna e que tamaño ten.
+
+A clase \lstinline{TreeView} incorpora métodos que permiten ordenar e filtrar de forma sinxela as columnas que se amosan neste widget. Isto permitiunos engadir estas opción a nosa interface. Como se pode ver na figura anterior debaixo da lista de mensxe temos unha barra coas estatísticas do documento e dous botóns un permite filtrar os resultados ocultando ou amosando as cadeas traducidas, sen traducir ou con tradución difusa e o outro permite ordear as mensaxes amosando primeiro as mensaxes sen traducir, despois as mensaxes con tradución difusa e por último as mensaxes traducidas. O widget que empregamos para permitirlle ao usuario filtrar as buscas, chámase \lstinline{GTK.Popover} e ...
+
+En canto ao widget de lista de pistas, neste caso si que empregamos un \lstinline{GTK.ListBox} xa que o número de columnas nunca vai ser demasiado alto. En cada unha das columnas amosamos a información que temos de cada pista (\lstinline{Hint}). Isto é, a cadea suxerida, a orixe desta pista e a súa precisión. Para amosar a precisión empregamos unha barra de progreso. Ao facer doble click nos hints o texto a traducir substituirase polo pista. Ademais incorporamos atallos de teclado para as 4 primeiras pista de forma que se pulsamos as teclas Ctrl e un dos catro primeiros números activarase a correspondene pista.
+
+Dentro da columna central a lista de consellos (\lstinline{Tip}) atopase na parte superior. Esta localización esta pensada para que o traductor non teña que apartar demasiado a mirada do cadros de edición de mensaxes.
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.8\textwidth]{img/panel_pefil_xeral.png}
-    \caption{Diagrama de Clases do módulo ficheiros}
-    \label{fig:dia_class:files}
+    \includegraphics[width=0.6\textwidth]{img/selectedtip.png}
+    \caption{Seleción dun consello}
+    \label{fig:ui:panel:edit:selectedtip}
 \end{figure}
+
+Desta forma cada columna amosará o nome do \lstinline{Tip} e o seu nivel de gravidade. O nome do consello debe ser suficiente para que o usuario se de conta do erro ao que se refire o consello. En caso de non ser suficiente o usuario pode premer encima do consello nese caso amosarase a descripción do consello e resaltarase a parte do texto á que refire o mesmo. Na Figura~\ref{fig:ui:panel:edit:selectedtip} podemover ver unha captura desta situación.
+
+Os cadros que permiten ver a cadeda orixinal están construídos co widget \lstinline{GTK.SourceView} este widget que non é parte da librería GTK extende o widget GTK.TextView e permite facer de forma sinxela, desfacer e refacer accións, resaltado de sintaxe e resaltado de espacios en blanco entre outros. Na Figura~\ref{fig:ui:panel:edit:pluralbox} podemos ver unha cadea con resaltado de sintaxe e de espacios en branco.
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.8\textwidth]{img/panel_perfil_avanzado.png}
-    \caption{Diagrama de Clases do módulo ficheiros}
-    \label{fig:dia_class:files}
+    \includegraphics[width=0.6\textwidth]{img/editbox.png}
+    \caption{Cadro de edición de mensaxes con plurais}
+    \label{fig:ui:panel:edit:pluralbox}
 \end{figure}
+
+No caso de que a mensaxes a traducir teña plurais amosaremos cada plural nunha lapela. Como se pode ver na Figura~\ref{fig:ui:panel:edit:pluralbox}, no texto que amosa a lapela, aparte do número de plural amosaremos unha etiqueta explicando a que números se refire ese plural.
+
+Debaixo do cadro de texto que amosa o contexto, temos botóns para ver as orixes da mensaxe actual e para cambiar o estado da mensaxe entre traducida e difusa. Para ver as orixes tamén se usa un widget \lstinline{GTK.Popover}.
+
+A barra de tarefas ten botóns para volver a lista de ficheiros, gardar o ficheiro actual, facer e desfacer as accions, buscar, navegar a través do documento e ver as preferencias. Os botóns de volver a lista de ficheiros e de gardar son intercambiables de forma que so un deles se amosa en cada momento. Se o ficheiro foi moificado o botón que se amosa e o de gardar. Desta forma para ir a lsita de ficheiros gardados deberemos salvar os cambios.
+
+
+\subsubsection{Panel de Preferencias}
+O panel de preferencas permite modificar como se algunhas opcións do programa, manexar os perfiles e activar ou desactivar plugins. Como podemos ver na Figuras~\ref{fig:ui:panel:preferences} temos tres pantallas para modificar as preferencias do programa.
 
 \begin{figure}[h!]
-    \centering
-    \includegraphics[width=0.8\textwidth]{img/panel_preferencias_edicion.png}
-    \caption{Diagrama de Clases do módulo ficheiros}
-    \label{fig:dia_class:files}
+  \centering
+  \begin{subfigure}[b]{0.56\textwidth}
+    \includegraphics[width=\textwidth]{img/panel_preferencias_edicion.png}
+    \caption{Edición}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.56\textwidth}
+    \includegraphics[width=\textwidth]{img/panel_preferencias_perfiles.png}
+    \caption{Perfiles}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.56\textwidth}
+    \includegraphics[width=\textwidth]{img/panel_preferencias_plugins.png}
+    \caption{Plugins}
+  \end{subfigure}
+    \caption{Partes do panel preferencias}
+    \label{fig:ui:panel:preferences}
 \end{figure}
 
+Navegamos entre estas tres pantallas empregando un widget \lstinline{GTK.StackSwitcher} incrustado na barra de ferramentas.
+
+A pantalla de edición permite modificar o tipo de letra de algunhas partes do programa, o uso de resaltado de sintaxe ou o de espacios en blanco. Ademais permite establecer cal é o estado ao que pasa unha cadea cando se traduce. O panel de perfil permite ver os perfiles existentes crear novos perfiles a través do panel de perfil, modificalos, eliminalos e activalos. Por último ca pantalla de plugins podemos ver a lista de plugins existentes e activalos ou desactivalos.
+
+
+\subsubsection{Panel de Perfil}
+O panel perfil permite a creación e modificación de perfiles. Esta dividido en dous subpaneis, un cos datos básicos do perfil e outro con datos avanzados. Estos dous paneis podense ver na Figura~\ref{fig:ui:panel:profile}.
 \begin{figure}[h!]
-    \centering
-    \includegraphics[width=0.8\textwidth]{img/panel_preferencias_perfiles.png}
-    \caption{Diagrama de Clases do módulo ficheiros}
-    \label{fig:dia_class:files}
+  \centering
+  \begin{subfigure}[b]{0.5\textwidth}
+    \includegraphics[width=\textwidth]{img/panel_pefil_xeral.png}
+    \caption{Opcións básicas}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.5\textwidth}
+    \includegraphics[width=\textwidth]{img/panel_perfil_avanzado.png}
+    \caption{Opcións Avanzadas}
+  \end{subfigure}
+    \caption{Panel de perfil}
+    \label{fig:ui:panel:profile}
 \end{figure}
 
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=0.8\textwidth]{img/panel_preferencias_plugins.png}
-    \caption{Diagrama de Clases do módulo ficheiros}
-    \label{fig:dia_class:files}
-\end{figure}
-
+Esta división intenta mellorar a experiencia de usuario pois os valores avanzados autocompletanse cos valores por defecto no momento no que se seleciona a linguaxe.
 
 \section{Navegación e Busca a través do documento}
 
+Unha das partes importantes para facilitar a usabilidade da aplicación é que esta permita que o traductor navegue polo ficheiro e busque termos de forma sinxela e rápida. Para facer isto creamos a clase abstracta \lstinline{Navigator}. Esta clase ten métodos sen argumentos que permiten avanzar ao seguinte, ao anterior, ao primeiro ou ao último elemento. O valor de volta destos métodos é un valor booleano que indica se esta operación foi posible.
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=\textwidth]{img/navigator_diagram.png}
+  \caption{Diagrama de Clases de Navegación e Busca}
+  \label{fig:nav:diagram}
+\end{figure}
+
+Para a implementación a busca dentro do documento creamos a clase \lstinline{Search}. Para implementar os metodos para avanzar a través dos resultados da busca empregamos dous iteradores, un que itera dentro dos mensaxes que cumpren os criterios e outro que itera dentro dos fragmentos das mensaxes.
+
+Como podemos ver na Figura~\ref{fig:nav:diagram} os iteradores teñen métodos para conseguir o elemento actual, o primeiro, o último, o seguinte e o anterior. Ademais incorporan metodos para comprobar se o elemento actual é o último ou o primeiro.
+
+As buscas permiten especificar o estado das mensaxes que queremos buscar e se o texto de busca está na cadea orixinal ou na traducida e se está na forma singular ou na plural. esta forma cando se inicia unha busqueda crease un iterador de ficheiro que itera entre os mensaxes que cumpren os requisitos e por cada mensaxe que cumpra os requisitos creamos un iterador de mensaxe que iterará devolvendo os fragmentos de mensaxe que cumpran os requisitos. Un \lstinline{MessageFragment} inclue unha mensaxe, a forma plural do fragmento, se o fragmento está na cadea orixinal ou na tradución e o índice e lonxitude do fragmento.
+
+Para selecionar un fragmento da busqueda empregamos o método select do panel de edición.
+
+En canto a implementación da navegación entre ficheiros a clase FileNavigator empregouse os métodos propios do widget TreeView de GTK. Creanse catro navegadores dete tipo un para as cadeas traducidas, outro para as cadeas sin traducir, outro para as cadeas con tradución difusa e outro para calquera cadea.
+
 \section{Preferencias}
+Necesitamos almacenar certas opcións do programa como pode ser o tipo e tamaño da letra a empregar ou se facemos resaltado e sintaxe. Para gardar toda esta información e que este dispoñible entre diferentes sesións do programa empregamos GSettings. GSettings é unha API para a xestión de configuración que forma parte do modulo GIO (GNOME Input/Output) dentro de GLib.
+
+GSettings prové de métodos para obter e almacenar valores a partir dunha clave. Para almacenar estos valores soporta varios sistemas. Nós en concreto usamos o estandar en GNOME, \emph{dconf}. Este sistema está altamente optimizado para facer lecturas (o caso de uso máis habitual) de valores de configuración. Para usar GSettings debemos crear un ficheiro coas claves e tipos dos valores que imos empregar. No Fragmento de Código~\ref{lst:gsettings} podemos ver unha parte deste ficheiro.
+
+\begin{lstlisting}[language=XML,label=lst:gsettings,caption=Fragmento da dos esquemas creados de GSettings]
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema path="/org/gnome/gnomecat/editor/" id="org.gnome.gnomecat.Editor">
+    <key name="custom-font" type="b">
+      <default>true</default>
+      <summary>Use custom font.</summary>
+      <description></description>
+    </key>
+    <key name="message-changed-state" type="s">
+      <choices>
+        <choice value='fuzzy'/>
+        <choice value='translated'/>
+      </choices>
+      <default>'fuzzy'</default>
+      <summary>Message Changed State</summary>
+      <description>The state to set when a message is translated.</description>
+    </key>
+    [...]
+  </schema>
+  [...]
+</schemalist>
+\end{lstlisting}
+
+Este ficheiro temos que compilalo e instalalo cas ferramentas que nos dá o módulo. Unha vez instalado obtemos unha instancia da clase GSettings que emprega o patrón Singleton e usamos esta instancia para obter e almacenar os valores.
+
+Unha das vantaxes de GSettings é que permite enlazar unha propiedade dun obxeto de GObject con un valor de GSettings de forma que se modificamos o valor dun dos dous o outro vese reflexado. Empregamos esta característica para implementar a interface de preferencias na nosa aplicaición de forma sinxela.
 
 \subsection{Módulo de Perfiles}
+Como vimos anteriormente ao falar da interface gráfica, os perfiles permiten configurar o nome e email co que se gardan os ficheiros e a linguaxe actual. Aínda que poden existir varios perfiles gardados so un estará activo en cada momento. Para almacenar estos perfiles tamén empregaremos GSettings.
 
 \section{Plugins}
+Os plugins permiten extender o programa engadindolle funcionalidade. Dous dos puntos máis sinxelos para engadir funcionalidade son as pistas e os consellos. Estes dous elementos que están pensados para axudar os traductores son aportados polos plugins. Existen dúas sinais de nomes \lstinline{check_message} e \lstinline{provide_hints} que son usadas para crear instancias de pistas e de consellos. Estas sinais son chamadas dende os plugins.
+
+Para implementar estos plugins empregamos a biblioteca \emph{LibPeas}. Esta biblioteca foi creada para poder incluir extensións en GEdit, o editor de texto de GNOME. Trátase dun motor de plugins baseado en GObject. Permite a carga de plugins en varios linguaxes de programación como Vala, C, Python ou JavaScript.
+
+Os plugins son unha unidade de compilación diferente ao programa principal. Para que desde esta unidade independente de compilación coñeza parte da API creada para ficheiros, perfiles e linguaxes debemos incluir estos ficheiros tamén nesta unidade de compilación. Creamos ademais unha pequena interface que inclue as dúas sinais que citamos anteriormente. Esta interface é implementada pola clase aplicación.
+
+A biblioteca LibPeas emprega o patrón Singleton para darnos unha instancia dun motor de plugins. A este motor temos que indicarlle a ruta do sistema onde ten que buscar os plugins e cargar os plugins que atopen. Ademais cargamos un obxeto de clase
+
+Para implementar un plugin temos que crear dous ficheiros. O primeiro ficheiro contén no nome do plugin información sobre o plugin como a descripción, o autor ou atuores e o Copyright. No Fragmento de Código~\ref{lst:plugin:metadata} pódese ver un exemplo deste ficheiro.
+
+\begin{lstlisting}[label=lst:plugin:metadata,caption=Ficheiro de metadatos do plugin]
+[Plugin]
+Module=demochecker
+Name=Demo Checker
+Description=Demo message checker...
+Authors=Marcos Chavarría Teijeiro <chavarria1991@gmail.com>
+Copyright=Copyright (C) 2014 Marcos Chavarría Teijeiro
+\end{lstlisting}
+
+O outro ficheiro é a implementación do propio plugin. Debemos implementar unha ou máis extensións e unha función onde as rexitraremos. A función ten que ter o nome \lstinline{peas_register_types()} e usará a etiqueta \lstinline{ModuleInit} de forma que se executará cando se inicialice o módulo.
+
+\begin{lstlisting}[label=lst:plugin:code,caption=Fragmento da implementación do plugin DemoChecker]
+public class DemoChecker : Peas.ExtensionBase,  Peas.Activatable
+{
+    public Object object  { owned get; construct; }
+
+    public void activate ()
+    {
+      (object as GNOMECAT.API).check_message.connect (on_check_message);
+    }
+
+    public void deactivate ()
+    {
+      (object as GNOMECAT.API).check_message.disconnect (on_check_message);
+    }
+
+    public void update_state ()
+    {
+    }
+
+    [...]
+}
+
+[ModuleInit]
+public void peas_register_types (GLib.TypeModule module)
+{
+  var objmodule = module as Peas.ObjectModule;
+  objmodule.register_extension_type (typeof (Peas.Activatable),
+                                     typeof (DemoPlugins.DemoChecker));
+}
+\end{lstlisting}
+
+Para implementar unha extensión temos que implementar unha clase que implemente a interface Activable e herede da clase ExtensionBase. A interface activable inclue os métodos que se executarán cando se active e desactive o plugin. No Fragmento de Código~\ref{lst:plugin:code} amosase parte do código empregado para o plugin de exemplo \emph{DemoPlugin}.
