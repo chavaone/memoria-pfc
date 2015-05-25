@@ -153,7 +153,7 @@
   % 1. Usarla e ignorar las normas (y asumir las consecuencias que pueda tener)
   % 2. Hacernos una portada en LaTeX que cumpla las normas (menos arriesgado)
   %
-        \include{pfc_portada}
+        \include{001_portada}
 
   % FRONTMATTER: TOC, LOF, LOT y descripci?/organizaci? de la memoria.
         \frontmatter
@@ -163,19 +163,19 @@
   % y agradecimientos).
   %
         \thispagestyle{empty}     % No number page, headings...
-        \include{pfc_certificado}
+        \include{002_certificado}
         \thispagestyle{empty}     % No number page, headings...
 
-        \include{pfc_resumen}
+        \include{003_resumen}
         \thispagestyle{empty}     % No number page, headings...
 
-        \include{pfc_palabras_clave}
+        \include{004_palabras_clave}
         \thispagestyle{empty}     % No number page, headings...
 
-        \include{pfc_agradecimientos}
+        \include{005_agradecimientos}
         \thispagestyle{empty}     % No number page, headings...
 
-        \include{pfc_cc_licence}
+        \include{006_cc_licence}
         \thispagestyle{empty}     % No number page, headings...
 
 
@@ -186,14 +186,14 @@
 
   % MAINMATTER: El contenido, cap?ulo a cap?ulo, de la memoria del PFC.
         \mainmatter
-        \include{000_frontmatter_intro}
-        \include{010_estado_do_arte}
-        \include{020_fundamentos_tecnoloxicos}
-        \include{030_metodoloxia}
-        \include{040_planificacion_seguimento}
-        \include{050_analise_requisitos}
-        \include{060_desarrollo}
-        \include{070_conclusions}
+        \include{010_introducion}
+        \include{020_estado_do_arte}
+        \include{030_fundamentos_tecnoloxicos}
+        \include{040_metodoloxia}
+        \include{050_planificacion_seguimento}
+        \include{060_analise_requisitos}
+        \include{070_desarrollo}
+        \include{080_conclusions}
 
   % INCLUIMOS LOS APÉNDICES...
         \appendix
