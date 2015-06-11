@@ -8,4 +8,4 @@ all:
 
 
 clean:
-	rm -f *.blg *.toc *.log *.aux *.out *.lof pfc.pdf
+	rm -f *.blg *.bbl *.toc *.log *.aux *.out *.lof pfc.pdf

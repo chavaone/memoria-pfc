@@ -1,13 +1,13 @@
-\chapter[Estado do arte]{Estado do Arte\label{estado_do_arte}}
+\chapter{Estado do Arte}
 
 Neste capítulo explicarase como funciona a internacionalización e localización con GNU Gettext. Ademais analizaremos as diferentes alternativas que existen no mercado como ferramentas de asistencia a tradución e as características que cada unha incorpora. O final faremos un resumo das características que empregan os programas CAT\footnote{Computer Assisted Translation}.
 
 \section{Internacionalización e localización con GNU Gettext}
 Gettext é un sistema para a internacionalización e localización amplamente usado en entornos UNIX. Conta con varías implementacións, sendo a primeira de Sun Microsystems no ano 1990. A implementación máis usada é a que GNU liberou no ano 1995. Pese ser unha solución antiga, é a día de hoxe a mellor que se pode atopar no mercado.
 
-Para internacionalizar un programa con GNU Gettext non empregaremos as cadeas de texto directamente como podería ser no seguinte programa de exemplo:
+Para internacionalizar un programa con GNU Gettext non empregaremos as cadeas de texto directamente como podería ser no Fragmento de Código~\ref{code-no-i18n}.
 
-\begin{lstlisting}[language=C,label=some-code,caption=helloworld.c (Sen Internacionalizar)]
+\begin{lstlisting}[language=C,label=code-no-i18n,caption=helloworld.c (Sen Internacionalizar)]
 #include <stdio.h>
 
 int
@@ -17,9 +17,9 @@ main ()
 }
 \end{lstlisting}
 
-En lugar diso chamaremos a unha función especial que proporciona Gettext de nome \lstinline{gettext()} pero que é máis empregada a través do seu alias \lstinline{_()}. Ademais configuraremos o programa para que colla a tradución do idioma que queiramos. Desta forma o programa anterior quedaría:
+En lugar diso chamaremos a unha función especial que proporciona Gettext de nome \lstinline{gettext()} pero que é máis empregada a través do seu alias \lstinline{_()}. Ademais configuraremos o programa para que colla a tradución do idioma que queiramos. Desta forma o programa anterior quedaría como se pode ver no Fragmento de Código~\ref{code-i18n}.
 
-\begin{lstlisting}[language=C,label=some-code,caption=helloworld.c]
+\begin{lstlisting}[language=C,label=code-i18n,caption=helloworld.c]
 #include <stdio.h>
 #include <locale.h>
 #include <libintl.h>
@@ -59,9 +59,9 @@ Ademais debemos indicarlle o programa onde ten que atopar as traducións. Para i
 
 Con estes parámetros Gettext xa é capaz de atopar as traducións que no caso do programa anterior atoparíanse en \emph{/usr/local/share/locale/gl/LC\_MESSAGES/helloworld.mo}.
 
-Unha vez que internacionalizamos o nosos programa debemos traducir as cadeas. Pero para traducir as cadeas debemos extraelas antes do código fonte. Para iso empregaremos a utilidade \emph{xgettext}. Empregando as opcións adecuadas obtemos o seguinte ficheiro:
+Unha vez que internacionalizamos o nosos programa debemos traducir as cadeas. Pero para traducir as cadeas debemos extraelas antes do código fonte. Para iso empregaremos a utilidade \emph{xgettext}. Empregando as opcións adecuadas obtemos no ficheiro que se amosa no Fragmento de Código~\ref{potfile}.
 
-\begin{lstlisting}[label=some-code,caption=helloworld.pot]
+\begin{lstlisting}[label=potfile,caption=helloworld.pot]
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
@@ -87,9 +87,9 @@ msgid "Hello World!"
 msgstr ""
 \end{lstlisting}
 
-Os ficheiros Gettext coa estensión \emph{POT} trátanse de plantillas xenéricas para todos os idiomas. Para obter o arquivo especifico para o noso idioma debemos empregar a ferramenta \emph{msginit} coa que obteremos un ficheiro similar a este:
+Os ficheiros Gettext coa estensión \emph{POT} trátanse de plantillas xenéricas para todos os idiomas. Para obter o arquivo especifico para o noso idioma debemos empregar a ferramenta \emph{msginit} coa que obteremos un ficheiro como o que se pode ver no Fragmento de Código~\ref{untrans-pofile}.
 
-\begin{lstlisting}[label=some-code,caption=helloworld.po (Sen Traducir)]
+\begin{lstlisting}[label=untrans-pofile,caption=helloworld.po (Sen Traducir)]
 # Galician translations for HELLOWORLD package.
 # Copyright (C) 2014 THE HELLOWORLD COPYRIGHT HOLDER
 # This file is distributed under the same license as the ch package.
@@ -114,9 +114,9 @@ msgid "Hello World!"
 msgstr ""
 \end{lstlisting}
 
-Desta forma obtemos un ficheiro Gettext PO que é o ficheiro que temos que editar. Traducindo o arquivo obtemos algo como isto:
+Desta forma obtemos un ficheiro Gettext PO que é o ficheiro que temos que editar. Traducindo o arquivo obtemos algo como o Fragmento de Código~\ref{trans-pofile}.
 
-\begin{lstlisting}[label=lst:translated_example,caption=helloworld.po (Traducido)]
+\begin{lstlisting}[label=trans-pofile,caption=helloworld.po (Traducido)]
 # Galician translations for HELLOWORLD package.
 # Copyright (C) 2014 THE HELLOWORLD COPYRIGHT HOLDER
 # This file is distributed under the same license as the HELLOWORLD package.
@@ -143,8 +143,6 @@ msgstr "Ola Mundo!"
 
 Antes de poder empregar o ficheiro no noso programa temos que compilalo. Para iso empregamos a utilidade msgfmt ca que obtemos o ficheiro helloworld.mo. Se movemos o ficheiro o directorio adecuado (o que especificamos en \lstinline{textdomain()}) o noso programa xa estará localizado.
 
-%http://www.gnu.org/software/libc/manual/html_node/Locating-gettext-catalog.html
-
 \subsection{Ficheiros Gettext PO}
 Como xa dixemos antes os ficheiros PO son os ficheiros que temos que editar para localizar o noso programa. Primeiro dicir que se trata ficheiros de texto plano e que polo tanto podemos editar con calquera editor de ficheiros de texto plano. Non obstante, o ideal é empregar algunha ferramenta que nos facilite a tarefa como pode ser unha ferramenta CAT.
 
@@ -155,17 +153,17 @@ Algo que pode parecer trivial como o soporte de plurais deixa de selo cando cons
 
 Gettext representa a forma de plural de cada linguaxe con unha cadea da seguinte forma: $$nplurals=n; plural=exp;$$ Onde $n$ representa o número de plurais da linguaxe e $exp$ a expresión para calcular cando debemos empregar cada forma. Por exemplo a forma plural do galego representase como $nplurals=2; plural=(n != 1);$. Isto é que temos 2 plurais e que so se emprega a forma singular cando o número de elementos é igual a $1$.
 
-No código fonte para que GetText escolla a tradución adecuada temos que empregar a función \lstinline{ngettext}. Esta función recibe como parámetros a cadea orixinal en singular, a cadea orixinal en plural e o número de elementos. No seguinte fragmento de código temos un exemplo:
+No código fonte para que GetText escolla a tradución adecuada temos que empregar a función \lstinline{ngettext}. Esta función recibe como parámetros a cadea orixinal en singular, a cadea orixinal en plural e o número de elementos. No Fragmento de Código~\ref{plural-code} temos un exemplo:
 
-\begin{lstlisting}[language=C,caption=Plurais en GetText (Código Fonte).]
+\begin{lstlisting}[label=plural-code,language=C,caption=Plurais en GetText (Código Fonte).]
 [...]
     printf (ngettext ("We have %d car.", "We have %d cars.", n), n);
 [...]
 \end{lstlisting}
 
-A cadea do ficheiro PO correspondente o código anterior pódese ver no seguinte fragmento de código. Vemos como temos unha entrada \lstinline{msgstr} por cada plural. Desta forma o plural número $0$ corresponde os singular é o plural número $1$ correspondese coa primeira forma do plural.
+A cadea do ficheiro PO (Fragmento de Código~\ref{plural-pofile}) correspondente o código anterior pódese ver no seguinte fragmento de código. Vemos como temos unha entrada \lstinline{msgstr} por cada plural. Desta forma o plural número $0$ corresponde os singular é o plural número $1$ correspondese coa primeira forma do plural.
 
-\begin{lstlisting}[caption=Plurais en GetText (Ficheiro PO).]
+\begin{lstlisting}[label=plural-pofile,caption=Plurais en GetText (Ficheiro PO).]
 #: helloworld.c:19
 #, c-format
 msgid "We have %d car."
@@ -176,9 +174,9 @@ msgstr[1] "Temos %d coches."
 
 
 \paragraph {Marcado de traducións difusas}
-Permítese marcar certas traducións como difusas de forma que o tradutor indica que non estar seguro de que dita tradución sexa correcta. Se marcásemos a tradución \emph{"Hello World!"} como difusa o ficheiro PO tería o seguinte aspecto:
+Permítese marcar certas traducións como difusas de forma que o tradutor indica que non estar seguro de que dita tradución sexa correcta. Se marcásemos a tradución \emph{"Hello World!"} como difusa o ficheiro PO tería o aspecto que se pode ver no Fragmento de Código~\ref{fuzzy-po-file}.
 
-\begin{lstlisting}[label=some-code,caption=Ficheiro POT con comentario.]
+\begin{lstlisting}[label=fuzzy-po-file,caption=Ficheiro POT con comentario.]
 [...]
 #: helloworld.c:15
 #, c-format
@@ -189,10 +187,10 @@ msgstr ""
 \end{lstlisting}
 
 \paragraph {Formato das traducións}
-Os ficheiro PO permite indicar se as cadeas a traducir teñen un formato determinado. Por exemplo a cadea do exemplo no Fragmento de Código \ref{lst:translated_example} pódese ver que ten o flag \lstinline{c-format} debido a que é parte dunha sentencia printf e podería levar indicadores de formato da forma \lstinline{%s}.
+Os ficheiro PO permite indicar se as cadeas a traducir teñen un formato determinado. Por exemplo a cadea do exemplo no Fragmento de Código~\ref{trans-pofile} pódese ver que ten o flag \lstinline{c-format} debido a que é parte dunha sentencia printf e podería levar indicadores de formato da forma \lstinline{%s}.
 
 \paragraph {Cabeceira con metadatos}
-Existe unha cadea especial nos documentos Gettext PO. Trátase da cadea baleira que serve para almacenar metadatos do ficheiro. No fragmento de código \ref{lst:translated_example} podemos ver istos metadatos. Algúns dos metadatos existentes son:
+Existe unha cadea especial nos documentos Gettext PO. Trátase da cadea baleira que serve para almacenar metadatos do ficheiro. No fragmento de código \ref{trans-pofile} podemos ver istos metadatos. Algúns dos metadatos existentes son:
 
 \begin{itemize}
     \item \textbf{Project-Id-Version.} Nome único para o proxecto deste arquivo de tradución.
@@ -209,21 +207,21 @@ Existe unha cadea especial nos documentos Gettext PO. Trátase da cadea baleira 
 Ademais destes campos, nos comentarios, gárdanse os nomes de todas as persoas que contribuíron a esta tradución.
 
 \paragraph{Gardado dos orixes das cadeas}
-Gettext almacena para cada cadea en que lugares do código aparece esta. O cal pode ser moi interesante para implentar a previsualización das traducións. Por exemplo no Fragmento de Código~\ref{lst:translated_example} vemos como a cadea \emph{"Hello World!"} pode atoparse na liña 14 do ficheiro \lstinline{helloworld.c}.
+Gettext almacena para cada cadea en que lugares do código aparece esta. O cal pode ser moi interesante para implentar a previsualización das traducións. Por exemplo no Fragmento de Código~\ref{trans-pofile} vemos como a cadea \emph{"Hello World!"} pode atoparse na liña 14 do ficheiro \lstinline{helloworld.c}.
 
 \paragraph{Comentarios dos programadores}
-É unha función moi importante xa que en moitas ocasións nas linguaxes a mesma palabra empregase como verbo ou como nome polo que en ocasións é importante incorporar un contexto para esa tradución. Para facer isto é necesario simplemente poñer un comentario no programa antes de empregar a cadea. Por exemplo no seguinte fragmento de código:
+É unha función moi importante xa que en moitas ocasións nas linguaxes a mesma palabra empregase como verbo ou como nome polo que en ocasións é importante incorporar un contexto para esa tradución. Para facer isto é necesario simplemente poñer un comentario no programa antes de empregar a cadea. Por exemplo no Fragmento de Código~\ref{prog-comment-code}, estamos engadindo un comentario a cadea \emph{"Hello World!"}.
 
-\begin{lstlisting}[language=C,caption=Tradución con comentario.]
+\begin{lstlisting}[label=prog-comment-code,language=C,caption=Tradución con comentario.]
 [...]
     // Translators: We are just waving the world.
     printf (_("Hello World!"));
 [...]
 \end{lstlisting}
 
-Estamos engadindo un comentario a cadea \emph{"Hello World!"}. O ficheiro POT resultado tería a forma:
+O ficheiro POT resultado tería a forma que se pode ver no Fragmento de Código~\ref{prog-comment-pofile}.
 
-\begin{lstlisting}[label=some-code,caption=Ficheiro POT con comentario.]
+\begin{lstlisting}[label=prog-comment-pofile,caption=Ficheiro POT con comentario.]
 [...]
 #. Translators: We are just waving the world.
 #: helloworld.c:15
@@ -235,9 +233,9 @@ msgstr ""
 
 
 \paragraph{Comentarios dos tradutores}
-A biblioteca permite que os tradutores comenten as cadeas. Engadindo un comentario á cadea \emph{"Hello World!"}, o ficheiro PO tería o seguinte aspecto:
+A biblioteca permite que os tradutores comenten as cadeas. No Fragmento de Código~\ref{trans-comment-pofile} podemos ver o aspecto que tería o ficheiro PO se engadimos un comentario á cadea \emph{"Hello World!"}.
 
-\begin{lstlisting}[caption=Ficheiro PO con comentario.]
+\begin{lstlisting}[label=trans-comment-pofile,caption=Ficheiro PO con comentario.]
 [...]
 # This is a note from translators.
 #: helloworld.c:15
@@ -279,7 +277,7 @@ En canto a interface, o programa permite abrir varios ficheiros cada un na súa 
 
 \subsection{Virtaal}
 
-Virtaal é unha ferramenta CAT creada por Translate House\footnote{Compañía que surxiu a partir dunha comunidade de tradutores de Sudáfrica e que está especializada na creación de ferramentas e bibliotecas para axudar a tradución.} As características máis destacables son a incorporación de suxestión a tradución, comprobación da calidade das tradución e, sobretodo, a capacidade de abrir unha gran variedade de formatos a través da biblioteca Translate Toolkit.
+Virtaal é unha ferramenta CAT creada por Translate House\footnote{Compañía que surxiu a partir dunha comunidade de tradutores de Sudáfrica e que está especializada na creación de ferramentas e bibliotecas para axudar a tradución.} As características máis destacables son a incorporación de suxestión a tradución, comprobación da calidade das tradución e, sobre todo, a capacidade de abrir unha gran variedade de formatos a través da biblioteca Translate Toolkit.
 
 \begin{figure}[h]
     \centering
@@ -312,7 +310,7 @@ A interface de OmegaT dista bastante do resto de programas. Como amosa a Figura~
     \label{fig:translatetoolkit}
 \end{figure}
 
-Como se pode ver na Figura~\ref{fig:translatetoolkit}, na interface misturase a lista de cadeas co cadro de edición das mesmas. Ademais empregando unha interface semellante a do resto de ferramentas ofimáticas de Google, temos botóns para autocompletar tags e para avanzar a seguinte tradución. Aínda que foi pensado para a tradución colaborativa de documentos de ONGs e artigos da Wikipedia, na actualidade emprégase maioritariamente para a tradución de proxectos comerciais.
+Como se pode ver na Figura~\ref{fig:translatetoolkit}, na interface misturase a lista de cadeas co cadro de edición das mesmas. Ademais empregando unha interface semellante a do resto de ferramentas ofimáticas de Google, temos botóns para autocompletar etiquetas e para avanzar a seguinte tradución. Aínda que foi pensado para a tradución colaborativa de documentos de ONGs e artigos da Wikipedia, na actualidade emprégase maioritariamente para a tradución de proxectos comerciais.
 
 
 \subsection{Transifex}
@@ -325,10 +323,10 @@ Trátase dunha plataforma que xurdiu a partir dun proxecto do Google Summer of C
     \label{fig:transifex}
 \end{figure}
 
-A interface de trasifex, como ser pode ver na Figura~\ref{fig:transifex} separa a lista de cadeas do cadro de edición. No cadro de edición temos a posibilidade de consultar a memoria de tradución ou o glosario. O programa tamén incorpora resaltado de sintaxe.
+A interface de Trasifex, como ser pode ver na Figura~\ref{fig:transifex} separa a lista de cadeas do cadro de edición. No cadro de edición temos a posibilidade de consultar a memoria de tradución ou o glosario. O programa tamén incorpora resaltado de sintaxe.
 
 \subsection{Outras ferramentas}
-Existen moitas máis ferramentas CAT no mercado. De feito, segundo unha enquisa \cite{article:2006survey} elaborada polo Imperial College London a cerca de 900 tradutores profesionais de 54 países diferentes, os únicos programas de todos os anteriores que aparecen citados é o OmegaT que conta con un 7\% de usuarios. As ferramentas máis usadas son ferramentas para Microsoft Windows e ferramentas con licencias privativas e usualmente moi caras. Algunhas destas ferramentas son TRADOS, Wordfast, DejaVu SDLX ou STAR Transit. Na Figura~\ref{fig:enquisa2006} podemos ver unha gráfica coas ferramentas máis empregadas segundo este estudio.
+Existen moitas máis ferramentas CAT no mercado. De feito, segundo unha enquisa \cite{article:2006survey} elaborada polo Imperial College London a cerca de 900 tradutores profesionais de 54 países diferentes, OmegaT é o único programa que aparece na enquisa (con un 7\% de usuarios) de todos os programas anteriormente citados. As ferramentas máis usadas son ferramentas para Microsoft Windows e ferramentas con licencias privativas e usualmente moi caras. Algunhas destas ferramentas son TRADOS, Wordfast, DejaVu SDLX ou STAR Transit. Na Figura~\ref{fig:enquisa2006} podemos ver unha gráfica coas ferramentas máis empregadas segundo este estudio.
 
 \begin{figure}[h]
     \centering
@@ -349,7 +347,7 @@ Unha memoria de tradución é unha base de datos composta de textos orixinais ac
 
 A principal función dunha memoria de tradución e a extracción de coincidencias totais ou parciais. Os programas que teñen esta característica buscan na base de datos un segmento que coincida de forma exacta ou parcial coa cadea que se está a traducir e mostrase este segmento como suxerencia. Xunto coa suxerencia tamén se amosa o grado de cercanía entre a cadea a traducir e a cadea da memoria de tradución.
 
-Existe un formato estándar de compartición de memorias de tradución de nome Translation Memory eXchange (TMX) e plataformas online que almacenan gran cantidade de cadeas e polo tanto hai máis posibilidade de obter unha mellor coincidencia. O software Amagama creado por Translate House, os creadores de Virtal, é un exemplo de memoria de tradución online.
+Existe un formato estándar de compartición de memorias de tradución de nome Translation Memory eXchange (TMX) e plataformas online que almacenan gran cantidade de cadeas e polo tanto hai máis posibilidade de obter unha mellor coincidencia. O software Amagama creado por Translate House, os creadores de Virtaal, é un exemplo de memoria de tradución online.
 
 \subsection{Glosario}
 Un glosario é unha base de datos de termos xunto con unha ou varias traducións aceptadas. Diferenciase da memoria de tradución en que so se proporcionan a tradución a termos e non a cadeas completas. De igual forma que no caso das memorias de tradución, existe un formato estándar de para a compartición de glosarios de nome TermBase eXchange (TBX) e plataformas online para almacenar os glosarios.

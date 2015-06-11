@@ -1,77 +1,83 @@
 \chapter{Metodoloxía}
 
-Nesta sección descríbese a metodoloxía levada a cabo para a realización deste proxecto. Unha metodoloxía e un conxunto de métodos ou prácticas empregadas para a realización dunha tarefa, neste caso o analise, deseño e implementación dunha nova ferramenta CAT para o proxecto GNOME. Escolleuse unha metodoloxía axil de ciclo incremental. Moitas das prácticas que se tomaron son collidas da metodoloxía eXtreme Programming.
+Nesta sección descríbese a metodoloxía levada a cabo para a realización deste proxecto. Unha metodoloxía e un conxunto de métodos ou prácticas empregadas para a realización dunha tarefa, neste caso o análise, deseño e implementación dunha nova ferramenta CAT para o proxecto GNOME. Escolleuse unha metodoloxía áxil de ciclo incremental. Moitas das prácticas que se tomaron son collidas da metodoloxía eXtreme Programming.
 
 \section{eXtreme Programming}
 
-Foi creada por Kent Beck no ano 1999 e trátase dun dos máis destacados métodos de desenvolvemento áxil. eXtreme Programming (a partir de agora XP) avoga por ciclos de desarrollo moi curtos e elimina os roles clásicos de analista, deseñador e programador. Todo equipo participa en todas as partes do desarrollo. Desta forma Beck define uns valores fundamentais da metodoloxía e unhas prácticas que axudan a adoptar estos valores.
+Foi creada por Kent Beck no ano 1999 e trátase dun dos máis destacados métodos de desenvolvemento áxil. eXtreme Programming (a partir de agora XP) avoga por ciclos de desarrollo moi curtos e elimina os roles clásicos de analista, deseñador e programador. Todo equipo participa en todas as partes do desarrollo. Desta forma Beck define uns valores fundamentais da metodoloxía e unhas prácticas que axudan a adoptar estes valores.
 
 \subsection{Valores de eXtreme Programming}
 
 \subsubsection{Comunicación}
-É o primeiro valor de XP. Segundo esta metodoloxía os problemas nos proxectos poden ser traducidos a alguén que non falou con outra persoa sobre algo importante do proxecto. Esta mala comunicación non sucede por casualidade e é debido frecuentemente as malas prácticas. Para solucionar isto, XP inclúe prácticas nas que é necesario a comunicación para levalas a cabo. Ademais a figura do \emph{coach} sirve para mellorar a comunicación daquelas persoas que non o están facendo ben.
+É o primeiro valor de XP. Segundo esta metodoloxía os problemas nos proxectos poden ser traducidos a alguén que non falou con outra persoa sobre algo importante do proxecto. Esta mala comunicación non sucede por casualidade e é debido frecuentemente as malas prácticas. Para solucionar isto, XP inclúe prácticas nas que é necesario a comunicación para levalas a cabo. Ademais a figura do \emph{coach} serve para mellorar a comunicación daquelas persoas que non o están facendo ben.
 
 \subsubsection{Simplicidade}
 
 A simplicidade non é unha tarefa sinxela. XP fai unha aposta e invita ao programador a pensar no que o proxecto necesita hoxe e non no que vai necesitar nun futuro. Para manter esta simplicidade ao longo do tempo é frecuente a refactorización do mesmo para manter dita simplicidade. A simplificación do deseño e da implementación axiliza tanto o desenvolvemento como o mantemento. A simplicidade require \textbf{comunicación} pois canto máis comunicación teñamos por parte do cliente máis sinxelo simple poderemos facer o sistema e canto máis simple sexa o sistema menos comunicación será necesaria para explicar o sistema.
 
 \subsubsection{Retroalimentación}
-A retroalimentación ou feedback é fundamental nesta métodoloxía. Pode actuar en varias escalas de tempo. Obtemos feedback en cuestion de minutos ou días de parte dos test do sistema, das peticións dos clientes ou do director do proxecto. Tamen obtemos feedback o longo dos meses cando o usuario pode analizar as caracteristicas que implementamos. Neste sentido XP aposta por unha posta rápida en produción de forma que teñamos sistemas en produción e en desarrollo de forma paralela. Con isto melloramos o sistema xa que imos obtendo as opinións dos usuarios das decisións que xa tomamos e os erros cometidos non se volven a repetir.
+A retroalimentación ou feedback é fundamental nesta metodoloxía. Pode actuar en varias escalas de tempo. Obtemos feedback en cuestión de minutos ou días de parte dos test do sistema, das peticións dos clientes ou do director do proxecto. Tamén obtemos feedback o longo dos meses cando o usuario pode analizar as características que implementamos. Neste sentido XP aposta por unha posta rápida en produción de forma que teñamos sistemas en desenvolvemento e en produción de forma paralela. Con isto melloramos o sistema xa que imos obtendo as opinións dos usuarios das decisións que xa tomamos e os erros cometidos non se volven a repetir.
 
 \subsubsection{Coraxe}
-O coraxe é unha parte inherente a metodoloxía. É necesario para tirar o traballo de varios días e volver e empezar debido a cambios nos requisitos ou aparición de fallos estructurais. É necesario para ser persistente ca resolución dun problema, as cousas que non se dan resolto un día en horas podense resolver o día seguinte en cuestión de minutos. O coraxe non é útil sen os tres primeiros valores. Con unha boa comunicación existe a posibilidade de facer experimentos con máis risco. A simplicidade permite o programador coñecer mellor o código e polo tanto ser máis valiente a hora de facer cambios. A retroalimentación axuda a que alguén se sinta máis seguro ao facer un cambio.
+O coraxe é unha parte inherente a metodoloxía. É necesario para tirar o traballo de varios días e volver e empezar debido a cambios nos requisitos ou aparición de fallos estruturais. É necesario para ser persistente ca resolución dun problema, as cousas que non se dan resolto un día en horas pódense resolver o día seguinte en cuestión de minutos. O coraxe non é útil sen os tres primeiros valores. Con unha boa comunicación existe a posibilidade de facer experimentos con máis risco. A simplicidade permite o programador coñecer mellor o código e polo tanto ser máis valente a hora de facer cambios. A retroalimentación axuda a que alguén se sinta máis seguro ao facer un cambio.
 
-\subsubsection{Respeto}
-Por último é necesario respeto. É necesario que os integrantes do equipo se preocupen polo resto de membros e polo que están facendo. Ademais o equipo debe preocuparse polo propio proxecto. Para que XP funcione os programadores debense sentir parte do proxecto e ter un feedback positivo ao respecto.
+\subsubsection{Respecto}
+Por último é necesario respecto. É necesario que os integrantes do equipo se preocupen polo resto de membros e polo que están facendo. Ademais o equipo debe preocuparse polo propio proxecto. Para que XP funcione os programadores débense sentir parte do proxecto e ter un feedback positivo ao respecto.
 
 \subsection{Prácticas recomendadas por eXtreme Programming}
 
 \subsubsection{O Xogo da Planificación}
-A planificación é un dialogo entre a xente do negocio e o equipo técnico. Mentras a parte de negodio decide a importancia dun problema, aprioridade da implementación dunha característica ou outra, a composición das entregas ou as datas das mesmas, o equipo técnico é capaz de estimar canto tempo leva implementar unha característica, ten a capacidade de explicar as consecuencias de certa decisión, sabe como organizarse para levar a cabo unha tarefa e pode facer unha planificación máis detallada.
+A planificación é un dialogo entre a xente do negocio e o equipo técnico. Mentres a parte de negocio decide a importancia dun problema, a prioridade da implementación dunha característica ou outra, a composición das entregas ou as datas das mesmas, o equipo técnico é capaz de estimar canto tempo leva implementar unha característica, ten a capacidade de explicar as consecuencias de certa decisión, sabe como organizarse para levar a cabo unha tarefa e pode facer unha planificación máis detallada.
 
 \subsubsection{Entregas Pequenas}
-As entregas ou \emph{releases} deben ser o máis pequenas posibles e conter os requerimentos máis valiosos. Aínda así cada release debe er autocontenida e non ter características implementadas a medias solo para facer o ciclo de entregas máis curto.
+As entregas ou \emph{releases} deben ser o máis pequenas posibles e conter os requerimentos máis valiosos. Aínda así cada release debe ser autocontida e non ter características implementadas a medias solo para facer o ciclo de entregas máis curto.
 
 \subsubsection{Metáfora}
-Cada proxecto feito con XP ten unha metafora. Unha metafora é un simil sinxelo do cl
+Cada proxecto feito con XP ten unha metáfora. Unha metáfora é un símil sinxelo de como está composto o sistema. É útil para que os membros do equipo teñan unha visión global do que están facendo e que membros non técnicos do equipo poidan entendelo.
 
-Esta metafora é util para que os membros do equipo teñan unha visión global do que están facendo. Outras metodoloxías chámanlle a isto \textbf{arquitectura}. O problema con empregar o termino arquitectura é que unha arquitectura non ten necesariamente un sentido de cohesión.
-
-O obxetivo desta metafora é ter unha historia coherente para poder explicarlle o sistema tanto os clientes como aos membros do equipo.
+Outras metodoloxías chámanlle a isto \textbf{arquitectura}. O problema con empregar o termino arquitectura é que unha arquitectura non ten necesariamente un sentido de cohesión.
 
 \subsubsection{Deseño simple}
 Todos os deseños deben, executar todos os tests, non ter código duplicado, ter o menor número de clases e métodos e todas as partes son importantes para os programadores. Con esta filosofía XP intenta facer un deseño simple para as necesidades actuais do programa. Desta forma a implementación será máis rápida e o tempo de aprendizaxe para os outros membros do equipo será máis curto.
 
 \subsubsection{Testing}
-Calquera caracteristica incorporada qeu non inclua un test, simplemente non existe. Os programadores incluen test de unidade para as novas funcionalidades e os clientes crean test funcionales de como esperan que o programa funciona. Ambos test forman parte do código do programa. Non é necesario escribir test para cada metodo pero si para cada método que se expoña.
+Calquera característica incorporada que non inclúa un test, simplemente non existe. Os programadores inclúen test de unidade para as novas funcionalidades e os clientes crean test funcionales de como esperan que o programa funciona. Ambos test forman parte do código do programa. Non é necesario escribir test para cada método pero si para cada método que se expoña.
 
 \subsubsection{Refactorización}
-Cando é necesario implementar unha nova caracteristica no programa, os programadores preguntanse se existe unha forma simple de implementala e implementana. Despois analizan o código para ver se existe unha forma de facelo de forma máis simple e que siga executando correctamente todos os tests. Esto chamase refactorizar.
+Cando é necesario implementar unha nova característica no programa, os programadores pregúntanse se existe unha forma simple de implementala e implementana. Despois analizan o código para ver se existe unha forma de facelo de forma máis simple e que siga executando correctamente todos os tests. Esto chamase refactorizar.
 
-É obvio que traballando desta forma emplease moito máis tempo do necesario para a implementación de cada característica pero desta forma poderemos engadir a seguinte caracteristica nunha cantidade razonable de tempo.
+É obvio que traballando desta forma empregase moito máis tempo do necesario para a implementación de cada característica pero desta forma poderemos engadir a seguinte característica nunha cantidade razoable de tempo.
 
 \subsubsection{Programación por parellas}
-Todo o código en produción é escrito por parellas de programadores con diferentes roles. Por un lado un dos programadores pensara de forma especifica como implementar un certo método mentras o outro pensará dun xeito máis global e estratéxico. Estas parellas cambian continuamente.
+Todo o código en produción é escrito por parellas de programadores con diferentes roles. Por un lado un dos programadores pensara de forma específica como implementar un certo método mentres o outro pensará dun xeito máis global e estratéxico. Estas parellas cambian continuamente.
 
 \subsubsection{Pertenza Colectiva}
 En XP o código pertence a todo o equipo e se unha persoa ten oportunidade de engadir algo de valor a algún fragmento de código ten que facelo nalgún momento. Desta todo o mundo ten responsabilidade de todo o sistema e aínda que non todo o mundo coñece cada parte de forma igual, todo o mundo coñece algo de cada parte de forma que son capaces de facer modificacións satisfactorias.
 
-Isto contrasta coas prácticas doutras metodoloxías onde o código escrito por unha persoa so pertence a esa persoa e para engadir nova funcionalidade é necerio facer unha petición a dito programador. Esta práctica pode facer máis lento o desarrollo e diminue o factor camión\footnote{\href{http://en.wikipedia.org/wiki/Bus\_factor}{Truck Factor}: O numero de membros dun equipo dentro dun proxecto, que no caso de seren atropellados por un camión, o proxecto non podería completarse.}.
+Isto contrasta coas prácticas doutras metodoloxías onde o código escrito por unha persoa so pertence a esa persoa e para engadir nova funcionalidade é necesario facer unha petición a dito programador. Esta práctica pode facer máis lento o desenvolvemento e diminúe o factor camión\footnote{\href{http://en.wikipedia.org/wiki/Bus\_factor}{Truck Factor}: O numero de membros dun equipo dentro dun proxecto, que no caso de seren atropellados por un camión, o proxecto non podería completarse.}.
 
 \subsubsection{Integración Continua}
-Os test son executados con cada cambio e solo se todos os test son executados correctamente se suben os cambios ao producto final. É importante executar os test a cada cambio xa que asi saberemos a que se debe o fallo e quen ten que correxilo. Se para implementar unha caracteristica os seus desarrolladores non son capaces de que todos os tests funcionen, probablemente necesiten volver a empezar pois non tiñan os coñecementos necesarios para implemementala. 
+Os test son executados con cada cambio e solo se todos os test son executados correctamente se suben os cambios ao produto final. É importante executar os test a cada cambio xa que así saberemos a que se debe o fallo e quen ten que corrixilo. Se para implementar unha característica os seus desenvolvedores non son capaces de que todos os tests funcionen, probablemente necesiten volver a empezar pois non tiñan os coñecementos necesarios para implemementala. 
 
 \subsubsection{Semana de 40 horas}
 XP establece unha xornada laboral de 8 horas e 5 días a semana. Para esta metodoloxía é importante que os programadores estean frescos e inspirados cada maña e con xornadas largas de traballo dita tarefa é imposible. O descanso é algo fundamental para poder ter boas idea.
 
 \subsubsection{Cliente no sitio}
-Un cliente do proxecto, e dicir, unha persoa que realvente vaia usalo cando esté en produción; debe sentarse xunto o equipo e poder responder preguntas e resolver disputas entre membros do equipo.
+Un cliente do proxecto, é dicir, unha persoa que realmente vaia usalo cando estea en produción; debe sentarse xunto o equipo e poder responder preguntas e resolver disputas entre membros do equipo.
 
-Hai casos nos quw esta práctica non é posible debido o alto valor do tempo do cliente. Non obstante temos que pensar nesto como nunha mellora moi substancial da calidade do software final.
-
-\subsubsection{Estandares de programación}
-Se traballando cambiando de parellas cada pouco tempo e facemos refactorizacións continuas, isto non pode funcionar sen que todo o equipo siga uns estandares de programación. Isto é un mesmo estico de código e unha mesma forma de facer certas cousas.
+\subsubsection{Estándares de programación}
+Se traballando cambiando de parellas cada pouco tempo e facemos refactorizacións continuas, isto non pode funcionar sen que todo o equipo siga uns estándares de programación. Isto é un mesmo estilo de código e unha mesma forma de facer certas cousas.
 
 \section{Metodoloxía seguida}
 
+Dentro das prácticas e valores suxeridos por eXtreme Programming seguimos un subconxunto do mesmo. Moitas das prácticas non se puideron levar a cabo debido a que se tratada de un proxecto de unha persoa.
 
+\paragraph{Pertenza Colectiva} O programa que estamos facendo é software libre e polo tanto o seu código está dispoñible a todo aquel que queira melloralo. En concreto o noso programa está subida a plataforma GitHub. Calquera persoa pode enviar cambios que poden ser integrados no programa ou reportar fallos.
+
+\paragraph{Estándares de Programación} Na elaboración do programa intentamos seguir un estilo de código fixo en todos os ficheiros. Desta forma facilitamos aos novos desenvolvedores a lectura do código do noso programa.
+
+\paragraph{Semana de 40 horas} Durante a elaboración do programa as horas diarias dedicadas ao programa foron aproximadamente cinco. Pensamos que desta forma o programador tería a mente máis descansada para poder programar.
+
+\paragraph{Deseño Simple} Intentamos solucionar os problemas empregando un deseño simple tendo en algunhas ocasións que refactorizar gran parte do código.
+
+\paragraph{Cliente no sitio} Os clientes do programa, é dicir, os tradutores de GNOME; tiveron sempre a posibilidade de instalar o programa e comentar ven a través do blogue, no xestor de fallos que incorpora GitHub ou vía email as melloras que lles gustaría incorporar ao programa.

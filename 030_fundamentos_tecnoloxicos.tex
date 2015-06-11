@@ -1,27 +1,23 @@
 \chapter{Fundamentos Tecnolóxicos}
 
+Neste capítulo detallaremos os compoñentes tecnolóxicos que empregamos para levar a cabo este proxecto. Primeiro falaremos das ferramentas empregadas e despois das diferentes bibliotecas que usamos no programa.
+
 \section{Ferramentas empregadas}
 
-\paragraph{Vala} É unha linguaxe de programación orientada a obxectos creada por GNOME para acercar a linguaxe de programación C as características das linguaxes de programación modernas. Emprega a linguaxe de programación C xunto coa biblioteca GObject como linguaxe intermedio. Esta linguaxe cunha sintaxe moi parecida a C\# incorpora características como o uso e funcións anónimas, bucles foreach, xestión automática de memoria ou o manexo de excepcións.
-
-Tradicionalmente a linguaxe oficial de GNOME era C. Esta linguaxe moi empregada en moitos proxectos de software libre como pode ser o kernel de Linux carece sen embargo de características propias da orientación a obxectos. A librería GObject, aínda que fornece á linguaxe destas característica, é tremendamente verbosa e moi complexa para os principiantes.
-
-Escolleuse esta linguaxe por ter unha sintaxe moi amigable, o que pode axudar a que programadores con pouca experiencia se interesen polo proxecto e por incorporar certa integración con algunhas librerías de GNOME que fai que o código final sexa moito máis limpo.
-
- \paragraph{Autotools} Tamén coñecidas como \emph{GNU build system} son un conxunto de ferramentas que permiten permitir a creación e compilación de programas portables a varias plataformas UNIX.
-
- \paragraph{Git} É un sistema de control de versións distribuído escrito por Linus Torbards e usado, entre outros moitos proxectos, para xestionar o desenrolo de Linux (o kernel).
-
-Escolleuse esta opción por permitir traballar en local, por ser moi rápido e por ser o sistema de control de versións moderno máis empregado actualmente.
-
- \paragraph{GitHub} Unha plataforma de almacenamento de proxectos empregando o sistema de control de versións Git. Permite subir proxectos Open Source de forma gratuíta os seus servidores. Ademais de permitir subir os ficheiros ten ferramentas para a creación de Wikis relacionadas cos proxectos e para a xestión de incidencias. Esta ferramenta para a xestión de incidencias for empregada para facer o seguimento do proxecto.
-
- \paragraph{Listas de Correo} As listas de correo son un medio de comunicación asíncrona moi usadas no mundo do desenrolo software. Os usuarios escriben un correo electrónico a un enderezo especial que reenvia dito correo a todos os usuarios subscritos as listas. Ademais os correos enviados a lista son almacenados nun historial para a súa posterior consulta.
+\paragraph{Vala} É unha linguaxe de programación orientada a obxectos creada por GNOME para acercar a linguaxe de programación C as características das linguaxes de programación modernas. Emprega C xunto coa biblioteca GObject como linguaxe intermedio. Esta linguaxe cunha sintaxe moi parecida a C\# incorpora características como o uso e funcións anónimas, bucles foreach, xestión automática de memoria ou o manexo de excepcións.
 
 
- \paragraph{IRC (Internet Relay Chat)} É un protocolo de comunicación entre usuarios creado no ano 1988. É amplamente usado no mundo do desenrolo software como unha ferramenta rápida para consultar dubidas entre desenroladores. Existen múltiples clientes dispoñibles para case calquera plataforma. En concreto empregouse o programa XChat.
+ \paragraph{Autotools} Tamén coñecidas como \emph{GNU build system} son un conxunto de ferramentas que permiten permitir a configuración e compilación de programas portables a varias plataformas UNIX.
 
- \paragraph{JHBuild} Unha serie de scripts que permiten a descarga automática do código fonte dun proxecto e das súas dependencias e a instalación destes proxectos dentro dun entorno chroot. Desta forma os desenroladores poden traballar coas últimas versións das bibliotecas que tenden a ser inestables sen ter que usalas en todo os seu sistema.
+ \paragraph{Git} É un sistema de control de versións distribuído escrito por Linus Torbards e usado, entre outros moitos proxectos, para xestionar o desenvolvemento de Linux (o kernel). Trátase dunha das solucións de control de versións máis empregada na actualidade pois é moito máis rápida que as outras existentes e, ao ser distribuída, permite traballar ser conexión a internet.
+
+ \paragraph{GitHub} Unha plataforma de almacenamento de proxectos empregando o sistema de control de versións Git. Permite subir proxectos Open Source de forma gratuíta os seus servidores. Conta ademais con ferramentas para a creación de Wikis relacionadas cos proxectos e incorpora un xestor de fallos.
+
+ \paragraph{Listas de Correo} As listas de correo son un medio de comunicación asíncrona moi usadas no mundo do desenvolvemento software. Os usuarios escriben un correo electrónico a un enderezo especial que reenvia dito correo a todos os usuarios subscritos as listas. Ademais os correos enviados a lista son almacenados nun historial para a súa posterior consulta.
+
+ \paragraph{IRC (Internet Relay Chat)} É un protocolo de comunicación entre usuarios creado no ano 1988. É amplamente usado no mundo do desenrolo software como unha ferramenta rápida para consultar dubidas entre desenvolvedores. Existen múltiples clientes dispoñibles para case calquera plataforma. En concreto empregouse o programa XChat.
+
+ \paragraph{JHBuild} Unha serie de scripts que permiten a descarga automática do código fonte dun proxecto e das súas dependencias e a instalación destes proxectos dentro dun entorno separado do resto do sistema. Desta forma os desenvolvedores poden traballar coas últimas versións das bibliotecas que tenden a ser inestables sen ter que usalas en todo os seu sistema.
 
 \paragraph{Glade} Unha ferramenta para a creación de interfaces de usuario con GTK+ as interfaces creadas expórtanse en ficheiros con formato XML.
 
@@ -31,10 +27,7 @@ Escolleuse esta opción por permitir traballar en local, por ser moi rápido e p
 
 \paragraph{GDB} GNU Project debugger. É o depurador estándar para o proxecto GNU. Permite a execución paso a paso, monitorizar e alterar o valor das variables entre outras moitas características.
 
-\paragraph{\LaTeX}
-
-\paragraph{DogTail}
-
+\paragraph{\LaTeX} É un sistema de composición de textos. Creado por Leslie Lamport como un gran conxunto de macros de \TeX para facilitar o seu uso, produce documentos de gran calidade con pouco esforzo. Permite incluír dentro dos textos formulas matemáticas, fragmentos de códigos ou figuras, entre outros.
 
 \section{Bibliotecas empregadas}
 

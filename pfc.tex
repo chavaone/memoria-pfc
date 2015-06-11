@@ -28,6 +28,8 @@
 % Para incluir subfiguras.
 \usepackage{subcaption}
 
+\usepackage[nottoc,numbib]{tocbibind}
+
 % PARA incluir gr?icos en JPG => compilar con pdflatex.
 \usepackage[pdftex]{graphicx}
 
@@ -172,7 +174,7 @@
         \include{004_palabras_clave}
         \thispagestyle{empty}     % No number page, headings...
 
-        \include{005_agradecimientos}
+        \include{005_agradecementos}
         \thispagestyle{empty}     % No number page, headings...
 
         \include{006_cc_licence}
@@ -198,14 +200,14 @@
   % INCLUIMOS LOS APÉNDICES...
         \appendix
         \include{A010_escollerlicencia}
-        \include{A011_textogpl}
+       % \include{A011_textogpl}
        %\include{pfc_appendix_020}
 
 
   % INCLUIMOS LA BIBLIOGRAFÍA...
         \nocite{*}  % Se usa para indicar en la bibliograf? las referencias no citadas.
         \bibliography{pfc_biblio}
-        \bibliographystyle{plain}
+        \bibliographystyle{alpha}
 
 \end{document}
 

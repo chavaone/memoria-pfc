@@ -1,17 +1,17 @@
 \chapter{Deseño e Implementación}
 
-Neste capitulo veremos detalles do deseño e implementación de diferentes partes do programa.
+Neste capítulo veremos detalles do deseño e implementación de diferentes partes do programa.
 
 \section{Módulo de Ficheiros}
 
 O módulo de xestión de ficheiros é un do máis importantes e complexos de todo o programa o cal é lóxico tendo en conta que o programa é un editor de ficheiros.
 
-En canto ao deseño, o principal obxetivo é a extensibilidade do mesmo pois, aínda que o programa está centrado na edición de ficheiros PO e son ests os unicos soportados na actualidade, pretendese que o programa sexa capaz de soportar varios tipos de ficheiros nun futuro. Na figura~\ref{fig:dia_class:files} pódese ver o diagrama de clases deste módulo.
+En canto ao deseño, o principal obxectivo é a extensibilidade do mesmo pois, aínda que o programa está centrado na edición de ficheiros PO e son estes os únicos soportados na actualidade, pretendese que o programa sexa capaz de soportar varios tipos de ficheiros nun futuro. Na figura~\ref{fig:dia_class:files} pódese ver o diagrama de clases deste módulo.
 
 \subsection{Implementación Xenérica}
-A implementación da clase \lstinline{File} contén propiedeades para conseguir información sobre o nome e path onde está dito ficheiro, ademáis garda estatísticas sobre o número de mensaxes traducidos, sen traducir ou con tradución difusa. Estas estatísticas actualizanse cada vez que se engade ou elimina unha cadea ou cada vez que esta se modifica. Tamén contén un valor booleano que permite saber se o ficheiro foi modificado. Aparte de métodos para engadir e eliminar cadeas, e para conseguir e modificar os metadatos do ficheiro está clase ten un método para gardar o ficheiro e para analizar o ficheiro. O método para gardar~(\lstinline{save}) emprega o patrón \emph{Template Method\footnote{\href{http://gl.wikipedia.org/wiki/Template_Method_\%28patr\%C3\%B3n_de_dese\%C3\%B1o\%29}{Template Method (patrón de deseño)}}} o cal permitenos actualizar o estado do ficheiro a non cambiado.
+A implementación da clase \lstinline{File} contén propiedades para conseguir información sobre o nome e \emph{path} onde está dito ficheiro, ademais garda estatísticas sobre o número de mensaxes traducidos, sen traducir ou con tradución difusa. Estas estatísticas actualízanse cada vez que se engade ou elimina unha cadea ou cada vez que esta se modifica. Tamén contén un valor booleano que permite saber se o ficheiro foi modificado. Aparte de métodos para engadir e eliminar cadeas, e para conseguir e modificar os metadatos do ficheiro está clase ten un método para gardar o ficheiro e para analizar o ficheiro. O método para gardar~(\lstinline{save}) emprega o patrón \emph{Template Method\footnote{\href{http://gl.wikipedia.org/wiki/Template_Method_\%28patr\%C3\%B3n_de_dese\%C3\%B1o\%29}{Template Method (patrón de deseño)}}} o cal permítenos actualizar o estado do ficheiro a non cambiado.
 
-Un ficheiro contén instancias de mensaxes~(\lstinline{Message}). As mensaxes teñen como propiedades un estado, orixes, e consellos. A API provee métodos para conseguir e modificar tanto as cadeas orixinais como as traducións na súa forma en singular ou nalgunha das formas plurais. A implementación do método para modificar unha tradución tamén emprega o patrón Template Method para actualizar o estado da mensaxe. Esta clase tamén ten métodos para engadir e eliminar consellos e para obter o contexto da mensaxe.
+Un ficheiro contén instancias de mensaxes~(\lstinline{Message}). As mensaxes teñen como propiedades un estado, orixes, e consellos. A API prové métodos para conseguir e modificar tanto as cadeas orixinais como as traducións na súa forma en singular ou nalgunha das formas plurais. A implementación do método para modificar unha tradución tamén emprega o patrón Template Method para actualizar o estado da mensaxe. Esta clase tamén ten métodos para engadir e eliminar consellos e para obter o contexto da mensaxe.
 
 \begin{figure}[h!]
     \centering
@@ -25,21 +25,21 @@ Ademais a clase \lstinline{FileOpener} recolle un método para crear ficheiros e
 \subsubsection{Consellos (Tips)}
 Os consellos son a solución que damos para aportar información ao usuario sobre a tradución que está a realizar. Algunha das cousas que pode axudar a indicar esta característica é se a tradución está a ser demasiado longa, se hai algunha palabra que está mal escrita na tradución ou se non emprega a terminoloxía adecuada.
 
-Cada consello ten un nome que debe ser xenerico a cada clase de consello, unha descripción que ten que explicar o problema con detalle, un nivel que indica a gravidade do consello e unha referencia a forma plural a que corresponde dito consello. Ademáis pode conter un ou máis referencias a localización exacta do problema que permitirá destacala na interface gráfica.
+Cada consello ten un nome que debe ser xenérico a cada clase de consello, unha descrición que ten que explicar o problema con detalle, un nivel que indica a gravidade do consello e unha referencia a forma plural a que corresponde dito consello. Ademais pode conter un ou máis referencias a localización exacta do problema que permitirá destacala na interface gráfica.
 
-A creación de consellos faráse ao modificarse unha cadea e farase a través de plugins.
+A creación de consellos farase ao modificarse unha cadea e farase a través de plugins.
 
 \subsubsection{Pistas (Hints)}
 As pistas amosaranlle ao usuario posibles traducións ou aproximacións as traducións. Estas pistas poden ser obtidas de memorias de traducións, de traducións do mesmo ficheiro noutra linguaxe, ou da tradución directa por exemplo.
 
 Cada instancia dunha pista~(\lstinline{Hint}) contén a tradución suxerida, unha cadea que identifica a orixe de dita pista e un valor que indica a precisión de dita suxerencia.
 
-De igual forma que no caso dos consellos a creación de pistas correrá ao cargo de plugins creados a tal proposito. Neste caso actualizaranse as pistas de cada mensaxe ao selecionalo mesmo na interface.
+De igual forma que no caso dos consellos a creación de pistas correrá ao cargo de plugins creados a tal propósito. Neste caso actualizaranse as pistas de cada mensaxe ao seleccionalo mesmo na interface.
 
 \subsection{Ficheiro PO}
-A implementación especifica para ficheiros PO extende as clases \lstinline{File}, \lstinline{FileOpener} e \lstinline{Message} abstractas para implementar os metodos e permitir empregar ficheiros PO.
+A implementación específica para ficheiros PO (Figura~\ref{fig:dia_class:pofile}) estende as clases \lstinline{File}, \lstinline{FileOpener} e \lstinline{Message} abstractas para implementar os métodos e permitir empregar ficheiros PO.
 
-Para a analise e a actualización dos ficheiros PO empregaremos a biblioteca gettext-po. No momento no que se iniciou a implementación deste módulo non existía implementación destal librería en Vala polo que tivemos que crear uns \emph{bindings} para poder empregala.
+Para a análise e a actualización dos ficheiros PO empregaremos a biblioteca gettext-po. No momento no que se iniciou a implementación deste módulo non existía implementación desta librería en Vala polo que tivemos que crear uns \emph{bindings} para poder empregala.
 
 Tanto a clase PoFile como a clase PoMessage delegan a maior parte dos seus métodos nas instancias das clases dos bindings da biblioteca GettextPo File e Message respectivamente. Desta forma faise un claro uso do patrón \emph{Adapter\footnote{\href{http://gl.wikipedia.org/wiki/Adapter_\%28patr\%C3\%B3n_de_dese\%C3\%B1o\%29}{Adapter (patrón de deseño)}}}.
 
@@ -50,12 +50,12 @@ Tanto a clase PoFile como a clase PoMessage delegan a maior parte dos seus méto
     \label{fig:dia_class:pofile}
 \end{figure}
 
-De forma adicional a clase PoFile contén unha instancia da clase PoHeader esta clase que extende e PoMessage correspondese aos metadatos que se atopan nos ficheiros PO na tradución da cadea baleira. É ten meodos para obter e modificar metadatos e para actualizar os datos dos autores das traducións de dito ficheiro. A clase PoFile delega nesta clase a hora de conseguir e modificar metadatos e tamén cando garda un ficheiro.
+De forma adicional a clase PoFile contén unha instancia da clase PoHeader. Esta clase que estende a PoMessage ten os metadatos que se atopan nos ficheiros PO na tradución da cadea baleira. Ademais, esta, dipón de métodos para obter e modificar metadatos e para actualizar os datos dos autores das traducións de dito ficheiro. A clase PoFile delega nesta clase a hora de conseguir e modificar metadatos e tamén cando garda un ficheiro.
 
 A clase \lstinline{PoFileOpener} so é capaz de abrir ficheiros con extensión PO e simplemente emprega o método parse da clase ficheiro para crear unha nova instancia.
 
 \subsubsection{Implementación dos bindings}
-Como xa mencionamos vimonos na obriga de crear nós os bindings para a biblioteca gettext-po. Vala é unha linguaxe deseñada para permitir o acceso a outras bibliotecas escritas en C, especialmente se se trata de bibliotecas baseadas en GObject. Despois de todo Vala emprega C como linguaxe intermedio. A biblioteca gettextpo non é unha biblioteca baseada en GObject polo que a creación destes bindings é un pouco máis complicado.
+Como xa mencionamos vímonos na obriga de crear nós os bindings para a biblioteca gettext-po. Vala é unha linguaxe deseñada para permitir o acceso a outras bibliotecas escritas en C, especialmente se se trata de bibliotecas baseadas en GObject. Despois de todo Vala emprega C como linguaxe intermedio. A biblioteca gettext-po non é unha biblioteca baseada en GObject polo que a creación destes bindings é un pouco máis complicado.
 
 Para poder empregar unha biblioteca escrita en C no noso programa escrito en Vala so temos que crear un ficheiro con extensión VAPI que conteña en sintaxe Vala as clases da biblioteca engadindo unhas etiquetas que permitan a súa tradución ao código C correcto. No Fragmento de código~\ref{lst:bindingsgettext} podemos ver parte dos bindings creados para a biblioteca gettextpo.
 
@@ -92,12 +92,12 @@ namespace GettextPo {
         [...]
 \end{lstlisting}
 
-Como podemos ver o traballo prácticamente limitase a establecer o parametro \lstinline{cname} en cada clase e método. Hai que ter en conta que non sempre e necesario especificar este parámetro pois as bibliotecas empregan case sempre unhas normas de nombrado que fan que usen primeiro o nome da biblioteca, despois o nome da clase e logo o nome do método separado por barras baixas. Desta forma no método da biblioteca \lstinline{po_message_msgid()}, \emph{po\_} corresponde o nome da biblioteca, \emph{message\_} ao nome da clase e \emph{msgid} ao nome do método. Os bingings de vala empregan estas normas para nomear os métodos polo que en ocasións non é necesario especificar o parametro cname. Isto sucede, como se pode ver no fragmenteo de código anterior no caso da clase Mensaxe (\lstinline{Message}).
+Como podemos ver o traballo practicamente limítase a establecer o parámetro \lstinline{cname} en cada clase e método. Hai que ter en conta que non sempre e necesario especificar este parámetro pois as bibliotecas empregan case sempre unhas normas de nomeado que fan que usen primeiro o nome da biblioteca, despois o nome da clase e logo o nome do método separado por barras baixas. Desta forma no método da biblioteca \lstinline{po_message_msgid()}, \emph{po\_} corresponde o nome da biblioteca, \emph{message\_} ao nome da clase e \emph{msgid} ao nome do método. Os bingings de Vala empregan estas normas para nomear os métodos polo que en ocasións non é necesario especificar o parametro \lstinline{cname}. Isto sucede, como se pode ver no fragmento de código anterior no caso da clase Mensaxe (\lstinline{Message}).
 
-Ademais e necesario especificar o nome do ficheiro cabeceira que se emprega e no caso de que o tipo de retorno sexa un array temos que especificar máis parametros como acontece no método \lstinline{domains()} da clase File. Por último é importa especificar a pertenza de cada valor e os métodos correctos para liberar as instancias desta forma evitaremos que haxa perdas de memoria e fallos de segmentación.
+Ademais e necesario especificar o nome do ficheiro cabeceira que se emprega e no caso de que o tipo de retorno sexa un array temos que especificar máis parámetros como acontece no método \lstinline{domains()} da clase File. Por último é importa especificar a pertenza de cada valor e os métodos correctos para liberar as instancias desta forma evitaremos que haxa perdas de memoria e fallos de segmentación.
 
 \section{Módulo de Linguaxes}
-O módulo de linguaxes xestiona os linguaxes e formas plurais existentes. Contén dúas clases, a clase \lstinline{Language} e a clase \lstinline{PluralForm}. Estas dúas clasen proveen un método estático para obter as instancias existentes. Estas instancias creanse a primeira vez que se carga a clase consultando unhas bases de datos que consisten nuns ficheiros JSON\footnote{\href{http://gl.wikipedia.org/wiki/JSON}{JSON}}.
+O módulo de linguaxes xestiona os linguaxes e formas plurais existentes. Contén dúas clases, a clase \lstinline{Language} e a clase \lstinline{PluralForm}. Estas dúas clases provén un método estático para obter as instancias existentes. Estas instancias créanse a primeira vez que se carga a clase consultando unhas bases de datos que consisten nuns ficheiros JSON\footnote{\href{http://gl.wikipedia.org/wiki/JSON}{JSON}}.
 
 \begin{figure}[h!]
     \centering
@@ -106,7 +106,7 @@ O módulo de linguaxes xestiona os linguaxes e formas plurais existentes. Conté
     \label{fig:dia_class:languages}
 \end{figure}
 
-Como podemso ver na Figura~\ref{fig:dia_class:languages}, a cada instancia dunha linguaxe contén o nome da linguaxe, o seu código empregando a norma ISO 639-1 a súa forma plural e o email do equipo de tradución por defecto. Engadimos o idioma do equipo de tradución por defecto para autocompletar este campo no perfil do usuario. No Fragmento de Código~\ref{lst:languages} podemos ver un fragmento do ficheiro JSON contendo as linguaxes.
+Como podemos ver na Figura~\ref{fig:dia_class:languages}, a cada instancia dunha linguaxe contén o nome da linguaxe, o seu código empregando a norma ISO 639-1 a súa forma plural e o email do equipo de tradución por defecto. Engadimos o idioma do equipo de tradución por defecto para autocompletar este campo no perfil do usuario. No Fragmento de Código~\ref{lst:languages} podemos ver un fragmento do ficheiro JSON contendo as linguaxes.
 
 \begin{lstlisting}[label=lst:languages,caption=Fragmento da Base de Datos de Linguaxes]
   {
@@ -123,7 +123,7 @@ Como podemso ver na Figura~\ref{fig:dia_class:languages}, a cada instancia dunha
   }
 \end{lstlisting}
 
-En canto a clase \lstinline{PluralForm}, esta clase inclue o número de plurais, a expresión desa forma plural e un conxunto de tags. Estos tags pretenden faculitar ao usuario a identificación de que número corresponde a cada forma plural. No Fragmento de Código~\ref{lst:plurals} pódemos ver unha parte da base de datos de formas plurais.
+En canto a clase \lstinline{PluralForm}, esta clase inclúe o número de plurais, a expresión desa forma plural e un conxunto de etiquetas. Estas etiquetas pretenden facilitar ao usuario a identificación de que número corresponde a cada forma plural. No Fragmento de Código~\ref{lst:plurals} pódemos ver unha parte da base de datos de formas plurais.
 
 \begin{lstlisting}[label=lst:plurals,caption=Fragmento da Base de Datos de Plurais]
   {
@@ -148,13 +148,13 @@ En canto a clase \lstinline{PluralForm}, esta clase inclue o número de plurais,
 \end{lstlisting}
 
 \section{Interface Gráfica}
-A interface gráfica é unha das partes a que máis tempo lle dedicamos neste proxecto. O obxetivo dende o principio foi construir algo simple pero potente que permitira ao usuario editar os ficheiros PO de forma sinxela pero que aportase fose capaz de aportarlle moita información que lle axudase a facer a tradución.
+A interface gráfica é unha das partes a que máis tempo lle dedicamos neste proxecto. O obxectivo dende o principio foi construír algo simple pero potente que permitira ao usuario editar os ficheiros PO de forma sinxela pero que aportase fose capaz de aportarlle moita información que lle axudase a facer a tradución.
 
 \subsection{Evolución}
-Durante a execución do proxecto probamos diferentes formas da interface gráfica ata chegar ao resultado actual. Estas versións pretenden imitar programas existenttes e obedecen xeralmente a conversacións con traductores.
+Durante a execución do proxecto probamos diferentes formas da interface gráfica ata chegar ao resultado actual. Estas versións pretenden imitar programas existenttes e obedecen xeralmente a conversacións con tradutores.
 
 \subsubsection{Primeira Versión: moi semellante a GTranslator}
-Para comezar a traballar e tras amosar varios mockups nos reportes recibindo feedback sobre eles decidimos facer unha interface de usuario moi parecida a de GTranslator. Esta interface inclue bloques para a lista de mensaxes, editar ditos mensaxes e amosar o contexto. Estos bloques podense mover por toda a interface e incluso separar da mesma xa que estamos empregando a biblioteca GNOME Docking Library. Na Figura~\ref{fig:ui:v1:general} podemos ver o aspecto desta primeira versión da interface.
+Para comezar a traballar e tras amosar varios mockups nos reportes recibindo feedback sobre eles decidimos facer unha interface de usuario moi parecida a de GTranslator. Esta interface inclúe bloques para a lista de mensaxes, editar ditos mensaxes e amosar o contexto. Estes bloques pódense mover por toda a interface e incluso separar da mesma xa que estamos empregando a biblioteca GNOME Docking Library. Na Figura~\ref{fig:ui:v1:general} podemos ver o aspecto desta primeira versión da interface.
 
 \begin{figure}[h!]
   \centering
@@ -165,7 +165,7 @@ Para comezar a traballar e tras amosar varios mockups nos reportes recibindo fee
 
 Como podemos ver a interface contén un barra de ferramentas que permite abrir ficheiros, gardalos, desfacer e refacer cambios, buscar no documento e ver as preferencias. Permite abrir diversos ficheiros en varias lapelas. En cada unha das lapelas podemos ver a lista de mensaxes e o widget de edición.
 
-En cada mensaxe da lista, aparte das cadeas orixinal e traducida, podemos ver o estado da cadea e se está ten consellos (Tips) activos e de que nivel de estos. Por outro lado, no widget de edición podemos ver unha lapela por cada forma plural que podemos editar e unha lista vertical con iconos cos consellos. Ao pasar o rato polo consello veremos a súa descripción.
+En cada mensaxe da lista, aparte das cadeas orixinal e traducida, podemos ver o estado da cadea e se está ten consellos (Tips) activos e de que nivel de estes. Por outro lado, no widget de edición podemos ver unha lapela por cada forma plural que podemos editar e unha lista vertical con iconas cos consellos. Ao pasar o rato polo consello veremos a súa descrición.
 
 \begin{figure}[h!]
   \centering
@@ -175,11 +175,11 @@ En cada mensaxe da lista, aparte das cadeas orixinal e traducida, podemos ver o 
   \label{fig:ui:v1:dialogs}
 \end{figure}
 
-Como podemos ver na Figura~\ref{fig:ui:v1:dialogs} tanto a hora de xerar unha búsqueda como para ver as preferencias esta interface empregara uns dialogos non modales.
+Como podemos ver na Figura~\ref{fig:ui:v1:dialogs} tanto a hora de xerar unha busca como para ver as preferencias esta interface empregara uns diálogos non modais.
 
-En conversacións en IRC con traductores e anteriores mantenedores de GTranslator chegamos a conclusión de que o uso de GNOME Docking Library era unha mala idea pois significaba un erro de deseño xa que se o usuario tiña que modificaar o apecto da interface é que o deseño non era correcto. Esta biblioteca ademais ten bastantes fallos polo que non era recomendable usala.
+En conversacións en IRC con tradutores e anteriores mantedores de GTranslator chegamos a conclusión de que o uso de GNOME Docking Library era unha mala idea pois significaba un erro de deseño xa que se o usuario tiña que modificar o aspecto da interface é que o deseño non era correcto. Esta biblioteca ademais ten bastantes fallos polo que non era recomendable usala.
 
-Ademais durante a GUADEC, comentaronos da existencia dun widget moito mellor para xestionar a buscas consistente nunha barra horizontal que se desplegaba cando a busca estaba activa.
+Ademais durante a GUADEC, comentáronos da existencia dun widget moito mellor para xestionar a buscas consistente nunha barra horizontal que se desplegaba cando a busca estaba activa.
 
 Por outro lado o resultado desta modelo de interface tampouco era demasiado satisfactorio polo que intentamos probar con unha versión máis cercana ao programa Virtaal.
 
@@ -187,9 +187,9 @@ Por outro lado o resultado desta modelo de interface tampouco era demasiado sati
 
 Para lograr un aspecto máis parecido ao da aplicación Virtaal fusionamos o widget de edición e o widget de lista de cadeas.
 
-A aplicación sigue mantendo as lapelas que permiten abrir máis dun ficheiro ao mesmo tempo pero eliminamos a posiblidade de personalizar a interface. En lugar diso crearemos unha interface con dúas columnas, na primeira teremos o widget para listar e editar as cadeas e na segunda un widget para ver o contexto e outro para ver as pistas.
+A aplicación segue mantendo as lapelas que permiten abrir máis dun ficheiro ao mesmo tempo pero eliminamos a posibilidade de personalizar a interface. En lugar diso crearemos unha interface con dúas columnas, na primeira teremos o widget para listar e editar as cadeas e na segunda un widget para ver o contexto e outro para ver as pistas.
 
-Modificamos a barra de ferramentas que convertiremos nun \lstinline{GTK.HeaderBar} que permite fusionar esta barra de ferramentas co marco da ventá. O uso de HeaderBars son un patron de deseño recomendado por GNOME na súa Guía de Interfaces Humanas (\emph{HIG}). Na Figura~\ref{fig:ui:v2:general} podemos ver como quedou a nova inteface.
+Modificamos a barra de ferramentas que converteremos nun \lstinline{GTK.HeaderBar} que permite fusionar esta barra de ferramentas co marco da ventá. O uso de HeaderBars son un patrón de deseño recomendado por GNOME na súa Guía de Interfaces Humanas (\emph{HIG}). Na Figura~\ref{fig:ui:v2:general} podemos ver como quedou a nova inteface.
 
 \begin{figure}[h!]
   \centering
@@ -198,7 +198,7 @@ Modificamos a barra de ferramentas que convertiremos nun \lstinline{GTK.HeaderBa
     \label{fig:ui:v2:general}
 \end{figure}
 
-Outro dos aspectos da interface no que se traballou foi na eliminación do díalogo de nova busca. Como se pode ver na Figura~\ref{fig:ui:v2:search}, ao activar a busca desplegase unha barra horizontal que permite introducir termos para buscar.
+Outro dos aspectos da interface no que se traballou foi na eliminación do diálogo de nova busca. Como se pode ver na Figura~\ref{fig:ui:v2:search}, ao activar a busca desplégase unha barra horizontal que permite introducir termos para buscar.
 
 \begin{figure}[h!]
   \centering
@@ -207,14 +207,14 @@ Outro dos aspectos da interface no que se traballou foi na eliminación do díal
     \label{fig:ui:v2:search}
 \end{figure}
 
-Para construir esta barra empregamos o widget \lstinline{GTK.SearchBar}. Creamos un modo de busca normal e un modo avanzado. O modo normal amosa unha caixa de texto para introducir a busca e flechas para avanzar na busca e o modo avanzado engade unha segunda entrada de texto e un botón para a opción de buscar e reemplazar e permite selecionar que que cadeas queremos incluir na busca.
+Para construír esta barra empregamos o widget \lstinline{GTK.SearchBar}. Creamos un modo de busca normal e un modo avanzado. O modo normal amosa unha caixa de texto para introducir a busca e frechas para avanzar na busca e o modo avanzado engade unha segunda entrada de texto e un botón para a opción de buscar e remplazar e permite seleccionar que que cadeas queremos incluír na busca.
 
-Esta interface aínda que máis pulida que a anterior, presentaba problemas a hora de editar longas cadeas de texto. Ademais non deixaba demasiado espacio para engadir información sobre as cadeas. Debido a isto escribimos un report con algúns mockups baseados en algúns deseños feitos para GTranslator. Durante o GSoC 2014 creamos a que está pensada como a interface definitiva do programa.
+Esta interface aínda que máis pulida que a anterior, presentaba problemas a hora de editar longas cadeas de texto. Ademais non deixaba demasiado espazo para engadir información sobre as cadeas. Debido a isto escribimos un artigo con algúns mockups baseados en algúns deseños feitos para GTranslator. Durante o GSoC 2014 creamos a que está pensada como a interface definitiva do programa.
 
 \subsubsection{Terceira Versión}
-Para a realización desta terceira versión e definitiva intentamos poñernos en contacto cos deseñadores de GNOME para que nos axuden co deseño da nova interface. Ante a baixa participación neste sentido usamos uns deseños feitos por Daniel Korostil para un redeseño de GTranslator que nunca chegou a implementarse. Baseandonos nestes mockups e en ideas propias creamos un novo concepto de interface que ten como idea principal a intentar elminar onde sexa posible calquera dialogo externo ao programa.
+Para a realización desta terceira versión e definitiva intentamos poñernos en contacto cos deseñadores de GNOME para que nos axuden co deseño da nova interface. Ante a baixa participación neste sentido por parte dos deseñadores, usamos uns deseños feitos por Daniel Korostil para un redeseño de GTranslator que nunca chegou a implementarse. Baseándonos nestes mockups e en ideas propias creamos un novo concepto de interface que ten como idea principal a intentar eliminar onde sexa posible calquera dialogo externo ao programa.
 
-A ventá pasa a compoñerse dunha barra de feramentas integrada nun \lstinline{GTK.HeaderBar}, unha barra de notificacións e un conxunto de paneis.
+A ventá pasa a compoñerse dunha barra de ferramentas integrada nun \lstinline{GTK.HeaderBar}, unha barra de notificacións e un conxunto de paneis.
 
 \begin{figure}[h!]
   \centering
@@ -226,9 +226,9 @@ A ventá pasa a compoñerse dunha barra de feramentas integrada nun \lstinline{G
     \label{fig:ui:v3:headerbar}
 \end{figure}
 
-A barra de ferramentas é dinamica e os botóns que amosa dependen de que pantalla se estea mostrando no programa. Esta é unha das suxerencias que a Guía de Interfaces Humanas de GNOME fai.
+A barra de ferramentas é dinámica e os botóns que amosa dependen de que pantalla se estea mostrando no programa. Esta é unha das suxerencias que a Guía de Interfaces Humanas de GNOME fai.
 
-Para lograr isto dentro do \lstinline{GTK.HeaderBar} introducimos un widget denominado \lstinline{GTK.Notebook}. Este widget é o mesmo que se empregaba en versións anterior da interface para ter diferentes ficheiros abertos en outras tantas lapela pero empregando a opción que este incorpora de ocultar as lapelas. Desta forma cada páxina do GTK.Notebook é unha das opcións da barra de ferramentas. Na Figura~\ref{fig:ui:v3:headerbar} podemos ver algúnas das diferentes formas da barra de ferramentas.
+Para lograr isto dentro do \lstinline{GTK.HeaderBar} introducimos un widget denominado \lstinline{GTK.Notebook}. Este widget é o mesmo que se empregaba en versións anterior da interface para ter diferentes ficheiros abertos en outras tantas lapela pero empregando a opción que este incorpora de ocultar as lapelas. Desta forma cada páxina do GTK.Notebook é unha das opcións da barra de ferramentas. Na Figura~\ref{fig:ui:v3:headerbar} podemos ver algúnhas das diferentes formas da barra de ferramentas.
 
 Os botóns da barra de tarefas xeneran accións de GTK que serán manexadas pola ventá. A ventá manexará estas accións delegando no panel que esté activo nese momento facendo uso do patrón \emph{State\footnote{\href{http://gl.wikipedia.org/wiki/State_\%28patr\%C3\%B3n_de_dese\%C3\%B1o\%29}{State (patrón de deseño)}}}. No Fragmento de Código~\ref{lst:oneditsave} podese ver un exemplo da implementación dun dos manexadores.
 
@@ -240,9 +240,9 @@ Os botóns da barra de tarefas xeneran accións de GTK que serán manexadas pola
   }
 \end{lstlisting}
 
-Tamén empregamos un GTK.Notebook para cambiar entre paneis. Os paneis son as diferentes pantallas que se poden ver no programa. Desta forma temos un panel para abrir ficheiros, un panel para as preferencias e un panel para editar os ficheiros entre outros. Na implementación cada panel ten que implementar a interface Panel. Esta interface pide que se defina un tipo de barra de tarefas e da unha implementación xenerica a os manexadores das accións da ventá. Cada panel será libre de aportar unha implementación especifica destas accións. Na seguinte sección podemos trataranse en detalle cada un dos paneis da interface.
+Tamén empregamos un GTK.Notebook para cambiar entre paneis. Os paneis son as diferentes pantallas que se poden ver no programa. Desta forma temos un panel para abrir ficheiros, un panel para as preferencias e un panel para editar os ficheiros entre outros. Na implementación cada panel ten que implementar a interface Panel. Esta interface pide que se defina un tipo de barra de tarefas e da unha implementación xenérica a os manexadores das accións da ventá. Cada panel será libre de aportar unha implementación especifica destas accións. Na seguinte sección podemos trataranse en detalle cada un dos paneis da interface.
 
-En canto a barra de notificacion é a resposta que damos a necesidade de avisar ao usuario de certos evento do programa. Por exemplo avisamos ao usuario que está introducindo unha busca de que non existe ningunha cadea que cumpla o criterio ou se este está avanzando polas cadeas que xa chegou a última. Para implementar este parte fixemos uso do widget \lstinline{GTK.InfoBar}. Amosamos o anuncion unha certa cantidade de tempo e despois ocultamolo. Na Figura~\ref{fig:ui:v3:infobar} vemos unha captura da barra de notificación.
+En canto a barra de notificación é a resposta que damos a necesidade de avisar ao usuario de certos evento do programa. Por exemplo avisamos ao usuario que está introducindo unha busca de que non existe ningunha cadea que cumpra o criterio ou se este está avanzando polas cadeas que xa chegou a última. Para implementar este parte fixemos uso do widget \lstinline{GTK.InfoBar}. Amosamos o anuncio unha certa cantidade de tempo e despois ocultámolo. Na Figura~\ref{fig:ui:v3:infobar} vemos unha captura da barra de notificación.
 
 \begin{figure}[h!]
   \centering
@@ -251,14 +251,14 @@ En canto a barra de notificacion é a resposta que damos a necesidade de avisar 
     \label{fig:ui:v3:infobar}
 \end{figure}
 
-Por último, tamén engadimos un menu de aplicación que permite acceder ao panel de preferencias, pechar o programa e consultar e iniciar un dialogo para obter información sobre quen fixo GNOMECAT e a súa licencia entre outros. O uso de menus de aplicación en GNOME é unha recomendación da súa Guía de Interfaces Humanas. Pódese acceder ao menú de aplicación dende GNOME facendo click no icono da aplicación na barra superior do entorno de ventás.
+Por último, tamén engadimos un menú de aplicación que permite acceder ao panel de preferencias, pechar o programa e consultar e iniciar un dialogo para obter información sobre quen fixo GNOMECAT e a súa licencia entre outros. O uso de menús de aplicación en GNOME é unha recomendación da súa Guía de Interfaces Humanas. Pódese acceder ao menú de aplicación dende GNOME facendo click no icona da aplicación na barra superior do entorno de ventás.
 
 \subsection{Paneis}
 Os paneis empregados no programa son os seguintes:
 
 \subsubsection{Panel de Benvida}
 
-O panel de benvida amosaselle ao usuario cando non hai ningún perfil dispoñible no programa. Isto sucede se é a primieira vez que se inicia o programa ou se de forma externa se borrou a información dos perfiles.
+O panel de benvida amósaselle ao usuario cando non hai ningún perfil dispoñible no programa. Isto sucede se é a primeira vez que se inicia o programa ou se de forma externa se borrou a información dos perfiles.
 
 \begin{figure}[h!]
     \centering
@@ -267,13 +267,13 @@ O panel de benvida amosaselle ao usuario cando non hai ningún perfil dispoñibl
     \label{fig:ui:panel:welcome}
 \end{figure}
 
-Como podemos ver na Figura~\ref{fig:ui:panel:welcome} amosaselle unha mensaxe de información ao usuario dandolle e permitese acceder ao panel de creación do primeiro pérfil.
+Como podemos ver na Figura~\ref{fig:ui:panel:welcome} amósaselle unha mensaxe de información ao usuario dándolle e permítese acceder ao panel de creación do primeiro perfil.
 
-A barra de ferramentas non inclue ningún botón xa que a interface so permite avanzar hacia o panel de creación do primeiro perfil ou pechar o programa.
+A barra de ferramentas non inclúe ningún botón xa que a interface so permite avanzar cara o panel de creación do primeiro perfil ou pechar o programa.
 
 \subsubsection{Panel de ficheiros abertos}
 
-Este panel como o seu nome indica amosa unha lista de ficheiros abertos. É o que primeiro se amosa cando abrimos o programa e xa temos perfil creado. Ademáis permite abrir novos ficheiros.
+Este panel como o seu nome indica amosa unha lista de ficheiros abertos. É o que primeiro se amosa cando abrimos o programa e xa temos perfil creado. Ademais permite abrir novos ficheiros.
 
 \begin{figure}[h!]
     \centering
@@ -282,7 +282,7 @@ Este panel como o seu nome indica amosa unha lista de ficheiros abertos. É o qu
     \label{fig:ui:panel:openedfiles}
 \end{figure}
 
-Na Figura~\ref{fig:ui:panel:openedfiles} podese ver este panel. Para cada un dos ficheiros abertos amosamos o nome do proxecto segundo aparece nos metadatos do ficheiro PO; a linguaxe deste ficheiro, o path absoluto onde este se atopa e as estatisticas de tradución.
+Na Figura~\ref{fig:ui:panel:openedfiles} pódese ver este panel. Para cada un dos ficheiros abertos amosamos o nome do proxecto segundo aparece nos metadatos do ficheiro PO; a linguaxe deste ficheiro, o path absoluto onde este se atopa e as estatísticas de tradución.
 
 Ademais de permitir abrir un novo ficheiro, a barra de ferramentas tamén permite acceder ao panel de preferencias.
 
@@ -290,7 +290,7 @@ Ademais de permitir abrir un novo ficheiro, a barra de ferramentas tamén permit
 
 O panel de abrir ficheiros amosa os ficheiros abertos de forma recente e permite abrir novos ficheiros.
 
-Para poder implementar a lista de ficheiros recentes tivemos que crear un widget especial. Este widget emprega a clase \lstinline{GTK.RecentManager}. Esta clase que funciona como empregando o patrón \emph{Singleton\footnote{\href{...}{...TODO}}} controla ... O widget creado conectase a esta clase para modificar a lista de ficheiros recentes cada vez que un ficheiro compatible é aberto.
+Para poder implementar a lista de ficheiros recentes tivemos que crear un widget personalizado. O novo widget emprega a clase \lstinline{GTK.RecentManager}. Esta clase, que funciona como empregando o patrón \emph{Singleton\footnote{\href{http://gl.wikipedia.org/wiki/Singleton}{Singleton (Patrón de Deseño)}}}, controla os ficheiros que se abren en todo os sistema. O widget creado conectase á instancia de RecentManager para modificar a lista de ficheiros recentes cada vez que un ficheiro compatible é aberto.
 
 A hora de amosar a información sobre os ficheiros amosamos os mesmos campos que no caso do panel de ficheiros abertos. Isto é debido a que nos dous casos empregamos un GTK.ListBox ao que lle introducimos un widget PoFileRow por cada un dos ficheiros.
 
@@ -305,7 +305,7 @@ Como podemos ver na Figura~\ref{fig:ui:panel:openfile} a barra de ferramentas pe
 
 \subsubsection{Panel de edición}
 
-O panel de edición é o máis importante deste programa e ao que lle dedicamos máis tempo. Como os seu nome indica permite editar os ficheiros. Está composto de tres columnas, unha lista de mensaxes, unha lista de pistas e unha columna central que contén os consellos, entradas para editar as cadeas e o contexto. As columnas que teñen a lista de mensaxes e de pistas teñen un ancho fixo e a columna central aprobeitará todo o espacio restante.
+O panel de edición é o máis importante deste programa e ao que lle dedicamos máis tempo. Como os seu nome indica permite editar os ficheiros. Está composto de tres columnas, unha lista de mensaxes, unha lista de pistas e unha columna central que contén os consellos, entradas para editar as cadeas e o contexto. As columnas que teñen a lista de mensaxes e de pistas teñen un ancho fixo e a columna central aproveitará todo o espazo restante.
 
 \begin{figure}[hp!]
     \centering
@@ -314,17 +314,17 @@ O panel de edición é o máis importante deste programa e ao que lle dedicamos 
     \label{fig:ui:panel:edit}
 \end{figure}
 
-Como se pode comprobar nesta versión da interface, as caixas de edición de cadeas son considerablemente máis grandes qeu nas outras versións. Na Figura~\ref{fig:ui:panel:edit} podemos ver unha captura deste panel.
+Como se pode comprobar nesta versión da interface, as caixas de edición de cadeas son considerablemente máis grandes que nas outras versións. Na Figura~\ref{fig:ui:panel:edit} podemos ver unha captura deste panel.
 
-A parte que máis traballo nos supuxo foi implementar a lista de mensaxes. Inicialmente diseñamos este \emph{widget} como un \lstinline{GTK.ListBox} coas súas columnas. Este é un widget engadido na versión TODO de GTK e que empregamos moito no noso programa. A vantaxe de empregalo consiste en que é moi sinxelo personalizar cada columna e aínda que non o usamos no noso programa existiría a posibilidade de engadir columnas de diferentes tipos. O problema que atopamos cando construímos o widget de listar mensaxes con un \lstinline{ListBox} é que este funcionaba realmente mal cando o ficheiro tiña moitas cadeas. Primeiro pensamos que a lentitude debíase ao alto consumo de memoria cando cargabamos un destos ficheiros pero máis tarde falando con algún desenvolvedor de GTK, demonos conta de que este widget non estaba deseñado para soportar tantas columnas e que debíamos empregar unha alternativa.
+A parte que máis traballo nos supuxo foi implementar a lista de mensaxes. Inicialmente deseñamos este \emph{widget} como un \lstinline{GTK.ListBox} coas súas columnas. Este é un widget engadido na versión 3.10 de GTK+ e que empregamos moito no noso programa. A vantaxe de empregalo consiste en que é moi sinxelo personalizar cada columna e aínda que non o usamos no noso programa existiría a posibilidade de engadir columnas de diferentes tipos. O problema que atopamos cando construímos o widget de listar mensaxes con un \lstinline{ListBox} é que este funcionaba realmente mal cando o ficheiro tiña moitas cadeas. Primeiro pensamos que a lentitude debíase ao alto consumo de memoria cando cargabamos un destes ficheiros pero máis tarde falando con algún desenvolvedor de GTK+, démonos conta de que este widget non estaba deseñado para soportar tantas columnas e que debíamos empregar unha alternativa.
 
 A alternativa escollida foi a de empregar un \lstinline{GTK.TreeView}. Este widget si que esta deseñado para soportar gran cantidade de columnas pero a personalización de cada columna e moito máis complicada. Para facelo tivemos que implementar un \lstinline{GTK.CellRenderer} para o renderizado das columnas. Nesta clase especificamos a man onde se debuxa cada elemento da columna e que tamaño ten.
 
-A clase \lstinline{TreeView} incorpora métodos que permiten ordenar e filtrar de forma sinxela as columnas que se amosan neste widget. Isto permitiunos engadir estas opción a nosa interface. Como se pode ver na figura anterior debaixo da lista de mensxe temos unha barra coas estatísticas do documento e dous botóns un permite filtrar os resultados ocultando ou amosando as cadeas traducidas, sen traducir ou con tradución difusa e o outro permite ordear as mensaxes amosando primeiro as mensaxes sen traducir, despois as mensaxes con tradución difusa e por último as mensaxes traducidas. O widget que empregamos para permitirlle ao usuario filtrar as buscas, chámase \lstinline{GTK.Popover} e ...
+A clase \lstinline{TreeView} incorpora métodos que permiten ordenar e filtrar de forma sinxela as columnas que se amosan neste widget. Isto permitiunos engadir estas opción a nosa interface. Como se pode ver na figura anterior debaixo da lista de mensaxe temos unha barra coas estatísticas do documento e dous botóns un permite filtrar os resultados ocultando ou amosando as cadeas traducidas, sen traducir ou con tradución difusa e o outro permite ordenar as mensaxes amosando primeiro as mensaxes sen traducir, despois as mensaxes con tradución difusa e por último as mensaxes traducidas.
 
-En canto ao widget de lista de pistas, neste caso si que empregamos un \lstinline{GTK.ListBox} xa que o número de columnas nunca vai ser demasiado alto. En cada unha das columnas amosamos a información que temos de cada pista (\lstinline{Hint}). Isto é, a cadea suxerida, a orixe desta pista e a súa precisión. Para amosar a precisión empregamos unha barra de progreso. Ao facer doble click nos hints o texto a traducir substituirase polo pista. Ademais incorporamos atallos de teclado para as 4 primeiras pista de forma que se pulsamos as teclas Ctrl e un dos catro primeiros números activarase a correspondene pista.
+En canto ao widget de lista de pistas, neste caso si que empregamos un \lstinline{GTK.ListBox} xa que o número de columnas nunca vai ser demasiado alto. En cada unha das columnas amosamos a información que temos de cada pista (\lstinline{Hint}). Isto é, a cadea suxerida, a orixe desta pista e a súa precisión. Para amosar a precisión empregamos unha barra de progreso. Ao facer dobre click nos Hints o texto a traducir substituirase polo pista. Ademais incorporamos atallos de teclado para as 4 primeiras pista de forma que se pulsamos as teclas Ctrl e un dos catro primeiros números activarase a correspondente pista.
 
-Dentro da columna central a lista de consellos (\lstinline{Tip}) atopase na parte superior. Esta localización esta pensada para que o traductor non teña que apartar demasiado a mirada do cadros de edición de mensaxes.
+Dentro da columna central a lista de consellos (\lstinline{Tip}) atopase na parte superior. Esta localización esta pensada para que o tradutor non teña que apartar demasiado a mirada do cadros de edición de mensaxes.
 
 \begin{figure}[h!]
     \centering
@@ -333,9 +333,9 @@ Dentro da columna central a lista de consellos (\lstinline{Tip}) atopase na part
     \label{fig:ui:panel:edit:selectedtip}
 \end{figure}
 
-Desta forma cada columna amosará o nome do \lstinline{Tip} e o seu nivel de gravidade. O nome do consello debe ser suficiente para que o usuario se de conta do erro ao que se refire o consello. En caso de non ser suficiente o usuario pode premer encima do consello nese caso amosarase a descripción do consello e resaltarase a parte do texto á que refire o mesmo. Na Figura~\ref{fig:ui:panel:edit:selectedtip} podemover ver unha captura desta situación.
+Desta forma cada columna amosará o nome do \lstinline{Tip} e o seu nivel de gravidade. O nome do consello debe ser suficiente para que o usuario se de conta do erro ao que se refire o consello. En caso de non ser suficiente o usuario pode premer encima do consello nese caso amosarase a descrición do consello e resaltarase a parte do texto á que refire o mesmo. Na Figura~\ref{fig:ui:panel:edit:selectedtip} podes mover ver unha captura desta situación.
 
-Os cadros que permiten ver a cadeda orixinal están construídos co widget \lstinline{GTK.SourceView} este widget que non é parte da librería GTK extende o widget GTK.TextView e permite facer de forma sinxela, desfacer e refacer accións, resaltado de sintaxe e resaltado de espacios en blanco entre outros. Na Figura~\ref{fig:ui:panel:edit:pluralbox} podemos ver unha cadea con resaltado de sintaxe e de espacios en branco.
+Os cadros que permiten ver a cadeda orixinal están construídos co widget \lstinline{GTK.SourceView} este widget que non é parte da librería GTK extende o widget GTK.TextView e permite facer de forma sinxela, desfacer e refacer accións, resaltado de sintaxe e resaltado de espacios en blanco entre outros. Na Figura~\ref{fig:ui:panel:edit:pluralbox} podemos ver unha cadea con resaltado de sintaxe e de espazos en branco.
 
 \begin{figure}[h!]
     \centering
@@ -348,11 +348,11 @@ No caso de que a mensaxes a traducir teña plurais amosaremos cada plural nunha 
 
 Debaixo do cadro de texto que amosa o contexto, temos botóns para ver as orixes da mensaxe actual e para cambiar o estado da mensaxe entre traducida e difusa. Para ver as orixes tamén se usa un widget \lstinline{GTK.Popover}.
 
-A barra de tarefas ten botóns para volver a lista de ficheiros, gardar o ficheiro actual, facer e desfacer as accions, buscar, navegar a través do documento e ver as preferencias. Os botóns de volver a lista de ficheiros e de gardar son intercambiables de forma que so un deles se amosa en cada momento. Se o ficheiro foi moificado o botón que se amosa e o de gardar. Desta forma para ir a lsita de ficheiros gardados deberemos salvar os cambios.
+A barra de tarefas ten botóns para volver a lista de ficheiros, gardar o ficheiro actual, facer e desfacer as accións, buscar, navegar a través do documento e ver as preferencias. Os botóns de volver a lista de ficheiros e de gardar son intercambiables de forma que so un deles se amosa en cada momento. Se o ficheiro foi modificado o botón que se amosa e o de gardar. Desta forma para ir a lista de ficheiros gardados deberemos salvar os cambios.
 
 
 \subsubsection{Panel de Preferencias}
-O panel de preferencas permite modificar como se algunhas opcións do programa, manexar os perfiles e activar ou desactivar plugins. Como podemos ver na Figuras~\ref{fig:ui:panel:preferences} temos tres pantallas para modificar as preferencias do programa.
+O panel de preferencias permite modificar como se algunhas opcións do programa, manexar os perfiles e activar ou desactivar plugins. Como podemos ver na Figuras~\ref{fig:ui:panel:preferences} temos tres pantallas para modificar as preferencias do programa.
 
 \begin{figure}[h!]
   \centering
@@ -374,11 +374,11 @@ O panel de preferencas permite modificar como se algunhas opcións do programa, 
 
 Navegamos entre estas tres pantallas empregando un widget \lstinline{GTK.StackSwitcher} incrustado na barra de ferramentas.
 
-A pantalla de edición permite modificar o tipo de letra de algunhas partes do programa, o uso de resaltado de sintaxe ou o de espacios en blanco. Ademais permite establecer cal é o estado ao que pasa unha cadea cando se traduce. O panel de perfil permite ver os perfiles existentes crear novos perfiles a través do panel de perfil, modificalos, eliminalos e activalos. Por último ca pantalla de plugins podemos ver a lista de plugins existentes e activalos ou desactivalos.
+A pantalla de edición permite modificar o tipo de letra de algunhas partes do programa, o uso de resaltado de sintaxe ou o de espazos en branco. Ademais permite establecer cal é o estado ao que pasa unha cadea cando se traduce. O panel de perfil permite ver os perfiles existentes crear novos perfiles a través do panel de perfil, modificalos, eliminalos e activalos. Por último ca pantalla de plugins podemos ver a lista de plugins existentes e activalos ou desactivalos.
 
 
 \subsubsection{Panel de Perfil}
-O panel perfil permite a creación e modificación de perfiles. Esta dividido en dous subpaneis, un cos datos básicos do perfil e outro con datos avanzados. Estos dous paneis podense ver na Figura~\ref{fig:ui:panel:profile}.
+O panel perfil permite a creación e modificación de perfiles. Esta dividido en dous subpaneis, un cos datos básicos do perfil e outro con datos avanzados. Estes dous paneis pódense ver na Figura~\ref{fig:ui:panel:profile}.
 \begin{figure}[h!]
   \centering
   \begin{subfigure}[b]{0.5\textwidth}
@@ -393,11 +393,11 @@ O panel perfil permite a creación e modificación de perfiles. Esta dividido en
     \label{fig:ui:panel:profile}
 \end{figure}
 
-Esta división intenta mellorar a experiencia de usuario pois os valores avanzados autocompletanse cos valores por defecto no momento no que se seleciona a linguaxe.
+Esta división intenta mellorar a experiencia de usuario pois os valores avanzados autocompletanse cos valores por defecto no momento no que se selecciona a linguaxe.
 
 \section{Navegación e Busca a través do documento}
 
-Unha das partes importantes para facilitar a usabilidade da aplicación é que esta permita que o traductor navegue polo ficheiro e busque termos de forma sinxela e rápida. Para facer isto creamos a clase abstracta \lstinline{Navigator}. Esta clase ten métodos sen argumentos que permiten avanzar ao seguinte, ao anterior, ao primeiro ou ao último elemento. O valor de volta destos métodos é un valor booleano que indica se esta operación foi posible.
+Unha das partes importantes para facilitar a usabilidade da aplicación é que esta permita que o tradutor navegue polo ficheiro e busque termos de forma sinxela e rápida. Para facer isto creamos a clase abstracta \lstinline{Navigator}. Esta clase ten métodos sen argumentos que permiten avanzar ao seguinte, ao anterior, ao primeiro ou ao último elemento. O valor de volta destes métodos é un valor booleano que indica se esta operación foi posible.
 
 \begin{figure}[h!]
   \centering
@@ -406,20 +406,20 @@ Unha das partes importantes para facilitar a usabilidade da aplicación é que e
   \label{fig:nav:diagram}
 \end{figure}
 
-Para a implementación a busca dentro do documento creamos a clase \lstinline{Search}. Para implementar os metodos para avanzar a través dos resultados da busca empregamos dous iteradores, un que itera dentro dos mensaxes que cumpren os criterios e outro que itera dentro dos fragmentos das mensaxes.
+Para a implementación a busca dentro do documento creamos a clase \lstinline{Search}. Para implementar os métodos para avanzar a través dos resultados da busca empregamos dous iteradores, un que itera dentro dos mensaxes que cumpren os criterios e outro que itera dentro dos fragmentos das mensaxes.
 
 Como podemos ver na Figura~\ref{fig:nav:diagram} os iteradores teñen métodos para conseguir o elemento actual, o primeiro, o último, o seguinte e o anterior. Ademais incorporan metodos para comprobar se o elemento actual é o último ou o primeiro.
 
-As buscas permiten especificar o estado das mensaxes que queremos buscar e se o texto de busca está na cadea orixinal ou na traducida e se está na forma singular ou na plural. esta forma cando se inicia unha busqueda crease un iterador de ficheiro que itera entre os mensaxes que cumpren os requisitos e por cada mensaxe que cumpra os requisitos creamos un iterador de mensaxe que iterará devolvendo os fragmentos de mensaxe que cumpran os requisitos. Un \lstinline{MessageFragment} inclue unha mensaxe, a forma plural do fragmento, se o fragmento está na cadea orixinal ou na tradución e o índice e lonxitude do fragmento.
+As buscas permiten especificar o estado das mensaxes que queremos buscar e se o texto de busca está na cadea orixinal ou na traducida e se está na forma singular ou na plural. esta forma cando se inicia unha busqueda crease un iterador de ficheiro que itera entre os mensaxes que cumpren os requisitos e por cada mensaxe que cumpra os requisitos creamos un iterador de mensaxe que iterará devolvendo os fragmentos de mensaxe que cumpran os requisitos. Un \lstinline{MessageFragment} inclúe unha mensaxe, a forma plural do fragmento, se o fragmento está na cadea orixinal ou na tradución e o índice e lonxitude do fragmento.
 
-Para selecionar un fragmento da busqueda empregamos o método select do panel de edición.
+Para seleccionar un fragmento da busca empregamos o método \lstinline{select()} do panel de edición.
 
-En canto a implementación da navegación entre ficheiros a clase FileNavigator empregouse os métodos propios do widget TreeView de GTK. Creanse catro navegadores dete tipo un para as cadeas traducidas, outro para as cadeas sin traducir, outro para as cadeas con tradución difusa e outro para calquera cadea.
+En canto a implementación da navegación entre ficheiros a clase FileNavigator empregouse os métodos propios do widget TreeView de GTK. Créanse catro navegadores deste tipo un para as cadeas traducidas, outro para as cadeas sen traducir, outro para as cadeas con tradución difusa e outro para calquera cadea.
 
 \section{Preferencias}
 Necesitamos almacenar certas opcións do programa como pode ser o tipo e tamaño da letra a empregar ou se facemos resaltado e sintaxe. Para gardar toda esta información e que este dispoñible entre diferentes sesións do programa empregamos GSettings. GSettings é unha API para a xestión de configuración que forma parte do modulo GIO (GNOME Input/Output) dentro de GLib.
 
-GSettings prové de métodos para obter e almacenar valores a partir dunha clave. Para almacenar estos valores soporta varios sistemas. Nós en concreto usamos o estandar en GNOME, \emph{dconf}. Este sistema está altamente optimizado para facer lecturas (o caso de uso máis habitual) de valores de configuración. Para usar GSettings debemos crear un ficheiro coas claves e tipos dos valores que imos empregar. No Fragmento de Código~\ref{lst:gsettings} podemos ver unha parte deste ficheiro.
+GSettings prové de métodos para obter e almacenar valores a partir dunha clave. Para almacenar estes valores soporta varios sistemas. Nós en concreto usamos o estándar en GNOME, \emph{dconf}. Este sistema está altamente optimizado para facer lecturas (o caso de uso máis habitual) de valores de configuración. Para usar GSettings debemos crear un ficheiro coas claves e tipos dos valores que imos empregar. No Fragmento de Código~\ref{lst:gsettings} podemos ver unha parte deste ficheiro.
 
 \begin{lstlisting}[language=XML,label=lst:gsettings,caption=Fragmento da dos esquemas creados de GSettings]
 <?xml version="1.0" encoding="UTF-8"?>
@@ -447,21 +447,21 @@ GSettings prové de métodos para obter e almacenar valores a partir dunha clave
 
 Este ficheiro temos que compilalo e instalalo cas ferramentas que nos dá o módulo. Unha vez instalado obtemos unha instancia da clase GSettings que emprega o patrón Singleton e usamos esta instancia para obter e almacenar os valores.
 
-Unha das vantaxes de GSettings é que permite enlazar unha propiedade dun obxeto de GObject con un valor de GSettings de forma que se modificamos o valor dun dos dous o outro vese reflexado. Empregamos esta característica para implementar a interface de preferencias na nosa aplicaición de forma sinxela.
+Unha das vantaxes de GSettings é que permite enlazar unha propiedade dun obxecto de GObject con un valor de GSettings de forma que se modificamos o valor dun dos dous o outro vese reflexado. Empregamos esta característica para implementar a interface de preferencias na nosa aplicación de forma sinxela.
 
 \subsection{Módulo de Perfiles}
-Como vimos anteriormente ao falar da interface gráfica, os perfiles permiten configurar o nome e email co que se gardan os ficheiros e a linguaxe actual. Aínda que poden existir varios perfiles gardados so un estará activo en cada momento. Para almacenar estos perfiles tamén empregaremos GSettings.
+Como vimos anteriormente ao falar da interface gráfica, os perfiles permiten configurar o nome e email co que se gardan os ficheiros e a linguaxe actual. Aínda que poden existir varios perfiles gardados so un estará activo en cada momento. Para almacenar estes perfiles tamén empregaremos GSettings.
 
 \section{Plugins}
-Os plugins permiten extender o programa engadindolle funcionalidade. Dous dos puntos máis sinxelos para engadir funcionalidade son as pistas e os consellos. Estes dous elementos que están pensados para axudar os traductores son aportados polos plugins. Existen dúas sinais de nomes \lstinline{check_message} e \lstinline{provide_hints} que son usadas para crear instancias de pistas e de consellos. Estas sinais son chamadas dende os plugins.
+Os plugins permiten estender o programa engadíndolle funcionalidade. Dous dos puntos máis sinxelos para engadir funcionalidade son as pistas e os consellos. Estes dous elementos que están pensados para axudar os tradutores son aportados polos plugins. Existen dúas sinais de nomes \lstinline{check_message} e \lstinline{provide_hints} que son usadas para crear instancias de pistas e de consellos. Estas sinais son chamadas dende os plugins.
 
-Para implementar estos plugins empregamos a biblioteca \emph{LibPeas}. Esta biblioteca foi creada para poder incluir extensións en GEdit, o editor de texto de GNOME. Trátase dun motor de plugins baseado en GObject. Permite a carga de plugins en varios linguaxes de programación como Vala, C, Python ou JavaScript.
+Para implementar estes plugins empregamos a biblioteca \emph{LibPeas}. Esta biblioteca foi creada para poder incluír extensións en GEdit, o editor de texto de GNOME. Trátase dun motor de plugins baseado en GObject. Permite a carga de plugins en varios linguaxes de programación como Vala, C, Python ou JavaScript.
 
-Os plugins son unha unidade de compilación diferente ao programa principal. Para que desde esta unidade independente de compilación coñeza parte da API creada para ficheiros, perfiles e linguaxes debemos incluir estos ficheiros tamén nesta unidade de compilación. Creamos ademais unha pequena interface que inclue as dúas sinais que citamos anteriormente. Esta interface é implementada pola clase aplicación.
+Os plugins son unha unidade de compilación diferente ao programa principal. Para que desde esta unidade independente de compilación coñeza parte da API creada para ficheiros, perfiles e linguaxes debemos incluír estes ficheiros tamén nesta unidade de compilación. Creamos ademais unha pequena interface que inclúe as dúas sinais que citamos anteriormente. Esta interface é implementada pola clase aplicación.
 
-A biblioteca LibPeas emprega o patrón Singleton para darnos unha instancia dun motor de plugins. A este motor temos que indicarlle a ruta do sistema onde ten que buscar os plugins e cargar os plugins que atopen. Ademais cargamos un obxeto de clase
+A biblioteca LibPeas emprega o patrón Singleton para darnos unha instancia dun motor de plugins. A este motor temos que indicarlle a ruta do sistema onde ten que buscar os plugins e cargar os plugins que atopen. Ademais cargamos un obxecto de clase
 
-Para implementar un plugin temos que crear dous ficheiros. O primeiro ficheiro contén no nome do plugin información sobre o plugin como a descripción, o autor ou atuores e o Copyright. No Fragmento de Código~\ref{lst:plugin:metadata} pódese ver un exemplo deste ficheiro.
+Para implementar un plugin temos que crear dous ficheiros. O primeiro ficheiro contén no nome do plugin información sobre o plugin como a descrición, o autor ou autores e o Copyright. No Fragmento de Código~\ref{lst:plugin:metadata} pódese ver un exemplo deste ficheiro.
 
 \begin{lstlisting}[label=lst:plugin:metadata,caption=Ficheiro de metadatos do plugin]
 [Plugin]
@@ -472,7 +472,7 @@ Authors=Marcos Chavarría Teijeiro <chavarria1991@gmail.com>
 Copyright=Copyright (C) 2014 Marcos Chavarría Teijeiro
 \end{lstlisting}
 
-O outro ficheiro é a implementación do propio plugin. Debemos implementar unha ou máis extensións e unha función onde as rexitraremos. A función ten que ter o nome \lstinline{peas_register_types()} e usará a etiqueta \lstinline{ModuleInit} de forma que se executará cando se inicialice o módulo.
+O outro ficheiro é a implementación do propio plugin. Debemos implementar unha ou máis extensións e unha función onde as rexistraremos. A función ten que ter o nome \lstinline{peas_register_types()} e usará a etiqueta \lstinline{ModuleInit} de forma que se executará cando se inicialice o módulo.
 
 \begin{lstlisting}[label=lst:plugin:code,caption=Fragmento da implementación do plugin DemoChecker]
 public class DemoChecker : Peas.ExtensionBase,  Peas.Activatable
@@ -505,4 +505,5 @@ public void peas_register_types (GLib.TypeModule module)
 }
 \end{lstlisting}
 
-Para implementar unha extensión temos que implementar unha clase que implemente a interface Activable e herede da clase ExtensionBase. A interface activable inclue os métodos que se executarán cando se active e desactive o plugin. No Fragmento de Código~\ref{lst:plugin:code} amosase parte do código empregado para o plugin de exemplo \emph{DemoPlugin}.
+Para implementar unha extensión temos que implementar unha clase que implemente a interface Activable e herede da clase ExtensionBase. A interface Activable inclúe os métodos que se executarán cando se active e desactive o plugin. No Fragmento de Código~\ref{lst:plugin:code} amosase parte do código empregado para o plugin de exemplo \emph{DemoPlugin}. Podemos ver como nos métodos para activar e desactivar conectamos e desconectamos a sinal \lstinline{check_message} para poder xerar os Tips de exemplo.
+
