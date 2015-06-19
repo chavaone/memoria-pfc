@@ -3,9 +3,9 @@
 Neste capítulo explicaremos o proceso de análise de requisitos levado a cabo para a construción da ferramenta.
 
 \section{Consultas cos tradutores}
-Para facer unha nova ferramenta de asistencia a tradución consultamos os usuarios principais da ferramenta. Para iso enviamos correos as unhas cantas listas de correo de tradutores de diferentes proxectos de software libre como os seguintes:
+Para facer unha nova ferramenta de asistencia á tradución consultamos os usuarios principais da ferramenta. Para iso enviamos correos a unhas cantas listas de correo de tradutores de diferentes proxectos de software libre como os seguintes:
 
-\paragraph{GNOME} Dentro do proxecto GNOME hai un grupo específico para a internacionalización dos programas da plataforma. Existen listas de correo para cada linguaxe e unha a nivel internacional. En concreto as listas que enviamos un correo preguntando por ideas para o novo programa foron a lista \emph{internacional}, a lista de tradutores o \emph{galego} e a lista de tradutores ao \emph{castelán}.
+\paragraph{GNOME} Dentro do proxecto GNOME hai un grupo específico para a internacionalización dos programas da plataforma. Existen listas de correo para cada linguaxe e unha a nivel internacional. En concreto as listas ás que enviamos un correo preguntando por ideas para o novo programa, foron a lista \emph{internacional}, a lista de tradutores ó \emph{galego} e a lista de tradutores ó \emph{castelán}.
 
 \paragraph{Proxecto Trasno} É unha comunidade de tradutores de proxectos de software libre ao Galego. Serve de punto de encontro para os tradutores galegos e realiza periodicamente reunións para a discusión da terminoloxía a usar e a presentación de novas ferramentas.
 
@@ -15,7 +15,7 @@ Para facer unha nova ferramenta de asistencia a tradución consultamos os usuari
 
 \paragraph{Mozilla} O proxecto Mozilla, autores do navegador Firefox e do xestor de correo electrónico Thunderbird, conta cun equipo de tradutores propio. Neste caso non usan ficheiros de tipo Gettext PO, senón tamén ficheiros XML.
 
-Case en todos os correos enviados houbo xente que respondeu dando ideas sobre o que lles gustaría que incorporase o novo programa. Na seguinte sección podemos ver a maioría destas utilidades explicadas.
+Case en todos os correos enviados houbo xente que respondeu dando ideas sobre o que lles gustaría que se incorporase ó novo programa. Na seguinte sección podemos ver a maioría destas utilidades explicadas.
 
 \subsection{Resumo das peticións}
 	\paragraph{Abrir e gardar ficheiros en diferentes formatos.} O programa debería permitir abrir outros formatos de ficheiros aparte do formato Gettext po. Esta petición foi feita sobre todo por membros de equipos de tradutores que non son de GNOME. Existe unha biblioteca de nome \emph{translate-toolkit} que facilita a conversión entre formatos.
@@ -34,9 +34,9 @@ Case en todos os correos enviados houbo xente que respondeu dando ideas sobre o 
 
 	\paragraph{Resaltado da síntaxe} O programa debe resaltar aqueles elementos da cadea que non son traducibles e pertencen o dominio das linguaxes de programación. Por exemplo na seguinte cadea \lstinline[language=C]{"Temos %i coches."} o elemento \lstinline[language=C]{%i} debería estar resaltado xa que so parte do formatado da cadea por parte do programa.
 
-	\paragraph{Comunicación con servidor web} Os tradutores consideran a posibilidade de que o programa permita certa comunicación con xestores de traducións en internet. No caso de GNOME o programa Damned Lies xestiona os ficheiro .po para tódolos programas de GNOME e os tradutores deben baixar e subir os ficheiros dende esa plataforma.
+	\paragraph{Comunicación con servidor web} Os tradutores consideran a posibilidade de que o programa permita certa comunicación con xestores de traducións en internet. No caso de GNOME o programa Damned Lies xestiona os ficheiros .po para todos os programas de GNOME e os tradutores deben baixar e subir os ficheiros dende esa plataforma.
 
-	\paragraph{Navegación dentro do documento} A posibilidade de navegar a través das cadeas. Engadir a posibilidade de ir a seguinte cade traducida, sen traducir ou con unha tradución difusa.
+	\paragraph{Navegación dentro do documento} A posibilidade de navegar a través das cadeas. Engadir a posibilidade de ir á seguinte cadea traducida, sen traducir ou con unha tradución difusa.
 
 	\paragraph{Memoria de tradución} Engadir unha memoria de tradución que permita exportar e importar ficheiros en diferentes formatos. Ter varias memorias  de tradución con prioridade entre elas, engadir a posibilidade de editar a memoria de tradución e acceder a diversos servidores que xestionan memorias de tradución online como poden ser Trobador, amaGama, Open-tran ou Transvision.
 
@@ -44,24 +44,24 @@ Case en todos os correos enviados houbo xente que respondeu dando ideas sobre o 
 
 	\paragraph{Busca de termos} Que o programa permita a busca nun dicionario tanto local como en internet. Cítanse dicionarios en internet como o que proporciona Wikipedia ou a Universidade de Santiago de Compostela para o galego.
 
-	\paragraph{Previsualización das traducións} Moitas das interfaces que se fan actualmente empregan ferramentas de cuarta xeración que permitirían xerar a interface cas traducións. No caso de GNOME, Glade é o programa que permite a creación de interfaces e xa existe unha ferramenta online que permite a previsualización de traducións de nome Deckard. O que se pide é que o programa incorpore esa posibilidade dende a súa interface.
+	\paragraph{Previsualización das traducións} Moitas das interfaces que se fan actualmente empregan ferramentas de cuarta xeración que permitirían xerar a interface coas traducións. No caso de GNOME, Glade é o programa que permite a creación de interfaces e xa existe unha ferramenta online que permite a previsualización de traducións de nome Deckard. O que se pide é que o programa incorpore esa posibilidade dende a súa interface.
 
-	\paragraph{Programa controlable totalmente a través do teclado} O programa en xeral peros sobre todo a interface de edición de ficheiros debe ser manexable totalmente a través do teclado para mellorar a produtividade dos tradutores. Os tradutores piden tamén a posibilidade de que se permita personalizar os atallos de teclado.
+	\paragraph{Programa controlable totalmente a través do teclado} O programa en xeral, pero sobre todo a interface de edición de ficheiros, debe ser manexable totalmente a través do teclado para mellorar a produtividade dos tradutores. Os tradutores piden tamén a posibilidade de que se permita personalizar os atallos de teclado.
 
-	\paragraph{Tradución doutras linguaxes} Hai linguas como o galego e o portugués que se parecen moito polo que as veces resulta moi útil poder, en vez de partir de cero, coller unha tradución dun idioma semellante e editala.
+	\paragraph{Tradución doutras linguaxes} Hai linguas como o galego e o portugués que se parecen moito polo que, as veces, resulta moi útil poder, en vez de partir de cero, coller unha tradución dun idioma semellante e editala.
 
-	\paragraph{Comprobacións} Os tradutores resaltaron a utilidade de que a ferramenta comprobe certa parámetros para comprobar a calidade da tradución. Entre outros:
+	\paragraph{Comprobacións} Os tradutores resaltaron a utilidade de que a ferramenta comprobe certos parámetros para comprobar a calidade da tradución. Entre outros:
 		\begin{itemize}
-			\item \textbf{Ortografía e Gramática.} O programa avisará se a cadea traducida ten erros tanto ortográficos e gramaticais.
-			\item \textbf{Coherencia terminolóxica.} O programa avisará o usuario cando este empregue unha tradución dun termo diferente a que se ven empregando no resto do ficheiro.
-			\item \textbf{Etiquetado XML e marcas de formato.} O programa avisará o usuario se faltan ou están mal escritos os diferentes etiquetas XML ou marcas de formato.
+			\item \textbf{Ortografía e Gramática.} O programa avisará se a cadea traducida ten erros tanto ortográficos como gramaticais.
+			\item \textbf{Coherencia terminolóxica.} O programa avisará ó usuario cando este empregue unha tradución dun termo diferente o que se vén empregando no resto do ficheiro.
+			\item \textbf{Etiquetado XML e marcas de formato.} O programa avisará ó usuario se faltan ou están mal escritos as diferentes etiquetas XML ou marcas de formato.
 		\end{itemize}
 
 	\paragraph{Multiplataforma} A aplicación debe estar dispoñible para varios sistemas operativos (BSD, Windows, MAC OS, etc.).
 
-	\paragraph{Tradución automatica} O aplicativo debe incorporar mecanismos de tradución automática empregando ferramentas como Google Translator, Bing Translator, Opentrad ou Apertium.
+	\paragraph{Tradución automática} O aplicativo debe incorporar mecanismos de tradución automática empregando ferramentas como Google Translator, Bing Translator, Opentrad ou Apertium.
 
-	\paragraph{Estatísticas} Débese amosar estatísticas tanto a nivel de ficheiro como de proxecto do numero de cadeas ou palabras traducidas, sen traducir ou difusas.
+	\paragraph{Estatísticas} Débese amosar estatísticas tanto a nivel de ficheiro como de proxecto do número de cadeas ou palabras traducidas, sen traducir ou difusas.
 
 \section{Análise doutros aplicativos do mercado}
 Para facer o novo produto software para a tradución tamén consultamos outras ferramentas similares existentes no mercado para intentar imitar as súas vantaxes e evitar as súas deficiencias. O resultado desta análise pódese consultar na Sección~\ref{sec:ferramentascat}.

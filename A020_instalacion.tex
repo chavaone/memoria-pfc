@@ -1,0 +1,44 @@
+\chapter{Instrucións de Compilación e Instalación}
+
+GNOMECAT é Software Libre e o seu código fonte está dispoñible  nun repositorio de GitHub de nome \href{http://github.com/chavaone/gnomecat}{chavaone/gnomecat}.
+
+Para poder probar o aplicativo antes de nada debemos instalar as súas dependencias tanto para compilalo como para executalo. O programa depende das seguintes bibliotecas:
+
+\begin{itemize}
+ \item glib-2.0
+ \item gtk+-3.0
+ \item gtksourceview-3.0
+ \item gee-0.8
+ \item json-glib-1.0
+ \item libpeas-1.0
+ \item gettext-po
+\end{itemize}
+
+Ademais, para descargar e compilar o programa necesitamos as seguintes ferramentas:
+
+\begin{itemize}
+\item vala
+\item automake e autoconf
+\item gettext e intltool
+\item git
+\end{itemize}
+
+O Fragmento de código~\ref{lst:yum} amosa o comando que temos que executar para instalar as ferramentas e bibliotecas necesarias no caso de que empreguemos o xestor de paquetes \emph{yum} propio de distribucións como Fedora, Red Hat ou CentOS. Se empregamos outros xestores de paquetes o comando sería similar.
+
+\begin{lstlisting}[label=lst:yum,caption=Comando para instalar utilidades e dependencias]
+$> sudo yum install git automake autoconf gettext gettext-libs gettext-devel  glib2 glib2-devel gtk+-devel gtksourceview3 gtksourceview3-devel libgee libgee-devel json-glib json-glib-devel libpeas libpeas-devel intltool vala
+\end{lstlisting}
+
+Unha vez instalada as dependencias so temos que descarga, compilar e instalar o programa. Como empregamos o sistema de control de versións git, para descargar o repositiore temos que facer uso do seu comando \lstinline{clone}.
+
+Para compilar a aplicación empregaremos os pasos tipicos para intalar calquera aplicación que emprege Autotools. No Fragmento de código~\ref{lst:git} podemos ver os comandos que temos que exectuar para realizar estas tarefas:
+
+\begin{lstlisting}[label=lst:git,caption=Comando para instalar utilidades e dependencias]
+$> git clone https://github.com/chavaone/gnomecat.git
+$> cd gnomecat
+$> ./autogen.sh
+$> ./configure
+$> make
+$> sudo make install
+\end{lstlisting}
+

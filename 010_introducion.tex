@@ -5,21 +5,21 @@
 %	que permita al lector centrarse fácilmente en la parte que más le interesa.
 %
 
-\chapter[Introducción]{Introdución}
+\chapter[Introdución]{Introdución}
 
 Neste capítulo de introdución intentarase explicar os aspectos necesarios para entender en que consiste o proxecto, o que me fixo levalo a cabo e, por último, unha explicación da estrutura da presente memoria.
 
 \section{Internacionalización e Localización de Software}
-A internacionalización é o proceso de adaptación dun software para que este poida ser traducido a varios idiomas e ser usado en diferentes rexións sen modificar a súa enxeñería. A localización de software consiste na adaptación de dito software a unha rexión determinada. Isto aínda que afecta fundamentalmente ó idioma, tamén ten outros elementos como as divisas, a forma de formatar as datas ou a utilización símbolos que nunhas áreas teñen un significado e noutras outro distinto.
+A internacionalización é o proceso de adaptación dun software para que este poida ser traducido a varios idiomas e ser usado en diferentes rexións sen modificar a súa enxeñería. A localización de software consiste na adaptación de dito software a unha rexión determinada. Isto, aínda que afecta fundamentalmente ó idioma, tamén ten outros elementos como as divisas, a forma de formatar as datas ou a utilización de determinados símbolos que nunhas áreas teñen un significado e noutras outro distinto.
 
-Trátase dun aspecto moi importante do mundo do software pois se ben unha persoa que saiba inglés (o idioma orixe da maior parte dos programas), a internacionalización dos programas é un problema de comodidade, para o que non entenda a lingua de Shakespeare, trátase dun problema de usabilidade. Unha persoa que non sexa nativa dixital e que non entenda inglés terá serios problemas para entender calquera software moderno non localizado.
+Trátase dun aspecto moi importante do mundo do software pois se ben unha persoa que saiba inglés (o idioma orixe da maior parte dos programas) a internacionalización dos programas é un problema de comodidade, para o que non entenda a lingua de Shakespeare; trátase dun problema de usabilidade. Unha persoa que non sexa nativa dixital e que non entenda inglés terá serios problemas para entender calquera software moderno non localizado.
 
 \section{O Proxecto GNOME}
-GNOME é ambiente de escritorio, unha infraestrutura de desenrolo e unha comunidade de software libre.
+GNOME é ambiente de escritorio, unha infraestrutura de desenvolvemento e unha comunidade de software libre.
 
-Como ambiente de escritorio foi creado polos mexicanos Miguel de Icaza e Federico Mena en 1997 como alternativa a KDE compatible coa licencias GPL\footnote{En aquel momento KDE empregaba unha licencia QPL que aínda que era libre non era compatible GPL.}. Trátase de crear un solución software para todo o mundo poñendo interés en aspectos como a accesibilidade, a internacionalización ou a usabilidade.
+Como ambiente de escritorio foi creado polos mexicanos Miguel de Icaza e Federico Mena en 1997 como alternativa a KDE compatible coa licencias GPL\footnote{En aquel momento KDE empregaba unha licencia QPL que aínda que era libre non era compatible GPL.}. Trátase de crear un solución software para todo o mundo poñendo interese en aspectos como a accesibilidade, a internacionalización ou a usabilidade.
 
-Como infraestrutura de desenrolo GNOME prové unha gran cantidade de aplicativos e bibliotecas para crear o programas tanto para a plataforma GNOME como para outras plataformas.
+Como infraestrutura de desenvolvemento GNOME prové unha gran cantidade de aplicativos e bibliotecas para crear os programas tanto para a plataforma GNOME como para outras plataformas.
 
 \begin{figure}[h!]
     \centering
@@ -28,14 +28,14 @@ Como infraestrutura de desenrolo GNOME prové unha gran cantidade de aplicativos
     \label{fig:guadec2012}
 \end{figure}
 
-Como comunidade reúne a gran cantidade de persoas tanto voluntarias como profesionais axudaron e axudan a que o proxecto siga adiante. Dentro desta comunidade poden encontrarse persoas de moi diversa procedencia e oficio sendo a maioría programadores aínda que tamén existen persoas dedicadas a marketing, administración, deseño, administración de sistemas, entre outras.
+Como comunidade reúne a gran cantidade de persoas, tanto voluntarias como profesionais, que axudaron e axudan a que o proxecto siga adiante. Dentro desta comunidade poden encontrarse persoas de moi diversa procedencia e oficio sendo a maioría programadores, aínda que tamén existen persoas dedicadas a marketing, á administración, ó deseño ou á administración de sistemas, entre outras.
 
-GNOME ademais pon especial interés en intentar sumar xente ao proxecto participando sempre no programa de iniciación ao desenvolvemento de software libre Summer of Code promovido por Google e sendo promotor da iniciativa Outreachy\footnote{Inicialmente denominábase GNOME Outreach Program for Women} que pretende acercar as mulleres á contribución en software libre.
+GNOME ademais pon especial interese en intentar sumar xente ao proxecto. Participa sempre no programa de iniciación ao desenvolvemento de software libre Summer of Code promovido por Google e é promotor da iniciativa Outreachy\footnote{Inicialmente denominábase GNOME Outreach Program for Women} que pretende acercar ás mulleres á contribución en software libre.
 
-En Europa a comunidade de GNOME reunese na GUADEC, que é o acrónimo de \textbf{G}NOME \textbf{U}sers \textbf{A}nd \textbf{D}evelopers \textbf{C}onference. Un evento que se fai anualmente e que no ano 2012 tivo lugar na Facultade de Informatica da Coruña~(Figura~\ref{fig:guadec2012}).
+En Europa a comunidade de GNOME reúnese na GUADEC, que é o acrónimo de \textbf{G}NOME \textbf{U}sers \textbf{A}nd \textbf{D}evelopers \textbf{C}onference. Un evento que se fai anualmente e que no ano 2012 tivo lugar na Facultade de Informática da Coruña~(Figura~\ref{fig:guadec2012}).
 
 \subsection{Localización e Internacionalización no Proxecto GNOME}
-Como xa dixemos un dos aspectos máis importante para o proxecto GNOME é o acercamento as persoas e para lograr isto ponse pleno interés na internacionalización e na localización do ambiente de escritorio e das aplicacións de GNOME. GNOME está traducido a máis de 50 idiomas moitos dos cales teñen máis do 90\% das cadeas traducidas.
+Como xa dixemos un dos aspectos máis importante para o proxecto GNOME é o acercamento ás persoas e para lograr isto ponse pleno interese na internacionalización e na localización do ambiente de escritorio e das aplicacións de GNOME. GNOME está traducido a máis de 50 idiomas moitos dos cales teñen máis do 90\% das cadeas traducidas.
 
 O proxecto GNOME emprega o sistema GNU Gettext para internacionalizar e localizar os seus programas e conta con unha plataforma web de nome Damned Lies para xestionar a localización de todo o proxecto. Este programa amosa as estatísticas do estado actual das traducións e axuda a xestionar o ciclo de traballo dos tradutores. Permite asignar módulos a tradutores, que os tradutores suban os ficheiros traducidos e que se faga unha revisión do traballo do tradutor.
 
@@ -48,12 +48,12 @@ O Summer of Code (xeralmente abreviado SoC ou GSoC) é un programa da empresa es
 
 Existen diversas organizacións de software libre que se presentan para participar no programa aportando unha lista de ideas sobre a que os futuribles participantes deberán presentar un proxecto do que queren traballar durante o verán. Se os estudantes son elixidos, a organización asignará a cada estudante un ou máis mentores que deberán guiar ao participante a levar a cabo as tarefas asignadas. Existen avaliacións tanto para os estudantes como para os mentores. Se o estudante é avaliado con éxito recibirá 5500 dólares polo traballo realizado.
 
-Trátase dun programa de moito éxito en todo o mundo e sobre todo en países como India onde carecen de iniciativas locais similares. Na edición do verán do ano 2014, participaron 190 organizacións entre as cales se atopan principales axentes no mundo do software libre como GNOME, KDE, GNU ou Firefox e 1307 estudantes de todo o mundo.
+Trátase dun programa de moito éxito en todo o mundo e sobre todo en países como India, onde carecen de iniciativas locais similares. Na edición do verán do ano 2014, participaron 190 organizacións entre as cales se atopan principales axentes no mundo do software libre como GNOME, KDE, GNU ou Firefox e 1307 estudantes de todo o mundo.
 
 \section{Motivación}
-Durante a GUADEC Hispana\footnote{A GUADEC Hispana é a versión para hispanofalantes da GUADEC} 2012 que tivo lugar en A Coruña dentro da GUADEC do mesmo ano, asistín a unha charla impartida por Daniel Mustieles, o coordinador do equipo de tradutores ao castelán do proxecto GNOME. Nesta charla Daniel, resaltaba a necesidade de que o programa actual de asistencia a tradución fose mellorado.
+Durante a GUADEC Hispana\footnote{A GUADEC Hispana é a versión para hispanofalantes da GUADEC} 2012 que tivo lugar en A Coruña dentro da GUADEC do mesmo ano, asistín a unha charla impartida por Daniel Mustieles, o coordinador do equipo de tradutores ao castelán do proxecto GNOME. Nesta charla Daniel, resaltaba a necesidade de que o programa actual de asistencia á tradución fose mellorado.
 
-GTranslator está escrito en C e emprega unha biblioteca chamada GObject para facer orientación a obxectos dentro de C. Isto fai que achegarse o proxecto sexa complicado para un novato polo que falando con outros desenvolvedores da plataforma decidiuse que era mellor reescribir o programa noutra linguaxe e ao mesmo tempo arranxar algúns erros que tiña anteriormente o programa.
+GTranslator está escrito en C e emprega unha biblioteca chamada GObject para facer orientación a obxectos dentro de C. Isto fai que achegarse ó proxecto sexa complicado para un novato polo que falando con outros desenvolvedores da plataforma decidiuse que era mellor reescribir o programa noutra linguaxe e ao mesmo tempo arranxar algúns erros que tiña anteriormente o programa.
 
 Durante o ano seguinte presentei un proxecto para o Google Summer of Code para escribir un novo programa CAT para a plataforma GNOME. Este programa sería unha re-escritura e re-deseño de GTranslator nunha linguaxe de programación moito máis amigable, Vala.
 

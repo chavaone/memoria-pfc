@@ -3,21 +3,23 @@
 Neste último capítulo falaremos das conclusións que sacamos en claro da realización do presente proxecto e falaremos de posibles liñas de traballo futuro.
 
 \section{Conclusións}
-O software libre está deseñado para garantir a liberdade dos usuarios. O obxectivo é que calquera persoa que necesite facer algo con un ordenador poida empregar unha alternativa libre de forma sinxela. Neste contexto a accesibilidade e a localización dos programas é fundamental.
+O software libre está deseñado para garantir a liberdade dos usuarios. O obxectivo é que calquera persoa que necesite facer algo cun ordenador poida empregar unha alternativa libre de forma sinxela. Neste contexto, a accesibilidade e a localización dos programas é fundamental.
 
-A pesares disto as alternativas libres para programas de tradución son moi limitadas e teñen en moitas ocasións baixa calidade. Neste proxecto de fin de carreira traballamos para sentar as bases dunha ferramenta que sexa robusta pero extensible ao mesmo tempo.
+A pesares disto, as alternativas libres para programas de tradución son moi limitadas e teñen en moitas ocasións baixa calidade. Neste proxecto de fin de carreira traballamos para sentar as bases dunha ferramenta que sexa robusta pero extensible ao mesmo tempo.
 
-O aplicativo que resultou deste traballo, aínda que necesita ser pulido nunha fase na que os tradutores a proben de forma intensiva e precisa que se implementen algunhas características como as que se detallan na seguinte sección, senta as bases dunha ferramenta que poderá ser amplamente usada polos tradutores de GNOME.
+O aplicativo que resultou deste traballo, a pesar de que aínda necesita ser probado por traductores, é unha ferramenta creada de forma que sexa facilmente estensible e escrita nunha linguaxe que permitirá que moitos desenvolvedores participen no proxecto. Isto unido a implementación dalgunhas características como as que se citan na próxima sección farán que esta ferramente poida ser empregada amplamente por usuarios de GNOME e doutros proxectos de software libre.
 
 \section{Traballo Futuro}
-Como calquera proxecto de software libre este programa é un proxecto inconcluso. Por unha parte moitos dos requisitos establecidos ao inicio do proxecto ou presentan deficiencias ou están elaborados con pouco detalle. Ademais aínda que neste proxecto a interface gráfica supuxo un esforzo importante, aínda hai algunhas partes que poden ser mellorables.
+Como calquera proxecto de software libre este programa é un proxecto inconcluso. Por unha parte, algúns dos requisitos establecidos ao inicio do programa foron elaborados con pouca profundidade ou presentan fallos polo que solucionalos é unha clara liña de traballo. Ademais, aínda que neste proxecto a interface gráfica supuxo un esforzo importante, hai algunhas partes que poden ser mellorables.
 
-Por outro lado as contribución externas a este proxecto foron moi limitadas pois so contribuíron dúas persoas con cambios triviais. Para que un proxecto destas características teña futuro é necesario crear unha comunidade arredor del. Polo que unha das liñas de traballo ten que ser buscar contribuidores para o proxecto e integralo dentro da infraestrutura de GNOME.
+Por outro lado, para que un proxecto destas características teña futuro é necesario crear unha comunidade arredor del. Polo que unha das liñas de traballo ten que ser buscar contribuidores para o proxecto e integralo dentro da infraestrutura de GNOME.
 
-Se falamos de liñas de traballo en canto a implementación de novas características existen varias liñas de traballo moi interesantes:
+Se falamos de liñas de traballo en canto á implementación de novas características, existen varias liñas de traballo moi interesantes:
 
-\paragraph{Integración con Damned Lies.} Damned Lies é a plataforma oficial de GNOME para xestionar as traducións. Nela pódense baixar os ficheiros para traducir, subir os ficheiros traducidos, revisar os mesmos, e ver as estatísticas xerais de tradución para cada linguaxe. Sería realmente útil que todas estas tarefas se puidesen facer dende GNOMECAT. Para isto non so bastaría con implementar novas vistas en GNOMECAT senón tamén a creación dunha API pública para a plataforma web Damned Lies que está escrita en Python empregando o framework Django.
+\paragraph{Implementación de unha Memoria de Tradución.} Empregando a API que creamos para prover ao usuario de pistas a través de plugins, implementar un plugin que sexa unha Memoria de Tradución. Esta memoria deberá aceptar ficheiros po  con tradución para incorporalos a unha base de datos que logo analizaremos co obxetivo de buscar posibles traducións das cadeas.
+
+\paragraph{Integración con Damned Lies.} Damned Lies é a plataforma oficial de GNOME para xestionar as traducións. Nela pódense baixar os ficheiros para traducir, subir os ficheiros traducidos, revisar os mesmos, e ver as estatísticas xerais de tradución para cada linguaxe. Sería realmente útil que todas estas tarefas se puidesen facer dende GNOMECAT. Para isto non só bastaría con implementar novas vistas en GNOMECAT, senón tamén a creación dunha API pública para a plataforma web Damned Lies que está escrita en Python empregando o framework Django.
 
 \paragraph{Glosario.} Implementación dun glosario de termos na interface de edición de GNOMECAT. Este glosario debería permitir importar e exportar diversas bases de datos tanto online como offline.
 
-\paragraph{Previsualización das traducións.} Como xa se comentou anteriormente esta é unha característica moi interesante para unha ferramenta CAT pois permite que os tradutores vexan como pode quedar a tradución no programa final. Aínda que existen varias alternativas para implementar esta funcionalidade semella que a máis axeitada para tecnoloxías GNOME é empregar o motor de renderizado Glade como se fixo na aplicación web Deckard.
+\paragraph{Previsualización das traducións.} Como xa se comentou anteriormente esta é unha característica moi interesante para unha ferramenta CAT pois permite que os tradutores vexan como pode quedar a tradución no programa final. Aínda que existen varias alternativas para implementar esta funcionalidade, semella que a máis axeitada para tecnoloxías GNOME é empregar o motor de renderizado Glade como se fixo na aplicación web Deckard.

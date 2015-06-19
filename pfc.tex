@@ -9,7 +9,7 @@
 % twoside -> escribimos a doble cara.
 % openbib -> para que las referencias bibliogr?icas tengan un salto de l?ea entre cada campo de la referencia.
 %
-\documentclass[a4paper,11pt,oneside]{book}
+\documentclass[a4paper,11pt,twoside,openright]{book}
 
 % codificaci? latin1 y s?bolos del idioma espa?l (? acentos, ...)
 \usepackage[spanish]{babel}
@@ -47,8 +47,15 @@
 \usepackage{setspace}
 \onehalfspacing
 % \doublespacing
-\setlength{\textwidth}{15cm}
-\setlength{\textheight}{22cm}
+%\setlength{\textwidth}{14cm}
+%\setlength{\textheight}{22cm}
+\usepackage{geometry}
+\geometry{
+  inner=3.5cm,
+  outer=2.5cm,
+  bottom=3.5cm,
+  top=3.5cm}
+  
 
 % Paquete fancyhdr -> Para modificar la cabecera y pie de p?inas.
 % http://tug.ctan.org/tex-archive/macros/latex/contrib/fancyhdr/
@@ -165,7 +172,7 @@
   % y agradecimientos).
   %
         \thispagestyle{empty}     % No number page, headings...
-        \include{002_certificado}
+        %\include{002_certificado}
         \thispagestyle{empty}     % No number page, headings...
 
         \include{003_resumen}
@@ -200,8 +207,7 @@
   % INCLUIMOS LOS APÉNDICES...
         \appendix
         \include{A010_escollerlicencia}
-       % \include{A011_textogpl}
-       %\include{pfc_appendix_020}
+        \include{A020_instalacion}
 
 
   % INCLUIMOS LA BIBLIOGRAFÍA...

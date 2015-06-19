@@ -1,6 +1,6 @@
 \chapter{Estado do Arte}
 
-Neste capítulo explicarase como funciona a internacionalización e localización con GNU Gettext. Ademais analizaremos as diferentes alternativas que existen no mercado como ferramentas de asistencia a tradución e as características que cada unha incorpora. O final faremos un resumo das características que empregan os programas CAT\footnote{Computer Assisted Translation}.
+Neste capítulo explicarase como funciona a internacionalización e localización con GNU Gettext. Ademais analizaremos as diferentes alternativas que existen no mercado como ferramentas de asistencia á tradución e ás características que cada unha incorpora. Ó final faremos un resumo das características que empregan os programas CAT\footnote{Computer Assisted Translation}.
 
 \section{Internacionalización e localización con GNU Gettext}
 Gettext é un sistema para a internacionalización e localización amplamente usado en entornos UNIX. Conta con varías implementacións, sendo a primeira de Sun Microsystems no ano 1990. A implementación máis usada é a que GNU liberou no ano 1995. Pese ser unha solución antiga, é a día de hoxe a mellor que se pode atopar no mercado.
@@ -39,7 +39,7 @@ main ()
 }
 \end{lstlisting}
 
-A función \lstinline{gettext()} é a encargada de substituír a cadea orixinal pola tradución. Non obstante vemos que debemos configurar algunhas cousas antes de poder chamar á función.
+A función \lstinline{gettext()} é a encargada de substituír a cadea orixinal pola tradución. Non obstante, vemos que debemos configurar algunhas cousas antes de poder chamar á función.
 
 En primeiro lugar debemos establecer a linguaxe que queremos empregar no programa. Para iso usamos a función \lstinline{setlocale()}. O primeiro argumento da función determina que parte do locale actual queremos modificar. Entre outras podemos atopar:
 
@@ -55,7 +55,7 @@ Por último especificamos o código de idioma ou no caso de empregar a cadea bal
 
 Os códigos de idioma empregan a normativa ISO 639 polo que son da forma $$language[\_territory][.codeset][@modifier]$$ Por exemplo o código do galego empregando codificación UTF-8 é \lstinline{gl\_ES.UTF-8}.
 
-Ademais debemos indicarlle o programa onde ten que atopar as traducións. Para iso empregamos a función \lstinline{bindtextdomain()} que liga un nome de dominio a unha ruta dentro do sistema e a función \lstinline{textdomain()} que lle indica o programa cal é o nome de dominio que debe empregar. Un dominio é un conxunto de cadeas que se empregan nunha parte determinada dun programa. Cada dominio debe ter un nome de dominio único dentro dun programa.
+Ademais debemos indicarlle ó programa onde ten que atopar as traducións. Para iso empregamos a función \lstinline{bindtextdomain()} que liga un nome de dominio a unha ruta dentro do sistema e a función \lstinline{textdomain()} que lle indica o programa cal é o nome de dominio que debe empregar. Un dominio é un conxunto de cadeas que se empregan nunha parte determinada dun programa. Cada dominio debe ter un nome de dominio único dentro dun programa.
 
 Con estes parámetros Gettext xa é capaz de atopar as traducións que no caso do programa anterior atoparíanse en \emph{/usr/local/share/locale/gl/LC\_MESSAGES/helloworld.mo}.
 
@@ -141,10 +141,10 @@ msgid "Hello World!"
 msgstr "Ola Mundo!"
 \end{lstlisting}
 
-Antes de poder empregar o ficheiro no noso programa temos que compilalo. Para iso empregamos a utilidade msgfmt ca que obtemos o ficheiro helloworld.mo. Se movemos o ficheiro o directorio adecuado (o que especificamos en \lstinline{textdomain()}) o noso programa xa estará localizado.
+Antes de poder empregar o ficheiro no noso programa temos que compilalo. Para iso empregamos a utilidade msgfmt coa que obtemos o ficheiro helloworld.mo. Se movemos o ficheiro o directorio adecuado (o que especificamos en \lstinline{textdomain()}) o noso programa xa estará localizado.
 
 \subsection{Ficheiros Gettext PO}
-Como xa dixemos antes os ficheiros PO son os ficheiros que temos que editar para localizar o noso programa. Primeiro dicir que se trata ficheiros de texto plano e que polo tanto podemos editar con calquera editor de ficheiros de texto plano. Non obstante, o ideal é empregar algunha ferramenta que nos facilite a tarefa como pode ser unha ferramenta CAT.
+Como xa dixemos antes, os ficheiros PO son os ficheiros que temos que editar para localizar o noso programa. Primeiro dicir que se trata ficheiros de texto plano e que polo tanto podemos editar con calquera editor de ficheiros de texto plano. Non obstante, o ideal é empregar algunha ferramenta que nos facilite a tarefa como pode ser unha ferramenta CAT.
 
 As súas principais características son:
 
@@ -161,7 +161,7 @@ No código fonte para que GetText escolla a tradución adecuada temos que empreg
 [...]
 \end{lstlisting}
 
-A cadea do ficheiro PO (Fragmento de Código~\ref{plural-pofile}) correspondente o código anterior pódese ver no seguinte fragmento de código. Vemos como temos unha entrada \lstinline{msgstr} por cada plural. Desta forma o plural número $0$ corresponde os singular é o plural número $1$ correspondese coa primeira forma do plural.
+A cadea do ficheiro PO (Fragmento de Código~\ref{plural-pofile}) correspondente ó código anterior pódese ver no seguinte fragmento de código. Vemos como temos unha entrada \lstinline{msgstr} por cada plural. Desta forma o plural número $0$ corresponde ós singular e o plural número $1$ correspondese coa primeira forma do plural.
 
 \begin{lstlisting}[label=plural-pofile,caption=Plurais en GetText (Ficheiro PO).]
 #: helloworld.c:19
@@ -187,7 +187,7 @@ msgstr ""
 \end{lstlisting}
 
 \paragraph {Formato das traducións}
-Os ficheiro PO permite indicar se as cadeas a traducir teñen un formato determinado. Por exemplo a cadea do exemplo no Fragmento de Código~\ref{trans-pofile} pódese ver que ten o flag \lstinline{c-format} debido a que é parte dunha sentencia printf e podería levar indicadores de formato da forma \lstinline{%s}.
+Os ficheiro PO permite indicar se as cadeas a traducir teñen un formato determinado. Por exemplo, a cadea do exemplo no Fragmento de Código~\ref{trans-pofile} pódese ver que ten o flag \lstinline{c-format} debido a que é parte dunha sentencia printf e podería levar indicadores de formato da forma \lstinline{%s}.
 
 \paragraph {Cabeceira con metadatos}
 Existe unha cadea especial nos documentos Gettext PO. Trátase da cadea baleira que serve para almacenar metadatos do ficheiro. No fragmento de código \ref{trans-pofile} podemos ver istos metadatos. Algúns dos metadatos existentes son:
@@ -247,10 +247,10 @@ msgstr ""
 
 \section{Ferramentas CAT do mercado}
 \label{sec:ferramentascat}
-Nesta sección analizaremos algunhas das ferramentas de asistencia a tradución existentes. Veremos as características que incorporan estes programas así como estudar a súa interface de usuario.
+Nesta sección analizaremos algunhas das ferramentas de asistencia á tradución existentes. Veremos as características que incorporan estes programas así como estudar a súa interface de usuario.
 
 \subsection{GTranslator}
-GTranslator é a aplicación oficial do proxecto GNOME para a asistencia a tradución. Este aplicativo so permite a tradución de arquivos GNU Gettext. As característica máis destacables deste programa son a posibilidade de abrir varios ficheiros en diferentes lapelas, soporte de memorias de tradución, perfiles para diferentes tradutores, edición dos comentarios dos ficheiros .po e un sistema de plugins que permite estender a ferramenta.
+GTranslator é a aplicación oficial do proxecto GNOME para a asistencia á tradución. Este aplicativo só permite a tradución de arquivos GNU Gettext. As característica máis destacables deste programa son a posibilidade de abrir varios ficheiros en diferentes lapelas, soporte de memorias de tradución, perfiles para diferentes tradutores, edición dos comentarios dos ficheiros .po e un sistema de plugins que permite estender a ferramenta.
 
 \begin{figure}[h]
     \centering
@@ -259,12 +259,12 @@ GTranslator é a aplicación oficial do proxecto GNOME para a asistencia a tradu
     \label{fig:gtranslator}
 \end{figure}
 
-En canto a interface, como podemos ver na Figura~\ref{fig:gtranslator}, a parte máis importante do programa é a a lista de mensaxes. Abaixo desta lista temos un panel onde se pode editar cada mensaxe e a súa dereita a memoria de tradución. A disposición dos elementos desta interface é configurable xa que permite mover e ampliar cada un dos módulos. O programa tamén incorpora atallos de teclado que permiten moverse polo documento e seleccionar cada elemento da memoria de tradución.
+En canto a interface, como podemos ver na Figura~\ref{fig:gtranslator}, a parte máis importante do programa é a a lista de mensaxes. Abaixo desta lista temos un panel onde se pode editar cada mensaxe e á súa dereita a memoria de tradución. A disposición dos elementos desta interface é configurable xa que permite mover e ampliar cada un dos módulos. O programa tamén incorpora atallos de teclado que permiten moverse polo documento e seleccionar cada elemento da memoria de tradución.
 
-Este programa pese a ser o aplicativo oficial de GNOME é moi pouco usado. As razóns disto son a ausencia dunha característica chave que o diferencie doutras ferramentas do mercado, a presencia de fallas importantes que afectan a usabilidade e a ausencia dun mantedor que resolva estes problemas.
+Este programa pese a ser o aplicativo oficial de GNOME é moi pouco usado. As razóns disto son a ausencia dunha característica chave que o diferencie doutras ferramentas do mercado, a presenza de fallas importantes que afectan a usabilidade e a ausencia dun mantedor que resolva estes problemas.
 
 \subsection{Lokalize}
-Lokalize é o programa oficial para o soporte a tradución en KDE. Foi escrita dende cero empregando a tecnoloxía de KDE Platform 4 e baseándose no código de KBabel. As súas características máis destacables son, o soporte para ficheros GNU Gettext e o formato QT TS entre outros; a xestión de proxectos incorporando unha vista que permite ver un resumo de cada ficheiro dentro do proxecto; uso de memorias de tradución e de glosarios; comprobación da ortografía e vista previa das traducións a partir de scripts feitos polo usuario.
+Lokalize é o programa oficial para o soporte á tradución en KDE. Foi escrita dende cero empregando a tecnoloxía de KDE Platform 4 e baseándose no código de KBabel. As súas características máis destacables son: o soporte para ficheros GNU Gettext e o formato QT TS, entre outros; a xestión de proxectos incorporando unha vista que permite ver un resumo de cada ficheiro dentro do proxecto; uso de memorias de tradución e de glosarios; comprobación da ortografía e vista previa das traducións a partir de scripts feitos polo usuario.
 
 \begin{figure}[h]
     \centering
@@ -273,11 +273,11 @@ Lokalize é o programa oficial para o soporte a tradución en KDE. Foi escrita d
     \label{fig:lokalize}
 \end{figure}
 
-En canto a interface, o programa permite abrir varios ficheiros cada un na súa lapela. Como se pode ver na Figura~\ref{fig:lokalize}, a vista de tradución está centrada no panel de edición, onde aparecen tanto a cadea orixinal como a cadea a traducir. Na columna da esquerda podemos ver a lista de cadeas onde se amosan os primeiros caracteres da cadea orixinal e da tradución e o estado desta tradución. Ademais tamén se pode ver o contexto da tradución, engadir un novo comentario e ver en que ficheiros estaba dita tradución. Por último tamén podemos ver na parte inferior a memoria de tradución e o glosario.
+En canto á interface, o programa permite abrir varios ficheiros cada un na súa lapela. Como se pode ver na Figura~\ref{fig:lokalize}, a vista de tradución está centrada no panel de edición, onde aparecen tanto a cadea orixinal como a cadea para traducir. Na columna da esquerda podemos ver a lista de cadeas, onde se amosan os primeiros caracteres da cadea orixinal e da tradución e o estado desta tradución. Ademais, tamén se pode ver o contexto da tradución, engadir un novo comentario e ver en que ficheiros estaba dita tradución. Por último, tamén podemos ver na parte inferior a memoria de tradución e o glosario.
 
 \subsection{Virtaal}
 
-Virtaal é unha ferramenta CAT creada por Translate House\footnote{Compañía que surxiu a partir dunha comunidade de tradutores de Sudáfrica e que está especializada na creación de ferramentas e bibliotecas para axudar a tradución.} As características máis destacables son a incorporación de suxestión a tradución, comprobación da calidade das tradución e, sobre todo, a capacidade de abrir unha gran variedade de formatos a través da biblioteca Translate Toolkit.
+Virtaal é unha ferramenta CAT\cite{website:virtaalweb} creada por Translate House\footnote{Compañía que surxiu a partir dunha comunidade de tradutores de Sudáfrica e que está especializada na creación de ferramentas e bibliotecas para axudar a tradución.} As características máis destacables son a incorporación de suxestión a tradución, comprobación da calidade das tradución e, sobre todo, a capacidade de abrir unha gran variedade de formatos a través da biblioteca Translate Toolkit.
 
 \begin{figure}[h]
     \centering
@@ -286,10 +286,10 @@ Virtaal é unha ferramenta CAT creada por Translate House\footnote{Compañía qu
     \label{fig:virtaal}
 \end{figure}
 
-Como se pode ver na Figura~\ref{fig:virtaal}, a interface é minimalista e moi centrada na tradución. A diferencia dos casos anteriores, trátase dunha interface fixa e que integra a lista das mensaxes coa edición da propia mensaxe. Tamén se indican posibles fallos que poidan ter a tradución, como falta de puntos o final, ausencia de marcadores de formato, etc.
+Como se pode ver na Figura~\ref{fig:virtaal}, a interface é minimalista e moi centrada na tradución. A diferenza dos casos anteriores, trátase dunha interface fixa e que integra a lista das mensaxes coa edición da propia mensaxe. Tamén se indican posibles fallos que poida ter a tradución, como falta de puntos ó final, ausencia de marcadores de formato, etc.
 
 \subsection{OmegaT}
-Ferramenta CAT lanzada no ano 2001 e pensada fundamentalmente para tradutores profesionais. Ten soporte para o uso de memoria de tradución, glosario, tradución directa entre outras cousas. Destaca a gran cantidade de formatos que pode empregar.
+Ferramenta CAT\cite{website:omegat} lanzada no ano 2001 e pensada fundamentalmente para tradutores profesionais. Ten soporte para o uso de memoria de tradución, glosario, tradución directa entre outras cousas. Destaca a gran cantidade de formatos que pode empregar.
 
 \begin{figure}[h]
     \centering
@@ -298,10 +298,10 @@ Ferramenta CAT lanzada no ano 2001 e pensada fundamentalmente para tradutores pr
     \label{fig:omegat}
 \end{figure}
 
-A interface de OmegaT dista bastante do resto de programas. Como amosa a Figura~\ref{fig:omegat} non existe o concepto de lista de mensaxes traducir. O documento amosase como unha sucesión de cadea e se facemos clic encima dunha, permitiranos traducila. Trátase dun programa moi usado para a tradución tanto profesional como amateur.
+A interface de OmegaT dista bastante do resto de programas. Como amosa a Figura~\ref{fig:omegat}, non existe o concepto de lista de mensaxes para traducir. O documento amósase como unha sucesión de cadea e se facemos clic encima dunha, permitiranos traducila. Trátase dun programa moi usado para a tradución tanto profesional como amateur.
 
 \subsection{Google Translation Toolkit}
-É a ferramenta CAT desenvolvida por Google e lanzada no ano 2008. A diferencia dos aplicativos analizados anteriormente, esta trátase unha solución puramente web. Entre as súas principais características encontrase a posibilidade de facer tradución automática empregando Google Translator, o uso de memorias de tradución compartidas, glosarios, soporte de etiquetas HTML entre outros e atallos de teclado. Ten soporte para varios formatos como ficheiros PO, documentos de Microsoft Word, de LibreOffice ou mesmo artigos da Wikipedia.
+É a ferramenta CAT desenvolvida por Google e lanzada no ano 2008. A diferenza dos aplicativos analizados anteriormente, esta trátase unha solución puramente web. Entre as súas principais características, encóntrase a posibilidade de facer tradución automática empregando Google Translator, o uso de memorias de tradución compartidas, glosarios, soporte de etiquetas HTML, entre outros, e atallos de teclado. Ten soporte para varios formatos, como ficheiros PO, documentos de Microsoft Word, de LibreOffice ou mesmo artigos da Wikipedia.
 
 \begin{figure}[h]
     \centering
@@ -310,11 +310,11 @@ A interface de OmegaT dista bastante do resto de programas. Como amosa a Figura~
     \label{fig:translatetoolkit}
 \end{figure}
 
-Como se pode ver na Figura~\ref{fig:translatetoolkit}, na interface misturase a lista de cadeas co cadro de edición das mesmas. Ademais empregando unha interface semellante a do resto de ferramentas ofimáticas de Google, temos botóns para autocompletar etiquetas e para avanzar a seguinte tradución. Aínda que foi pensado para a tradución colaborativa de documentos de ONGs e artigos da Wikipedia, na actualidade emprégase maioritariamente para a tradución de proxectos comerciais.
+Como se pode ver na Figura~\ref{fig:translatetoolkit}, na interface mestúrase a lista de cadeas co seu cadro de edición. Ademais, emprega unha interface semellante á do resto de ferramentas ofimáticas de Google, temos botóns para autocompletar etiquetas e para avanzar a seguinte tradución. Aínda que foi pensado para a tradución colaborativa de documentos de ONGs e artigos da Wikipedia, na actualidade emprégase maioritariamente para a tradución de proxectos comerciais.
 
 
 \subsection{Transifex}
-Trátase dunha plataforma que xurdiu a partir dun proxecto do Google Summer of Code do ano 2007 que pretendía crear unha plataforma online máis amigable que o Damned Lies de GNOME que naquel momento tamén empregaba Fedora unha distribución de GNU/Linux. Trátase dunha solución de pago con plans que van dende os 19 a os 300 dólares. Non obstante os proxectos de código aberto poden usar o servizo de forma gratuíta e dispón de un período de mostra 30 días. As súas principais características son a posibilidade de descargar o documento e volvelo a subir para poder traducilo con outra ferramenta CAT, editor online, memoria de tradución e unha API que permite integralo con outros servizos. Ademais tamén soporta unha gran variedade de formatos entre os que se atopan os ficheiros PO, DTD de Mozilla ou XML entre outros.
+Trátase dunha plataforma que xurdiu a partir dun proxecto do Google Summer of Code do ano 2007 que pretendía crear unha plataforma online máis amigable que o Damned Lies de GNOME que naquel momento tamén empregaba Fedora unha distribución de GNU/Linux. Trátase dunha solución de pago con plans que van dende os 19 ós 300 dólares. Non obstante, os proxectos de código aberto poden usar o servizo de forma gratuíta e dispón dun período de mostra 30 días. As súas principais características son a posibilidade de descargar o documento e volvelo subir para poder traducilo con outra ferramenta CAT, editor online, memoria de tradución e unha API que permite integralo con outros servizos. Ademais, tamén soporta unha gran variedade de formatos, entre os que se atopan os ficheiros PO, DTD de Mozilla ou XML, entre outros.
 
 \begin{figure}[h]
     \centering
@@ -323,10 +323,10 @@ Trátase dunha plataforma que xurdiu a partir dun proxecto do Google Summer of C
     \label{fig:transifex}
 \end{figure}
 
-A interface de Trasifex, como ser pode ver na Figura~\ref{fig:transifex} separa a lista de cadeas do cadro de edición. No cadro de edición temos a posibilidade de consultar a memoria de tradución ou o glosario. O programa tamén incorpora resaltado de sintaxe.
+A interface de Transifex, como ser pode ver na Figura~\ref{fig:transifex}, separa a lista de cadeas do cadro de edición. No cadro de edición temos a posibilidade de consultar a memoria de tradución ou o glosario. O programa tamén incorpora resaltado de sintaxe.
 
 \subsection{Outras ferramentas}
-Existen moitas máis ferramentas CAT no mercado. De feito, segundo unha enquisa \cite{article:2006survey} elaborada polo Imperial College London a cerca de 900 tradutores profesionais de 54 países diferentes, OmegaT é o único programa que aparece na enquisa (con un 7\% de usuarios) de todos os programas anteriormente citados. As ferramentas máis usadas son ferramentas para Microsoft Windows e ferramentas con licencias privativas e usualmente moi caras. Algunhas destas ferramentas son TRADOS, Wordfast, DejaVu SDLX ou STAR Transit. Na Figura~\ref{fig:enquisa2006} podemos ver unha gráfica coas ferramentas máis empregadas segundo este estudio.
+Existen moitas máis ferramentas CAT no mercado. De feito, segundo unha enquisa \cite{article:2006survey} elaborada polo Imperial College London a cerca de 900 tradutores profesionais de 54 países diferentes, OmegaT é o único programa que aparece na enquisa (cun 7\% de usuarios) de todos os programas anteriormente citados. As ferramentas máis usadas son ferramentas para Microsoft Windows e ferramentas con licenzas privativas e usualmente moi caras. Algunhas destas ferramentas son TRADOS, Wordfast, DejaVu SDLX ou STAR Transit. Na Figura~\ref{fig:enquisa2006} podemos ver unha gráfica coas ferramentas máis empregadas segundo este estudo.
 
 \begin{figure}[h]
     \centering
@@ -335,37 +335,37 @@ Existen moitas máis ferramentas CAT no mercado. De feito, segundo unha enquisa 
     \label{fig:enquisa2006}
 \end{figure}
 
-Hai que ter tamén en conta que se trata dun estudio bastante antigo polo que algunhas das ferramentas analizadas aínda non existían. Por exemplo a enquisa cita a ferramenta KBabel, que é a ferramenta de KDE na que está baseada Lokalize, pero con menos dun 2\% de usuarios.
+Hai que ter tamén en conta que se trata dun estudo bastante antigo, polo que algunhas das ferramentas analizadas aínda non existían. Por exemplo, a enquisa cita a ferramenta KBabel, que é a ferramenta de KDE na que está baseada Lokalize, pero con menos dun 2\% de usuarios.
 
 
 \section{Características xenéricas das ferramentas CAT}
 
-Algunhas das características que aparecen de forma recurrente en todas as ferramentas analizadas son as seguintes:
+Algunhas das características que aparecen de forma recorrente en todas as ferramentas analizadas son as seguintes:
 
 \subsection{Memoria de Tradución}
-Unha memoria de tradución é unha base de datos composta de textos orixinais acompañados das súas traducións. Estes textos almacénanse en segmentos onde a separación entre segmentos ven dada por signos de puntuación ou o cambio de parágrafo, sendo esta última forma a máis frecuente.
+Unha memoria de tradución é unha base de datos composta de textos orixinais acompañados das súas traducións. Estes textos almacénanse en segmentos onde a separación entre segmentos vén dada por signos de puntuación ou o cambio de parágrafo, sendo esta última forma a máis frecuente.
 
-A principal función dunha memoria de tradución e a extracción de coincidencias totais ou parciais. Os programas que teñen esta característica buscan na base de datos un segmento que coincida de forma exacta ou parcial coa cadea que se está a traducir e mostrase este segmento como suxerencia. Xunto coa suxerencia tamén se amosa o grado de cercanía entre a cadea a traducir e a cadea da memoria de tradución.
+A principal función dunha memoria de tradución é a extracción de coincidencias totais ou parciais. Os programas que teñen esta característica buscan na base de datos un segmento que coincida de forma exacta ou parcial coa cadea que se está a traducir e móstrase este segmento como suxestión. Xunto coa suxestión tamén se amosa o grao de proximidade entre a cadea a traducir e para cadea da memoria de tradución.
 
-Existe un formato estándar de compartición de memorias de tradución de nome Translation Memory eXchange (TMX) e plataformas online que almacenan gran cantidade de cadeas e polo tanto hai máis posibilidade de obter unha mellor coincidencia. O software Amagama creado por Translate House, os creadores de Virtaal, é un exemplo de memoria de tradución online.
+Existe un formato estándar de compartición de memorias de tradución de nome Translation Memory eXchange (TMX) e plataformas online que almacenan gran cantidade de cadeas e, polo tanto, hai máis posibilidade de obter unha mellor coincidencia. O software Amagama creado por Translate House, os creadores de Virtaal, é un exemplo de memoria de tradución online.
 
 \subsection{Glosario}
-Un glosario é unha base de datos de termos xunto con unha ou varias traducións aceptadas. Diferenciase da memoria de tradución en que so se proporcionan a tradución a termos e non a cadeas completas. De igual forma que no caso das memorias de tradución, existe un formato estándar de para a compartición de glosarios de nome TermBase eXchange (TBX) e plataformas online para almacenar os glosarios.
+Un glosario é unha base de datos de termos xunto cunha ou varias traducións aceptadas. Diferénciase da memoria de tradución en que só se proporciona a tradución a termos e non a cadeas completas. De igual forma que no caso das memorias de tradución, existe un formato estándar de para a compartición de glosarios de nome TermBase eXchange (TBX) e plataformas online para almacenar os glosarios.
 
 
 \subsection{Previsualización}
 As funcións de previsualización permítenlle ó tradutor ver como vai quedar a cadea traducida no programa final.
 
-Os programadores e deseñadores fan as interfaces tendo en conta a lingua orixinal e non ningunha das traducións polo que se unha tradución é moito máis longa ca orixinal pode verse mal no programa final.
+Os programadores e deseñadores fan as interfaces tendo en conta a lingua orixinal e non ningunha das traducións, polo que se unha tradución é moito máis longa cá orixinal pode verse mal no programa final.
 
 Para conseguir esta característica pódense empregar varias técnicas:
 
 \begin{itemize}
   \item \textbf{Programa orixinal.} Esta técnica que se pode empregar en calquera cadea consiste en compilar o ficheiro PO e executar o programa final con ese ficheiro PO. Desta poderemos ver como queda a nosa tradución para o usuario final. A desvantaxe deste método consiste en que teremos que saber en que parte do programa se emprega a cadea que queremos previsualizar. Este método é empregado por Lokalize que permite a definición de scripts para a previsualización de cadeas.
 
-  \item \textbf{Renderizado de interfaces de usuario en XML.} Nas bibliotecas de interfaces modernas existe a posibilidade de definir interfaces en ficheiros XML e despois renderizalas. Neste caso as cadeas a traducir van nestes arquivos e sería posible renderizar esta interface coa tradución que estamos a realizar. Este método aínda que si que amosaría a pantalla onde aparece a cadea actual, so é válido para as cadeas que proveñen destes ficheiros XML e non as definidas da forma tradicional. Un exemplo deste método pódese ver na rede no aplicativo Deckard\footnote{\href{http://deckard.malizor.org/}{deckard.malizor.org}} que permite ver as traducións de aplicativos de GNOME.
+  \item \textbf{Renderizado de interfaces de usuario en XML.} Nas bibliotecas de interfaces modernas existe a posibilidade de definir interfaces en ficheiros XML e despois renderizalas. Neste caso as cadeas para traducir van nestes arquivos e sería posible renderizar esta interface coa tradución que estamos a realizar. Este método, aínda que si que amosaría a pantalla onde aparece a cadea actual, só é válido para as cadeas que proveñen destes ficheiros XML e non as definidas da forma tradicional. Un exemplo deste método pódese ver na rede no aplicativo Deckard\footnote{\href{http://deckard.malizor.org/}{deckard.malizor.org}} que permite ver as traducións de aplicativos de GNOME.
 \end{itemize}
 
 
 \subsection{Tradución Directa}
-A tradución de cadeas de forma automática empregando algoritmos deseñados a tal proceso e que empregan grandes bases de datos aloxadas, xeralmente en internet. Tanto Google como Microsoft teñen os seus produtos corporativos que fan traducións e existen alternativas libres como OpenTrad ou Apertium. Estas traducións aínda que validas soen ser de baixa calidade polo que necesitan unha revisión.
+A tradución de cadeas de forma automática empregando algoritmos deseñados para tal proceso e que empregan grandes bases de datos aloxadas, xeralmente en internet. Tanto Google como Microsoft teñen os seus produtos corporativos que fan traducións e existen alternativas libres como OpenTrad ou Apertium. Estas traducións, aínda que válidas, acostuman ser de baixa calidade, polo que necesitan unha revisión.
